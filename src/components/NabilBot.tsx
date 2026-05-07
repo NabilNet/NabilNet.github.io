@@ -20,7 +20,10 @@ export function NabilBot() {
     setMessages((m) => [...m, { from: "user", text: q }, { from: "bot", text: bot }]);
     setInput("");
   };
-  const typing = useMemo(() => messages.at(-1)?.from === "user", [messages]);
+  const typing = useMemo(() => {
+    const lastMessage = messages.length > 0 ? messages[messages.length - 1] : undefined;
+    return lastMessage?.from === "user";
+  }, [messages]);
 
   return <>
     <button onClick={() => setOpen((v) => !v)} className="fixed bottom-5 right-5 z-50 rounded-full bg-sky-500 px-4 py-3 text-white shadow-lg" aria-label="Ask NabilBot">Ask NabilBot</button>
