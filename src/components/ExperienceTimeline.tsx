@@ -1,0 +1,3 @@
+import { motion } from "framer-motion";
+import { experience } from "../data/portfolio";
+export function ExperienceTimeline(){return <section id="experience" className="section"><h2>Experience</h2><div className="relative border-l border-slate-600 ml-2">{experience.map((item,i)=><motion.article key={item.company+item.period} initial={{opacity:0,x:-16}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{delay:i*0.05}} className="ml-6 mb-6"><div className="absolute -left-2.5 mt-1 size-4 rounded-full bg-sky-400"/><h3>{item.role}</h3><p className="text-sky-300">{item.company} • {item.period}</p><p className="muted">{item.summary}</p></motion.article>)}</div></section>;}
