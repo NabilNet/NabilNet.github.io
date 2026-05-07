@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { About } from "./components/About";
-import { Certifications } from "./components/Certifications";
+import { Training } from "./components/Training";
 import { Contact } from "./components/Contact";
 import { ExperienceTimeline } from "./components/ExperienceTimeline";
 import { Expertise } from "./components/Expertise";
@@ -30,7 +30,7 @@ function App() {
   return <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#050816] dark:text-slate-50 transition-colors duration-500">
     <Navbar theme={theme} onToggle={toggleTheme} />
     <main>
-      <Hero /><About /><Expertise /><ExperienceTimeline /><Projects /><TechStack /><Certifications /><Contact />
+      <Hero /><About /><Expertise /><ExperienceTimeline /><Projects /><TechStack /><Training /><Contact />
     </main>
     <Footer />
     <NabilBot />
