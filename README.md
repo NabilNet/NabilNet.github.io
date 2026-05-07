@@ -1,13 +1,9 @@
-# NabilNet Portfolio
+Act as a senior React/Vite/GitHub Pages deployment engineer and debugging expert.
 
 Premium Apple-inspired portfolio for Nabil Nettour, Senior Network, Cloud & Automation Engineer.
 
-## Tech Stack
-- React + TypeScript + Vite
-- Tailwind CSS
-- Framer Motion
-- Lucide React
-- GitHub Actions + GitHub Pages
+Context:
+This is a React + TypeScript + Vite portfolio deployed on GitHub Pages.
 
 ## Design System
 - Elegant light mode (#F5F5F7 background, #111827 text)
