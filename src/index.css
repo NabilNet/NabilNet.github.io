@@ -12,3 +12,6 @@ a, button, input { @apply focus-visible:outline-none focus-visible:ring-2 focus-
 .muted { @apply text-[#4B5563] dark:text-[#CBD5E1]; }
 .btn { @apply rounded-xl border border-[rgba(17,24,39,0.15)] bg-white px-4 py-2 font-medium transition hover:-translate-y-0.5 hover:border-sky-500 hover:shadow-lg dark:border-slate-600 dark:bg-[#111827]; }
 h2 { @apply text-3xl font-semibold md:text-4xl; }
+
+html { scroll-behavior: smooth; }
+html, body, #root { min-height: 100%; }
