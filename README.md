@@ -1,6 +1,6 @@
 # NabilNet Portfolio
 
-Premium dark-mode-first personal portfolio for a senior Network, Cloud, Security, Automation, and NetDevOps engineer.
+Premium Apple-inspired portfolio for Nabil Nettour, Senior Network, Cloud & Automation Engineer.
 
 ## Tech Stack
 - React + TypeScript + Vite
@@ -9,43 +9,36 @@ Premium dark-mode-first personal portfolio for a senior Network, Cloud, Security
 - Lucide React
 - GitHub Actions + GitHub Pages
 
-## Local Setup
+## Design System
+- Elegant light mode (#F5F5F7 background, #111827 text)
+- Premium dark mode (#050816 background, #F8FAFC text)
+- Glassmorphism panels, rounded cards, smooth shadows, subtle motion
+
+## Features
+- Sticky blurred navbar with theme toggle
+- Hero with executive messaging and CTA actions
+- Expertise / Experience / Projects / Skills / Training sections
+- **NabilBot** (frontend-only assistant with smart keyword responses)
+- Contact section with real links
+
+## Theme behavior
+- Saves selected theme in `localStorage`
+- Uses system preference when no saved theme exists
+
+## Local development
 ```bash
 npm install
-```
-
-## Commands
-```bash
 npm run dev
 npm run build
 npm run preview
-npm run lint
 ```
 
-## Features
-- Premium responsive design with dark-mode-first experience
-- Light/dark theme toggle with localStorage persistence and system preference fallback
-- Animated hero, cards, timeline, and section reveal effects
-- NabilBot assistant with predefined smart responses (frontend only)
-- SEO-friendly semantic structure and accessible controls
+## GitHub Pages deployment
+- Workflow: `.github/workflows/deploy.yml`
+- Build output: `dist`
+- Vite base for username site: `/`
 
-## GitHub Pages Deployment
-This repository is a username GitHub Pages repo (`NabilNet.github.io`), so Vite is configured with `base: "/"`.
-
-Workflow file: `.github/workflows/deploy.yml`
-- Triggers on push to `main` and `workflow_dispatch`
-- Builds with Node 20
-- Uploads `dist` as Pages artifact
-- Deploys using official GitHub Pages actions
-
-### What to do in GitHub
-1. Push code to `main`.
-2. Open **Settings → Pages**.
-3. Set **Source** to **GitHub Actions**.
-4. Push a new commit (or run the workflow manually).
-5. Open: https://NabilNet.github.io
-
-## NabilBot behavior
-- Floating button: **Ask NabilBot**
-- Glassmorphism chat panel with welcome message, quick prompts, keyword matching, and fallback response
-- No backend and no external AI API key
+## Contact
+- Email: nabil.nettour@gmail.com
+- LinkedIn: https://www.linkedin.com/in/nabil-n-25785216/
+- GitHub: https://github.com/NabilNet
