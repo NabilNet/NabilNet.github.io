@@ -9,7 +9,7 @@ import { Hero } from "./components/Hero";
 import { NabilBot } from "./components/NabilBot";
 import { Navbar } from "./components/Navbar";
 import { Projects } from "./components/Projects";
-import { TechStack } from "./components/TechStack";
+import { StrategicCapabilities } from "./components/StrategicCapabilities";
 
 function App() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -30,7 +30,7 @@ function App() {
   return <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#050816] dark:text-slate-50 transition-colors duration-500">
     <Navbar theme={theme} onToggle={toggleTheme} />
     <main>
-      <Hero /><About /><Expertise /><ExperienceTimeline /><Projects /><TechStack /><Training /><Contact />
+      <Hero /><About /><StrategicCapabilities /><ExperienceTimeline /><Projects /><Expertise /><Training /><Contact />
     </main>
     <Footer />
     <NabilBot />

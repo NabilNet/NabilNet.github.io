@@ -1,3 +1,12 @@
-import * as icons from "lucide-react";
-import { expertise } from "../data/portfolio";
-export function Expertise(){return <section id="expertise" className="section"><h2>Expertise</h2><div className="grid md:grid-cols-3 gap-4">{expertise.map((e)=>{const Icon=(icons as Record<string, any>)[e.icon] ?? icons.Server; return <article key={e.title} className="card hover:-translate-y-1 hover:shadow-sky-500/20 transition"><Icon className="mb-2 text-sky-400"/><h3>{e.title}</h3><p className="muted">{e.description}</p></article>;})}</div></section>;}
+import { Cpu } from "lucide-react";
+import { expertiseCategories } from "../data/portfolio";
+
+export function Expertise() {
+  return <section id="expertise" className="section">
+    <h2>Technical Expertise</h2>
+    <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{expertiseCategories.map((category) => <article key={category.title} className="card p-5">
+      <h3 className="flex items-center gap-2 text-lg"><Cpu size={16} className="text-sky-500" />{category.title}</h3>
+      <div className="mt-3 flex flex-wrap gap-2">{category.tags.map((tag) => <span key={tag} className="rounded-full border border-slate-300 px-3 py-1 text-xs dark:border-slate-600">{tag}</span>)}</div>
+    </article>)}</div>
+  </section>;
+}
