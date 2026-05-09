@@ -1,5 +1,3 @@
-export type ThemeName = "light" | "dark" | "network" | "black";
-
 export interface ExperienceItem {
   company: string;
   role: string;

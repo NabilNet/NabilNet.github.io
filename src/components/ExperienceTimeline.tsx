@@ -19,6 +19,6 @@ export function ExperienceTimeline() {
       </summary>
       <ul className="mt-4 list-disc space-y-1 pl-5 text-sm muted">{item.achievements.map((point) => <li key={point}>{point}</li>)}</ul>
       <p className="mt-4 rounded-xl border border-token bg-token-bg/40 p-3 text-sm"><strong>Strategic impact:</strong> {item.strategicImpact}</p>
-    </details>)}</div>
+    </details>)}{filtered.length === 0 ? <p className="muted rounded-2xl border border-token p-4">No roles match this filter.</p> : null}</div>
   </section>;
 }

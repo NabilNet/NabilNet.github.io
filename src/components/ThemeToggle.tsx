@@ -1,4 +1,4 @@
-import { ThemeName } from "../data/portfolio";
+import { ThemeName } from "../utils/theme";
 
 const themes: { key: ThemeName; label: string; color: string }[] = [
   { key: "light", label: "Light", color: "#e5e7eb" },

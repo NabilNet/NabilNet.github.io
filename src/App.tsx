@@ -7,32 +7,33 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 import { NetworkBackground } from "./components/NetworkBackground";
-import { ThemeName } from "./data/portfolio";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { getInitialTheme, isValidTheme, ThemeName } from "./utils/theme";
 
 function App() {
-  const [theme, setTheme] = useState<ThemeName>("dark");
+  const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as ThemeName | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial = saved ?? (prefersDark ? "dark" : "light");
-    setTheme(initial);
-    document.documentElement.dataset.theme = initial;
-  }, []);
+    const safeTheme = isValidTheme(theme) ? theme : "light";
+    document.documentElement.setAttribute("data-theme", safeTheme);
+    try {
+      window.localStorage.setItem("theme", safeTheme);
+    } catch {
+      // no-op: storage may be unavailable in private mode / blocked contexts
+    }
+  }, [theme]);
 
-  const setThemeMode = (next: ThemeName) => {
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("theme", next);
-  };
-
-  return <div className="min-h-screen bg-token-bg text-token-text transition-colors duration-500">
-    <NetworkBackground active={theme === "network"} />
-    <Navbar theme={theme} onSelect={setThemeMode} />
-    <main>
-      <Hero /><About /><ExperienceTimeline /><Training /><Contact />
-    </main>
-    <Footer />
+  return <div className="app-shell min-h-screen bg-token-bg text-token-text transition-colors duration-500">
+    <ErrorBoundary fallback={null}><NetworkBackground active={theme === "network"} /></ErrorBoundary>
+    <div className="app-content">
+      <Navbar theme={theme} onSelect={setTheme} />
+      <main>
+        <Hero /><About />
+        <ErrorBoundary fallback={<section id="experience" className="section"><h2>Professional Experience</h2><p className="muted mt-4">Experience content is temporarily unavailable.</p></section>}><ExperienceTimeline /></ErrorBoundary>
+        <Training /><Contact />
+      </main>
+      <Footer />
+    </div>
   </div>;
 }
 
