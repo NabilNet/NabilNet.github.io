@@ -1,574 +1,942 @@
-Act as a senior full-stack engineer, premium UI/UX designer, portfolio architect, and code-quality reviewer.
+Act as a senior front-end engineer, creative UI/UX designer, motion design specialist, and premium portfolio architect.
 
-You are working on my personal professional portfolio website. Your task is to deeply enhance the website by integrating a mature, executive, Deloitte-style portfolio content structure and by adding a new thematic section inspired by the professional service-oriented structure of https://networkarchs.com/.
+You are working on my professional portfolio website. I want you to enhance the theme system, improve the visual experience, simplify the design, and update the content structure.
+
+Main Goal:
+Upgrade the website into a smoother, more modern, more premium, and easier-to-use professional portfolio with a dynamic theme selector and a networking-inspired animated background theme.
 
 Important:
-Do not copy the Network Architects website exactly. Use it only as inspiration for the information architecture, service-card structure, corporate tone, and clean professional layout. The final result must feel original, premium, modern, and aligned with a senior Network, Security, Cloud, Automation, and Infrastructure professional portfolio.
+Before making changes, inspect the existing codebase, framework, components, styles, and theme implementation. Reuse the current architecture when possible. Do not break the existing design system. Keep the implementation clean, scalable, and maintainable.
 
-Main Objective:
-Transform the current website into a more mature, consulting-style professional portfolio with stronger storytelling, clearer service themes, better visual hierarchy, and polished footer links using small icons.
+==================================================
+1. ADD A NEW THEMATIC MODE
+==================================================
 
-Content to Integrate:
-Use the following portfolio themes and content deeply across the website:
+Currently, the website has light and dark themes.
 
-1. Professional Identity
-- Senior Network, Security, Cloud & Automation Engineer
-- Global Infrastructure
-- Zero Trust
-- Multi-Cloud
-- NetDevOps
-- AI-Driven Operations
-- Infrastructure modernization
-- Resilient and secure enterprise platforms
+Add two additional themes:
 
-2. Professional Summary
-Position the profile as an experienced infrastructure engineering professional specialized in designing, modernizing, automating, and securing complex enterprise environments across networking, cloud, cybersecurity, automation, telecom, and global infrastructure domains.
+1. Light Mode
+2. Dark Mode
+3. Networking Motion Mode
+4. Black Mode
 
-3. Core Value Proposition
-The website should communicate:
-- Secure infrastructure by design
-- Global enterprise delivery
-- Hybrid and multi-cloud architecture
-- Zero Trust and cybersecurity transformation
-- Automation-driven operations
-- Disaster Recovery and business continuity
-- NetDevOps and intelligent infrastructure operations
+The new “Networking Motion Mode” should have a dynamic animated background inspired by networking flow motion.
 
-4. Key Professional Contributions
-Create polished sections/cards for:
-- Infrastructure Automation & Operational Excellence
-- Zero Trust & Cybersecurity Transformation
-- Microsoft Teams Telephony Migration
-- Global Infrastructure Delivery
+The animation should feel like:
+- Moving network lines
+- Soft flowing nodes
+- Digital infrastructure traffic
+- Subtle packet-flow animation
+- Professional cloud/network/security aesthetic
+- Elegant and not distracting
 
-Each card should include:
-- A strong title
-- Short executive description
-- 3 to 5 key contribution bullets
-- Optional icon
-- Premium hover interaction
+The animation should not reduce readability. Text sections must remain clear and readable.
 
-5. Experience Section
-Integrate or improve the experience section with:
-- eDreams ODIGEO — Network & Cloud Engineer, 2017–2019
-- OECD — Senior Network & Multimedia Engineer
-- eDreams ODIGEO — Data Center Engineer
-- Sonangol Angola — Network & Data Center Engineer
-- Gemalto — Network Engineer
-- Subsea 7 — Global Network & Telecom Engineer
-- Freeson IT — System & Network Engineer
+Use subtle motion, not aggressive animation.
 
-Use a clean timeline, cards, accordion, or structured professional layout.
+Possible implementation ideas:
+- Animated SVG background
+- Canvas-based particles/lines
+- CSS radial gradients with moving network lines
+- Lightweight React component if the project uses React
+- No heavy dependencies unless absolutely necessary
 
-6. Featured Projects
-Add or improve a “Featured Projects” section with strong visual cards for:
-- Multi-Cloud Disaster Recovery Platform
-- Enterprise Network Automation Platform
-- Secure Zero Trust Infrastructure
-- Datacenter Modernization
+The animation must be responsive and performant.
 
-For each project include:
-- Project title
-- Strategic scope
-- Technologies used
-- Key contributions
-- Business value delivered
+Respect prefers-reduced-motion:
+If the user has reduced motion enabled, disable or simplify the animation.
 
-7. Technical Expertise
-Create a mature expertise section with categories:
-- Networking
-- Security
-- Cloud
-- Automation & NetDevOps
-- Monitoring & Analytics
-- AI & Innovation
+==================================================
+2. CREATE A CIRCULAR THEME SELECTOR
+==================================================
 
-Use structured tags, badges, or service-style cards. The design should be readable, not overloaded.
+Replace or enhance the existing theme toggle with a premium circular theme selector.
 
-8. Certifications & Training
-Add a clean section for:
-- Azure Architecture, Infrastructure & Security
-- NetDevOps with Ansible Automation Platform
-- Network Automation with Python
-- Cisco ISE — SISE
-- Google Cloud Platform Architecture
-- DevOps with Docker
-- F5 BIG-IP LTM
-- Cisco ASA Firewall Solutions
-- Cisco Unified Communications
+Design concept:
+A circular selector divided into four equal quarters:
 
-9. Education
-Add:
-- Claude Bernard University Lyon 1 — Master’s Degree, Computer Systems & Networks
-- University of Skikda — Engineering Degree, Computer Science
+- 1/4 Light Mode
+- 1/4 Dark Mode
+- 1/4 Networking Motion Mode
+- 1/4 Black Mode
 
-10. New Thematic Section Inspired by NetworkArchs.com
-Add a new website section similar in spirit to a professional IT services website.
+Each quarter must visually represent its theme:
+- Light Mode: clean white / soft silver / light blue accent
+- Dark Mode: deep navy / slate / soft cyan accent
+- Networking Motion Mode: blue / cyan / electric network flow accent
+- Black Mode: pure black / graphite / minimal white accent
 
-Suggested section title:
-“Strategic Infrastructure Capabilities”
+The selector should feel like a polished product UI element, not a basic button.
 
-Suggested subtitle:
-“Helping organizations design, secure, automate, and modernize mission-critical technology environments.”
+Functional requirements:
+- Clicking each quarter changes the website theme
+- The active theme should be visually highlighted
+- Add accessible labels and keyboard navigation
+- Add tooltips or small labels if appropriate
+- Persist the selected theme in localStorage
+- On reload, restore the selected theme
+- Respect system preference only as fallback when no theme is selected
 
-Create service/capability cards for:
-- Managed Infrastructure Operations
-- Network Infrastructure Architecture
-- Cybersecurity & Zero Trust
-- Cloud & Multi-Cloud Connectivity
-- Automation & NetDevOps
-- Disaster Recovery & Resilience
-- Infrastructure Observability
-- Technical Leadership & Consulting
+UX requirements:
+- Make it simple to understand
+- Avoid making the theme selector too large or intrusive
+- It can be placed in the navbar, floating control, or settings area depending on the current design
+- Must work perfectly on mobile
 
-Each capability card should include:
-- Small professional icon
-- Clear title
-- 2 to 3 lines of description
-- Optional “Learn more” micro-link or hover detail
+==================================================
+3. ADD “NabilNet” AS A SMALL LOGO INSIDE THE CIRCLE
+==================================================
 
-The layout should feel similar in structure to a professional IT services company website, but visually more premium, modern, and portfolio-oriented.
+Inside the circular theme selector, add a small centered logo/text mark:
 
-11. Footer Requirement
-Update the footer of the page.
-In the footer, use only small icons with links instead of large text-heavy blocks.
+“NabilNet”
 
-Footer should include small icon links for:
-- LinkedIn
-- GitHub
-- Email
-- Location or Contact
-- Optional CV / Resume download if already available
+Design direction:
+- Keep it minimal and premium
+- It can be written as text or small monogram
+- It should fit inside the circle without clutter
+- The logo color should adapt to the selected theme
+- It should remain readable in all four modes
 
-Design requirements:
-- Icons must be small, elegant, and aligned horizontally
-- Add accessible aria-labels
-- Add hover states
-- Keep footer minimal and premium
-- Avoid a cluttered footer
-- Keep copyright text small and subtle
+Possible styling:
+- Small centered text
+- Subtle border
+- Mini-glass effect
+- Tiny network node icon next to the name if appropriate
 
-12. Design Direction
-The visual direction should be:
-- Premium
-- Consulting-style
-- Modern enterprise technology
-- Clean and mature
-- Elegant spacing
-- Strong typography hierarchy
-- Professional color palette
-- Responsive on desktop, tablet, and mobile
-- Smooth but subtle animations
-- Card-based structure
-- Consistent spacing and alignment
+Do not make it look childish or overloaded.
+
+==================================================
+4. THEME COLOR SYSTEM
+==================================================
+
+Create a clean theme token system.
+
+Each theme should define:
+- Background
+- Surface / card background
+- Primary text
+- Secondary text
+- Muted text
+- Border color
+- Accent color
+- Accent hover color
+- Button color
+- Card shadow
+- Gradient background if used
+- Motion background colors where applicable
+
+Theme expectations:
+
+Light Mode:
+- Bright, clean, professional
+- Soft white / off-white backgrounds
+- Navy or graphite text
+- Blue/cyan accent
+
+Dark Mode:
+- Premium dark navy/slate
+- Good contrast
+- Soft cyan/blue accent
+- Elegant cards
+
+Networking Motion Mode:
+- Dark technology-inspired base
+- Animated networking flow background
+- Cyan/blue/electric accents
+- Glassmorphism cards can be used carefully
+- Text must remain readable
+
+Black Mode:
+- Minimal black aesthetic
+- Near-black / pure black background
+- White / gray text
+- Subtle borders
+- Minimal accent color
+- Very elegant and focused
+
+Do not use random colors. Make sure each theme feels intentional and visually coherent.
+
+==================================================
+5. UI/UX FRIENDLY REVIEW AND IMPROVEMENT
+==================================================
+
+Conduct a UI/UX review of the current website and improve the design to make it:
+
+- More smooth
+- Simpler to use
+- More readable
+- More consistent
+- More elegant
+- More professional
+- Less overloaded
+- Better structured on mobile
+- Better spaced
+- More consulting-grade
+
+Improve:
+- Section spacing
+- Typography hierarchy
+- Card consistency
+- Buttons
+- Hover states
+- Navigation clarity
+- Mobile responsiveness
+- Theme transition smoothness
+- Content readability
+- CTA clarity
+- Visual balance
 
 Avoid:
-- Overloaded text blocks
-- Generic portfolio clichés
-- Cheap gradients
-- Excessive animations
-- Unprofessional icons
-- Copying the reference website exactly
-- Large footer text blocks
+- Too much text in one block
+- Too many competing colors
+- Heavy animations
+- Large cluttered sections
+- Overcomplicated UI
+- Overly flashy gradients
+- Inconsistent spacing
 
-13. UI/UX Requirements
-Improve:
-- Section hierarchy
-- Spacing
-- Responsiveness
-- Readability
-- CTA visibility
-- Consistency between sections
-- Mobile layout
-- Accessibility
+Add smooth transitions:
+- Theme transitions
+- Card hover transitions
+- Background transitions
+- Button transitions
 
-Use:
-- Semantic HTML
-- Accessible links and buttons
-- Proper headings order
-- Reusable components where possible
-- Clean CSS/Tailwind classes depending on the current stack
-- Existing design system if the project already has one
+Use subtle animation only where it improves the user experience.
 
-14. Implementation Instructions
-Before changing code:
-- Inspect the project structure
-- Identify the framework used, for example React, Next.js, Vite, Astro, plain HTML/CSS, or another stack
-- Reuse existing components and styling patterns where possible
-- Keep changes consistent with the current architecture
-- Avoid unnecessary dependencies
-- If icons are already available, reuse the existing icon library
-- If no icon library exists, use lightweight inline SVG icons or a minimal icon package only if appropriate
+==================================================
+6. REMOVE SPECIFIC SECTIONS
+==================================================
 
-15. Code Quality Requirements
-Deliver production-quality code:
-- Clean component structure
-- No duplicated large content blocks
-- Reusable data arrays for experience, services, projects, expertise, and footer links
-- Clear naming
-- Responsive classes
-- No broken imports
-- No unused variables
-- No console errors
-- No layout overflow
-- No hardcoded messy styling if a cleaner structure is possible
+Remove the following parts from the website:
 
-16. Acceptance Criteria
-The task is complete only when:
-- The new Deloitte-style portfolio content is integrated deeply into the website
-- A new “Strategic Infrastructure Capabilities” thematic section is added
-- The design is visibly more mature, premium, and professional
-- The footer uses small icon links only
-- The website remains responsive
-- The website builds successfully
-- No TypeScript, lint, or runtime errors remain
-- The content reads naturally and professionally
-- The final layout feels suitable for a senior technology consultant / infrastructure architect portfolio
+- “Let’s Build the Future of Infrastructure”
+- Skills section
 
-[Portfolio information]
-Below is a more polished, **Deloitte-style portfolio version**: executive, structured, impact-oriented, and suitable for a senior professional profile.
+If these sections exist under different names but clearly represent the same content, remove or replace them with a cleaner structure.
+
+Do not remove the technical expertise section if it is structured as service/capability categories. Only remove the generic “skills” block if it feels like a basic skills list.
+
+==================================================
+7. UPDATE THE ABOUT ME SECTION
+==================================================
+
+Replace the current About Me content with the following polished version:
+
+'Below is a **premium Deloitte / BCG-style version** of the **Professional Experience** section, written for a senior portfolio, executive CV, or personal website.
 
 ---
 
 # Professional Experience
 
-## Senior Network, Security, Cloud & Automation Engineer
+## OECD — Senior Network & Cloud Engineer
 
-**Global Infrastructure | Zero Trust | Multi-Cloud | NetDevOps | AI-Driven Operations**
+**07/2022 – Present**
+**Paris, France**
 
-Experienced infrastructure engineering professional with a strong background in designing, modernizing, and securing complex enterprise environments across networking, cloud, cybersecurity, automation, and telecom domains. Proven ability to support global transformation initiatives, deliver resilient infrastructure solutions, and collaborate with cross-functional cybersecurity, cloud, and operations teams.
+Senior Engineer responsible for cloud, networking, cybersecurity, automation, datacenter, and multimedia infrastructure within an international organization serving **38 member countries** and more than **4,000 employees worldwide**.
 
-Specialized in building scalable, secure, and automated infrastructure platforms across hybrid and multi-cloud environments, with a strong focus on operational excellence, resilience, Zero Trust, and intelligent automation.
+Operating at the intersection of enterprise infrastructure, security, automation, and digital transformation, this role involves designing, modernizing, and securing complex technology environments while supporting strategic infrastructure initiatives across international teams, affiliates, and service providers.
 
----
+### Scope of Responsibilities
 
-## Key Professional Contributions
-
-### Infrastructure Automation & Operational Excellence
-
-Designed and contributed to automated remediation and operational workflows aimed at improving infrastructure reliability, reducing manual intervention, and accelerating incident response.
-
-Key contributions included:
-
-* Development of automation workflows to streamline infrastructure operations and recurring technical tasks.
-* Support for automated remediation use cases in collaboration with cybersecurity and infrastructure teams.
-* Contribution to NetDevOps practices using automation, version control, structured documentation, and repeatable deployment patterns.
-* Improvement of operational efficiency through scripting, orchestration, and workflow standardization.
-
----
-
-### Zero Trust & Cybersecurity Transformation
-
-Worked closely with cybersecurity teams on Zero Trust initiatives, supporting the design and implementation of secure access models, segmentation strategies, and network security controls.
-
-Key contributions included:
-
-* Support for Zero Trust architecture initiatives across enterprise infrastructure environments.
-* Contribution to secure remote access models and network segmentation strategies.
-* Collaboration with security teams on NAC, identity-based access, and policy enforcement use cases.
-* Support for the integration of security controls across cloud, network, and hybrid environments.
-
----
-
-### Microsoft Teams Telephony Migration
-
-Contributed to Microsoft Teams telephony migration initiatives, supporting the modernization of enterprise communication services and the transition from legacy telephony platforms to cloud-enabled collaboration solutions.
-
-Key contributions included:
-
-* Technical support for Microsoft Teams telephony migration activities.
-* Coordination with infrastructure, network, and telecom stakeholders.
-* Contribution to readiness, connectivity, and service continuity activities.
-* Support for the transition toward modern, scalable, and cloud-based communication services.
-
----
-
-### Global Infrastructure Delivery
-
-Delivered scalable, resilient, and secure infrastructure solutions across international environments, supporting business continuity, performance, and global service availability.
-
-Key contributions included:
-
-* Design and deployment support for enterprise-grade infrastructure services.
-* Contribution to global network and cloud connectivity initiatives.
-* Support for multi-region and multi-site infrastructure architectures.
-* Delivery of secure, high-performing, and operationally sustainable infrastructure platforms.
-
----
-
-# eDreams ODIGEO
-
-## Network & Cloud Engineer
-
-**2017 – 2019**
-
-Managed and supported cloud and network infrastructures across Europe, with a strong focus on scalability, resilience, performance optimization, and multi-cloud connectivity.
-
-### Role Overview
-
-As Network & Cloud Engineer, contributed to the design, deployment, and operational support of cloud and network environments across AWS, Azure, and Google Cloud Platform. Played an active role in improving infrastructure reliability, supporting Kubernetes and cloud interconnectivity solutions, and enabling scalable connectivity across distributed environments.
+* Design, deployment, and support of enterprise network, datacenter, cloud, security, wireless, and multimedia infrastructures.
+* Technical ownership of critical infrastructure components including **Cisco Nexus, Catalyst, ACI, DNA Center, Cisco Wi-Fi, F5 BIG-IP LTM/APM, Palo Alto, Fortinet, Cisco ISE, Azure, AWS, DNS, VPN, and automation platforms**.
+* Leadership of infrastructure modernization initiatives focused on scalability, security, resilience, operational efficiency, and automation.
+* Coordination of large-scale technical projects involving internal teams, international affiliates, external providers, and technology partners.
+* Support for secure connectivity, hybrid cloud integration, datacenter evolution, access control, remote access, and operational continuity.
 
 ### Key Achievements
 
-* Designed and supported cloud architecture components across **AWS, Azure, and GCP**.
-* Contributed to **multi-cloud connectivity** and cloud interconnect solutions.
-* Supported Kubernetes-related infrastructure and connectivity requirements.
-* Improved operational visibility across network and cloud environments.
-* Contributed to performance optimization and infrastructure reliability initiatives.
-* Coordinated the deployment of global network services across distributed environments.
-* Supported scalable infrastructure patterns aligned with business growth and operational resilience.
+* Introduced and promoted **DevOps and NetDevOps practices** within the infrastructure team, enabling more structured, automated, and repeatable operational workflows.
+* Implemented modern automation capabilities using **Ansible Automation Platform, NetBox, Docker, Git, Python, and infrastructure-as-code principles**.
+* Designed a **multi-cloud Disaster Recovery architecture** across **Azure and AWS**, integrating automated failover workflows using **Python and Ansible**.
+* Led critical upgrades and infrastructure migrations, including:
+
+  * Cisco ISE clusters
+  * VPN gateways supporting **6,000+ remote users**
+  * Core network infrastructure
+  * Secure enterprise connectivity platforms
+* Worked with OECD affiliates including **ITF, NEA, and IEA** to modernize interconnection solutions while maintaining strong security, compliance, and operational continuity requirements.
+* Designed and supervised secure enterprise Wi-Fi deployments using **802.1X authentication** across multiple international sites.
+* Contributed to the modernization of datacenter and cloud connectivity architectures, improving resilience, security posture, and operational scalability.
+* Supported the standardization of infrastructure practices across international and multi-stakeholder environments.
+
+### Strategic Impact
+
+Strengthened the organization’s global infrastructure foundation by combining secure architecture, automation, cloud integration, and resilient design. Contributed to the transition from traditional infrastructure operations toward a more modern, automated, and security-driven operating model.
 
 ---
 
-# Additional Experience
+## American Battle Monuments Commission — Network & Cloud Engineer
 
-## OECD
+**04/2019 – 06/2022**
 
-### Senior Network & Multimedia Engineer
+Network and Cloud Engineer for a U.S. government agency operating globally, contributing to secure infrastructure modernization, cloud adoption, network transformation, and cybersecurity-aligned architecture initiatives.
 
-Supported enterprise network and multimedia infrastructure services within an international organizational environment, contributing to service reliability, communication platforms, and operational continuity.
+This role involved supporting global network, cloud, security, and communication platforms in a highly regulated environment requiring resilience, operational continuity, and strong alignment with security standards.
 
----
+### Scope of Responsibilities
 
-## eDreams ODIGEO
+* Design and support of next-generation network, cloud, and security solutions.
+* Contribution to infrastructure modernization initiatives across global locations.
+* Support for secure remote access, cloud connectivity, network segmentation, and communication platforms.
+* Collaboration with cybersecurity teams on access control, threat management, and security architecture.
+* Support for production environments requiring high availability, secure operations, and global coordination.
 
-### Data Center Engineer
+### Technology Scope
 
-Contributed to data center infrastructure operations, supporting network, compute, connectivity, and infrastructure reliability across enterprise environments.
+* SD-WAN
+* SD-Access
+* Next-Generation Firewalls
+* Zscaler ZIA / ZPA
+* Microsoft Azure Government Cloud
+* AWS
+* DevOps platforms
+* Microsoft Teams Telephony
+* Secure remote access
+* Enterprise communication platforms
 
----
+### Key Achievements
 
-## Sonangol Angola
+* Contributed to the migration toward **Azure Government Cloud**, supporting cloud transformation in a U.S. government context.
+* Designed automation workflows to improve production reliability, accelerate operational activities, and reduce manual intervention.
+* Defined enterprise network and communication standards to improve consistency, scalability, and governance across the organization.
+* Worked closely with cybersecurity teams on access control, threat management, secure connectivity, and infrastructure protection.
+* Participated in Microsoft Teams telephony migration initiatives, supporting the modernization of enterprise communication services.
+* Collaborated on global infrastructure modernization programs involving cloud, network, security, and communication platforms.
+* Supported the adoption of modern secure access models, including Zscaler-based cloud security and remote access capabilities.
 
-### Network & Data Center Engineer
+### Strategic Impact
 
-Supported network and data center engineering activities, contributing to infrastructure availability, connectivity, and operational support for business-critical environments.
-
----
-
-## Gemalto
-
-### Network Engineer
-
-Worked on enterprise network infrastructure activities, supporting secure connectivity, infrastructure operations, and network service reliability.
-
----
-
-## Subsea 7
-
-### Global Network & Telecom Engineer
-
-Supported global network and telecom environments, contributing to international connectivity, telecom services, and enterprise communication infrastructure.
-
----
-
-## Freeson IT
-
-### System & Network Engineer
-
-Provided system and network engineering support, contributing to infrastructure operations, user services, connectivity, and technical support activities.
+Contributed to the modernization of a global government infrastructure landscape by supporting cloud migration, security transformation, secure access modernization, automation, and global network standardization.
 
 ---
 
-# Featured Projects
+## eDreams ODIGEO — Network & Cloud Engineer
 
-## Multi-Cloud Disaster Recovery Platform
+**10/2017 – 03/2019**
 
-Designed a resilient Disaster Recovery architecture across **Azure and AWS**, enabling improved business continuity and infrastructure resilience.
+Network and Cloud Engineer for a leading European online travel company with more than **2,000 employees**, supporting scalable cloud, network, and connectivity platforms across a fast-paced digital business environment.
 
-### Scope
+This role focused on enabling resilient, scalable, and high-performing infrastructure services across hybrid and multi-cloud environments supporting business-critical digital platforms.
 
-The project focused on designing a cross-cloud recovery model capable of supporting failover scenarios, service restoration, and infrastructure continuity across cloud environments.
+### Scope of Responsibilities
 
-### Key Contributions
+* Design and support of SDN, SD-WAN, hybrid cloud, and multi-cloud infrastructure.
+* Management of enterprise network services across cloud and on-premise environments.
+* Support for international WAN, LAN, wireless, internet connectivity, cloud interconnect, security, and monitoring platforms.
+* Collaboration with infrastructure, cloud, and operations teams to support digital platform scalability and performance.
+* Contribution to global network service deployment and infrastructure transformation initiatives.
 
-* Designed a multi-cloud Disaster Recovery architecture across Azure and AWS.
-* Supported automated failover orchestration using **Ansible** and **Python**.
-* Contributed to infrastructure resilience, recovery planning, and service continuity.
-* Helped standardize recovery workflows and operational procedures.
-* Improved the organization’s ability to respond to infrastructure disruption scenarios.
+### Key Achievements
 
-### Value Delivered
+* Designed scalable cloud network architectures across:
 
-Strengthened business continuity capabilities by combining cloud resilience, automation, and operational orchestration into a scalable Disaster Recovery model.
+  * AWS
+  * Google Cloud Platform
+  * Microsoft Azure
+* Supported Kubernetes infrastructure and **Google Cloud Interconnect** integration.
+* Managed WAN, LAN, wireless, internet connectivity, security, and monitoring environments across multiple sites.
+* Improved network resilience and scalability through telemetry-driven optimization and operational visibility improvements.
+* Coordinated the deployment of new global network services and infrastructure initiatives.
+* Supported hybrid cloud connectivity patterns enabling more flexible, scalable, and resilient business operations.
+* Contributed to infrastructure modernization in a high-growth, cloud-enabled digital company.
 
----
+### Strategic Impact
 
-## Enterprise Network Automation Platform
-
-Introduced NetDevOps practices and automation capabilities to improve network operations, consistency, and deployment efficiency.
-
-### Technologies Used
-
-* Ansible Automation Platform
-* NetBox
-* Docker
-* Git
-* Python Automation
-* REST APIs
-* CI/CD principles
-
-### Key Contributions
-
-* Designed automation workflows for network operations and configuration management.
-* Used NetBox as a source of truth for infrastructure inventory and network data.
-* Supported automation pipelines using Git-based change control principles.
-* Developed Python-based automation capabilities for operational tasks.
-* Contributed to a more structured, repeatable, and auditable infrastructure delivery model.
-
-### Value Delivered
-
-Improved operational efficiency, reduced manual effort, and supported the transition from traditional network operations toward a more modern NetDevOps operating model.
+Enabled scalable and resilient infrastructure capabilities for a major European digital business by supporting multi-cloud connectivity, cloud networking, Kubernetes integration, and global network modernization.
 
 ---
 
-## Secure Zero Trust Infrastructure
+## OECD — Senior Network & Multimedia Engineer
 
-Implemented secure infrastructure patterns aligned with Zero Trust principles, focusing on access control, segmentation, and secure connectivity.
+**03/2016 – 09/2017**
 
-### Technologies Used
+Senior Network and Multimedia Engineer supporting enterprise network, security, wireless, and multimedia infrastructure modernization within an international organization.
 
-* Cisco ISE
-* Palo Alto
-* Fortinet
-* Zscaler
-* Cloudflare
-* NAC
-* VPN
-* Network Segmentation
+The role combined technical delivery, infrastructure design, secure connectivity, and project coordination across enterprise and affiliate environments.
 
-### Key Contributions
+### Scope of Responsibilities
 
-* Supported Zero Trust architecture and secure access initiatives.
-* Contributed to network segmentation and access control models.
-* Implemented or supported NAC-based security controls.
-* Worked on secure remote access and cloud security connectivity use cases.
-* Collaborated with cybersecurity teams to align infrastructure design with security objectives.
+* Design and implementation of modern enterprise network, datacenter, wireless, and security solutions.
+* Support for infrastructure modernization programs involving Cisco ACI, Cisco NGFW, Cisco ISE, F5 BIG-IP, Cisco Wireless, and UCOPIA.
+* Coordination of network migration, relocation, interconnection, and modernization initiatives.
+* Collaboration with internal IT teams, service providers, and affiliates to ensure secure and reliable connectivity.
 
-### Value Delivered
+### Key Achievements
 
-Enhanced the organization’s security posture by strengthening access control, reducing implicit trust, and improving the protection of critical infrastructure assets.
+* Led ISP migration from **SFR to Zayo**, supporting improved connectivity performance and service reliability.
+* Managed relocation and infrastructure migration activities for approximately **1,500 users**.
+* Designed secure firewall interconnection architecture for OECD affiliates.
+* Prepared and coordinated a **Cisco ACI Proof of Concept** for datacenter modernization.
+* Supported enterprise wireless and access control modernization using Cisco and UCOPIA technologies.
+* Contributed to the evolution of datacenter architecture toward more scalable and policy-driven models.
 
----
+### Strategic Impact
 
-## Datacenter Modernization
-
-Designed and deployed modern datacenter infrastructure architectures focused on scalability, resilience, and high availability.
-
-### Technologies Used
-
-* Spine-Leaf Architecture
-* EVPN-VXLAN
-* Cisco Nexus
-* Multi-site Resiliency
-* Datacenter Networking
-
-### Key Contributions
-
-* Designed modern datacenter network architectures using spine-leaf principles.
-* Supported EVPN-VXLAN-based infrastructure modernization.
-* Contributed to Cisco Nexus deployments and data center connectivity.
-* Supported multi-site resiliency and high-availability architecture patterns.
-* Helped improve scalability, performance, and operational consistency across datacenter environments.
-
-### Value Delivered
-
-Enabled a more scalable, resilient, and future-ready datacenter infrastructure capable of supporting modern enterprise workloads.
+Supported major infrastructure transformation initiatives, including connectivity modernization, user relocation, secure affiliate interconnection, and preparation for next-generation datacenter architecture.
 
 ---
 
-# Technical Expertise
+## eDreams ODIGEO — Network & Data Center Engineer
 
-## Networking
+**09/2014 – 02/2016**
 
-Cisco • Juniper • Arista • Cisco Nexus • Catalyst • Cisco ACI • SD-WAN • EVPN-VXLAN • BGP • OSPF • MPLS • Datacenter Networking • Global Network Architecture
+Network and Data Center Engineer responsible for supporting international datacenter, MAN, WAN, security, and wireless infrastructure across multiple offices and operational environments.
 
-## Security
+This role focused on the design, deployment, and operational support of next-generation datacenter and connectivity platforms across France, Spain, and international business locations.
 
-Palo Alto • Fortinet • Check Point • Cisco ISE • F5 • Zscaler • Cloudflare • VPN • NAC • Zero Trust • Network Segmentation • Secure Remote Access
+### Scope of Responsibilities
 
-## Cloud
+* Design and support of datacenter, MAN, WAN, LAN, security, and wireless infrastructures.
+* Support for network and security platforms across multiple international offices.
+* Collaboration with telecom operators, technology vendors, and international infrastructure teams.
+* Contribution to datacenter modernization, secure connectivity, and multi-site operational reliability.
 
-Microsoft Azure • AWS • Google Cloud Platform • Hybrid Cloud • Multi-Cloud • Cloud Connectivity • Kubernetes • Cloud Interconnect • Cloud Security
+### Key Achievements
 
-## Automation & NetDevOps
+* Designed and deployed next-generation datacenter infrastructures across **France and Spain**.
+* Integrated and supported modern datacenter and security technologies including:
 
-Ansible • Ansible Automation Platform • NetBox • Python • Docker • Git • REST APIs • CI/CD • Infrastructure Automation • Automated Remediation
+  * Cisco Nexus
+  * Top-of-Rack architectures
+  * Cisco ASA
+  * Check Point
+  * F5 BIG-IP LTM / GTM
+* Collaborated with international teams on multi-site infrastructure operations.
+* Worked with telecom operators and hardware vendors to deliver scalable connectivity solutions.
+* Supported resilient network architectures for business-critical digital services.
+* Contributed to improved infrastructure scalability, security, and operational consistency.
 
-## Monitoring & Analytics
+### Strategic Impact
 
-SolarWinds • Splunk • Telemetry • Infrastructure Monitoring • Operational Dashboards • Performance Monitoring • Infrastructure Observability
-
-## AI & Innovation
-
-AI Infrastructure • AI Agents • Intelligent Automation • AI-Driven Operations • Infrastructure Optimization • Automation-Driven Service Management
-
----
-
-# Certifications & Training
-
-* Azure Architecture, Infrastructure & Security
-* NetDevOps with Ansible Automation Platform
-* Network Automation with Python
-* Cisco ISE — SISE
-* Google Cloud Platform Architecture
-* DevOps with Docker
-* F5 BIG-IP LTM
-* Cisco ASA Firewall Solutions
-* Cisco Unified Communications
+Helped modernize the company’s datacenter and connectivity foundations by deploying scalable network architectures, strengthening security controls, and supporting international infrastructure operations.
 
 ---
 
-# Education
+## Sonangol — Network & Data Center Engineer
 
-## Claude Bernard University Lyon 1
+**03/2014 – 08/2014**
 
-**Master’s Degree — Computer Systems & Networks**
+Network and Data Center Engineer supporting campus network modernization, secure connectivity, unified communications, and infrastructure deployment initiatives.
 
-## University of Skikda
+### Key Achievements
 
-**Engineering Degree — Computer Science**
+* Designed and implemented campus network infrastructure across **four buildings** using Cisco technologies.
+* Integrated unified communications solutions including:
 
----
+  * Cisco Call Manager
+  * Video conferencing
+  * IP telephony
+* Designed secure infrastructure components using:
 
-# Contact / Call to Action
+  * Cisco ASA firewalls
+  * IPSEC VPN
+  * RSA authentication
+* Supported secure connectivity, communication services, and network availability across the campus environment.
+* Contributed to the modernization of enterprise communication and security infrastructure.
 
-## Let’s Build the Future of Infrastructure
+### Strategic Impact
 
-Open to strategic and technical opportunities in:
-
-* Network & Cloud Architecture
-* Security Transformation Programs
-* Zero Trust Infrastructure Projects
-* Automation & NetDevOps Initiatives
-* AI-Driven Infrastructure Programs
-* Consulting & Technical Leadership
-* Global Infrastructure Modernization
-
-Based in **Paris, France**
-Available for **international projects**
-
-**Senior Network | Security | Cloud | Automation Engineer**
+Delivered a secure and scalable campus network foundation supporting enterprise communication, secure access, and operational connectivity across multiple buildings.
 
 ---
 
-## Premium Short Version for Portfolio Homepage
+## Gemalto — Network & Data Center Engineer
 
-I am a Senior Network, Security, Cloud, and Automation Engineer with extensive experience designing and delivering secure, scalable, and resilient infrastructure solutions across global enterprise environments.
+**01/2014 – 03/2014**
 
-My expertise covers enterprise networking, cloud architecture, cybersecurity, Zero Trust, datacenter modernization, automation, and AI-driven infrastructure operations. I have contributed to complex transformation initiatives involving multi-cloud connectivity, Disaster Recovery, Microsoft Teams telephony migration, secure remote access, network segmentation, and NetDevOps automation platforms.
+Network and Data Center Engineer supporting WAN migration activities and ITIL-based infrastructure change management within a global technology environment.
 
-I help organizations modernize their infrastructure by combining strong technical architecture, operational excellence, security-by-design principles, and automation-driven delivery.
+### Scope of Responsibilities
 
-**Core focus areas:**
-Network Architecture • Cloud Infrastructure • Zero Trust • Cybersecurity • Automation • NetDevOps • Disaster Recovery • AI-Driven Operations
+* Support for WAN migration and global network change operations.
+* Coordination of technical changes in line with ITIL governance practices.
+* Preparation and presentation of infrastructure changes to CAB boards.
+* Support for high-availability network environments requiring operational continuity.
 
+### Key Achievements
 
-17. Final Review
+* Executed and coordinated global network change operations.
+* Presented infrastructure changes to Change Advisory Boards.
+* Ensured service continuity and operational stability during WAN migration activities.
+* Supported infrastructure governance through structured change management processes.
+* Contributed to reliable execution of network changes across international environments.
+
+### Strategic Impact
+
+Supported global network transformation activities while maintaining strong change governance, operational continuity, and infrastructure reliability.
+
+---
+
+## Subsea 7 — Network & Telecommunication Engineer
+
+**04/2010 – 12/2013**
+
+Network and Telecommunication Engineer responsible for designing, deploying, and supporting enterprise network, security, wireless, unified communication, and connectivity infrastructures across global and offshore environments.
+
+This role involved large-scale infrastructure delivery across offices, datacenters, and vessels located across Europe, Africa, and the Middle East.
+
+### Scope of Responsibilities
+
+* Design and support of enterprise network, security, wireless, and unified communication infrastructures.
+* Deployment and maintenance of LAN, WAN, MPLS, VSAT, internet, VPN, firewall, and Cisco UC solutions.
+* Support for office, datacenter, and vessel connectivity across multiple regions.
+* Delivery of on-site migration, training, troubleshooting, and infrastructure support.
+* Management of large-scale Cisco-based network environments.
+
+### Key Achievements
+
+* Designed and deployed LAN infrastructure across:
+
+  * 30 offices
+  * 6 datacenters
+  * 10 vessels
+  * Europe, Africa, and Middle East regions
+* Managed large-scale Cisco environments with more than **1,200 network devices**.
+* Implemented and supported:
+
+  * MPLS connectivity
+  * VSAT satellite connectivity
+  * DIA internet services
+  * Cisco Unified Communications
+  * VPN and firewall infrastructures
+* Delivered on-site technical training and migration support across multiple international locations.
+* Supported operational connectivity for demanding environments, including offshore and remote sites.
+* Contributed to global infrastructure standardization and service reliability.
+
+### Strategic Impact
+
+Delivered resilient global connectivity across complex, distributed, and offshore environments, enabling secure communications, operational continuity, and scalable network services across multiple regions.
+
+---
+
+## Freeson IT — Network & System Engineer
+
+**09/2008 – 08/2009**
+
+Network and System Engineer providing infrastructure deployment, technical support, troubleshooting, and systems administration services.
+
+### Key Achievements
+
+* Deployed and configured servers, Cisco switches, user workstations, and network components.
+* Maintained and optimized network and system infrastructures.
+* Provided technical support and troubleshooting for users and infrastructure services.
+* Supported day-to-day IT operations, system availability, and network reliability.
+* Built foundational expertise in enterprise networking, systems administration, and technical operations.
+
+### Strategic Impact
+
+Developed a strong technical foundation in network and system engineering, supporting reliable IT operations and infrastructure service delivery.
+
+---
+
+# Executive Experience Summary
+
+Across more than a decade of experience, I have contributed to the design, modernization, and operation of complex infrastructure environments across international organizations, government agencies, digital companies, energy, telecom, and technology sectors.
+
+My experience spans:
+
+* Enterprise network architecture
+* Cloud and multi-cloud infrastructure
+* Secure access and Zero Trust models
+* Datacenter modernization
+* Automation and NetDevOps
+* Disaster Recovery architecture
+* Global connectivity
+* Wireless and access control
+* Unified communications
+* Infrastructure governance and change management
+
+I bring a strong combination of hands-on technical depth, architecture capability, operational discipline, and transformation mindset, enabling organizations to build secure, resilient, scalable, and automation-ready infrastructure platforms.
+
+---
+
+# Premium Portfolio Introduction Version
+
+With extensive experience across international organizations, government agencies, digital businesses, and global infrastructure environments, I specialize in designing and delivering secure, scalable, and resilient technology platforms.
+
+My career has focused on modernizing enterprise infrastructure through cloud adoption, network transformation, cybersecurity integration, automation, datacenter modernization, and operational excellence.
+
+I have led and contributed to strategic initiatives involving multi-cloud Disaster Recovery, Zero Trust infrastructure, secure remote access, Cisco ISE modernization, VPN platforms serving thousands of users, datacenter redesign, SD-WAN, cloud interconnectivity, and global network standardization.
+
+My approach combines deep technical expertise with consulting-grade execution: understanding business requirements, designing robust architectures, coordinating stakeholders, managing complexity, and delivering infrastructure solutions that are secure, scalable, and future-ready.
+'
+
+==================================================
+8. UPDATE PROFESSIONAL EXPERIENCE
+==================================================
+
+Update the Professional Experience section using the following roles and structure.
+
+Make the section premium, readable, and executive-level.
+
+Preferred layout options:
+- Vertical timeline
+- Expandable accordion
+- Experience cards
+- Alternating timeline cards
+- Clean consulting-style blocks
+
+Each experience should include:
+- Company name
+- Role title
+- Dates
+- Location if available
+- Short role overview
+- Scope of responsibilities
+- Key achievements
+- Strategic impact
+
+Use the following professional experience content:
+
+A . OECD — Senior Network & Cloud Engineer
+
+07/2022 – Present
+Paris, France
+
+Senior Engineer responsible for cloud, networking, cybersecurity, automation, datacenter, and multimedia infrastructure within an international organization serving 38 member countries and more than 4,000 employees worldwide.
+
+Operating at the intersection of enterprise infrastructure, security, automation, and digital transformation, this role involves designing, modernizing, and securing complex technology environments while supporting strategic infrastructure initiatives across international teams, affiliates, and service providers.
+
+Scope of Responsibilities
+Design, deployment, and support of enterprise network, datacenter, cloud, security, wireless, and multimedia infrastructures.
+Technical ownership of critical infrastructure components including Cisco Nexus, Catalyst, ACI, DNA Center, Cisco Wi-Fi, F5 BIG-IP LTM/APM, Palo Alto, Fortinet, Cisco ISE, Azure, AWS, DNS, VPN, and automation platforms.
+Leadership of infrastructure modernization initiatives focused on scalability, security, resilience, operational efficiency, and automation.
+Coordination of large-scale technical projects involving internal teams, international affiliates, external providers, and technology partners.
+Support for secure connectivity, hybrid cloud integration, datacenter evolution, access control, remote access, and operational continuity.
+Key Achievements
+Introduced and promoted DevOps and NetDevOps practices within the infrastructure team, enabling more structured, automated, and repeatable operational workflows.
+Implemented modern automation capabilities using Ansible Automation Platform, NetBox, Docker, Git, Python, and infrastructure-as-code principles.
+Designed a multi-cloud Disaster Recovery architecture across Azure and AWS, integrating automated failover workflows using Python and Ansible.
+Led critical upgrades and infrastructure migrations, including:
+Cisco ISE clusters
+VPN gateways supporting 6,000+ remote users
+Core network infrastructure
+Secure enterprise connectivity platforms
+Worked with OECD affiliates including ITF, NEA, and IEA to modernize interconnection solutions while maintaining strong security, compliance, and operational continuity requirements.
+Designed and supervised secure enterprise Wi-Fi deployments using 802.1X authentication across multiple international sites.
+Contributed to the modernization of datacenter and cloud connectivity architectures, improving resilience, security posture, and operational scalability.
+Supported the standardization of infrastructure practices across international and multi-stakeholder environments.
+Strategic Impact
+
+Strengthened the organization’s global infrastructure foundation by combining secure architecture, automation, cloud integration, and resilient design. Contributed to the transition from traditional infrastructure operations toward a more modern, automated, and security-driven operating model.
+
+B. American Battle Monuments Commission — Network & Cloud Engineer
+
+04/2019 – 06/2022
+
+Network and Cloud Engineer for a U.S. government agency operating globally, contributing to secure infrastructure modernization, cloud adoption, network transformation, and cybersecurity-aligned architecture initiatives.
+
+This role involved supporting global network, cloud, security, and communication platforms in a highly regulated environment requiring resilience, operational continuity, and strong alignment with security standards.
+
+Scope of Responsibilities
+Design and support of next-generation network, cloud, and security solutions.
+Contribution to infrastructure modernization initiatives across global locations.
+Support for secure remote access, cloud connectivity, network segmentation, and communication platforms.
+Collaboration with cybersecurity teams on access control, threat management, and security architecture.
+Support for production environments requiring high availability, secure operations, and global coordination.
+Technology Scope
+SD-WAN
+SD-Access
+Next-Generation Firewalls
+Zscaler ZIA / ZPA
+Microsoft Azure Government Cloud
+AWS
+DevOps platforms
+Microsoft Teams Telephony
+Secure remote access
+Enterprise communication platforms
+Key Achievements
+Contributed to the migration toward Azure Government Cloud, supporting cloud transformation in a U.S. government context.
+Designed automation workflows to improve production reliability, accelerate operational activities, and reduce manual intervention.
+Defined enterprise network and communication standards to improve consistency, scalability, and governance across the organization.
+Worked closely with cybersecurity teams on access control, threat management, secure connectivity, and infrastructure protection.
+Participated in Microsoft Teams telephony migration initiatives, supporting the modernization of enterprise communication services.
+Collaborated on global infrastructure modernization programs involving cloud, network, security, and communication platforms.
+Supported the adoption of modern secure access models, including Zscaler-based cloud security and remote access capabilities.
+Strategic Impact
+
+Contributed to the modernization of a global government infrastructure landscape by supporting cloud migration, security transformation, secure access modernization, automation, and global network standardization.
+
+C. eDreams ODIGEO — Network & Cloud Engineer
+
+10/2017 – 03/2019
+
+Network and Cloud Engineer for a leading European online travel company with more than 2,000 employees, supporting scalable cloud, network, and connectivity platforms across a fast-paced digital business environment.
+
+This role focused on enabling resilient, scalable, and high-performing infrastructure services across hybrid and multi-cloud environments supporting business-critical digital platforms.
+
+Scope of Responsibilities
+Design and support of SDN, SD-WAN, hybrid cloud, and multi-cloud infrastructure.
+Management of enterprise network services across cloud and on-premise environments.
+Support for international WAN, LAN, wireless, internet connectivity, cloud interconnect, security, and monitoring platforms.
+Collaboration with infrastructure, cloud, and operations teams to support digital platform scalability and performance.
+Contribution to global network service deployment and infrastructure transformation initiatives.
+Key Achievements
+Designed scalable cloud network architectures across:
+AWS
+Google Cloud Platform
+Microsoft Azure
+Supported Kubernetes infrastructure and Google Cloud Interconnect integration.
+Managed WAN, LAN, wireless, internet connectivity, security, and monitoring environments across multiple sites.
+Improved network resilience and scalability through telemetry-driven optimization and operational visibility improvements.
+Coordinated the deployment of new global network services and infrastructure initiatives.
+Supported hybrid cloud connectivity patterns enabling more flexible, scalable, and resilient business operations.
+Contributed to infrastructure modernization in a high-growth, cloud-enabled digital company.
+Strategic Impact
+
+Enabled scalable and resilient infrastructure capabilities for a major European digital business by supporting multi-cloud connectivity, cloud networking, Kubernetes integration, and global network modernization.
+
+D. OECD — Senior Network & Multimedia Engineer
+
+03/2016 – 09/2017
+
+Senior Network and Multimedia Engineer supporting enterprise network, security, wireless, and multimedia infrastructure modernization within an international organization.
+
+The role combined technical delivery, infrastructure design, secure connectivity, and project coordination across enterprise and affiliate environments.
+
+Scope of Responsibilities
+Design and implementation of modern enterprise network, datacenter, wireless, and security solutions.
+Support for infrastructure modernization programs involving Cisco ACI, Cisco NGFW, Cisco ISE, F5 BIG-IP, Cisco Wireless, and UCOPIA.
+Coordination of network migration, relocation, interconnection, and modernization initiatives.
+Collaboration with internal IT teams, service providers, and affiliates to ensure secure and reliable connectivity.
+Key Achievements
+Led ISP migration from SFR to Zayo, supporting improved connectivity performance and service reliability.
+Managed relocation and infrastructure migration activities for approximately 1,500 users.
+Designed secure firewall interconnection architecture for OECD affiliates.
+Prepared and coordinated a Cisco ACI Proof of Concept for datacenter modernization.
+Supported enterprise wireless and access control modernization using Cisco and UCOPIA technologies.
+Contributed to the evolution of datacenter architecture toward more scalable and policy-driven models.
+Strategic Impact
+
+Supported major infrastructure transformation initiatives, including connectivity modernization, user relocation, secure affiliate interconnection, and preparation for next-generation datacenter architecture.
+
+E. eDreams ODIGEO — Network & Data Center Engineer
+
+09/2014 – 02/2016
+
+Network and Data Center Engineer responsible for supporting international datacenter, MAN, WAN, security, and wireless infrastructure across multiple offices and operational environments.
+
+This role focused on the design, deployment, and operational support of next-generation datacenter and connectivity platforms across France, Spain, and international business locations.
+
+Scope of Responsibilities
+Design and support of datacenter, MAN, WAN, LAN, security, and wireless infrastructures.
+Support for network and security platforms across multiple international offices.
+Collaboration with telecom operators, technology vendors, and international infrastructure teams.
+Contribution to datacenter modernization, secure connectivity, and multi-site operational reliability.
+Key Achievements
+Designed and deployed next-generation datacenter infrastructures across France and Spain.
+Integrated and supported modern datacenter and security technologies including:
+Cisco Nexus
+Top-of-Rack architectures
+Cisco ASA
+Check Point
+F5 BIG-IP LTM / GTM
+Collaborated with international teams on multi-site infrastructure operations.
+Worked with telecom operators and hardware vendors to deliver scalable connectivity solutions.
+Supported resilient network architectures for business-critical digital services.
+Contributed to improved infrastructure scalability, security, and operational consistency.
+Strategic Impact
+
+Helped modernize the company’s datacenter and connectivity foundations by deploying scalable network architectures, strengthening security controls, and supporting international infrastructure operations.
+
+F. Sonangol — Network & Data Center Engineer
+
+03/2014 – 08/2014
+
+Network and Data Center Engineer supporting campus network modernization, secure connectivity, unified communications, and infrastructure deployment initiatives.
+
+Key Achievements
+Designed and implemented campus network infrastructure across four buildings using Cisco technologies.
+Integrated unified communications solutions including:
+Cisco Call Manager
+Video conferencing
+IP telephony
+Designed secure infrastructure components using:
+Cisco ASA firewalls
+IPSEC VPN
+RSA authentication
+Supported secure connectivity, communication services, and network availability across the campus environment.
+Contributed to the modernization of enterprise communication and security infrastructure.
+Strategic Impact
+
+Delivered a secure and scalable campus network foundation supporting enterprise communication, secure access, and operational connectivity across multiple buildings.
+
+G. Gemalto — Network & Data Center Engineer
+
+01/2014 – 03/2014
+
+Network and Data Center Engineer supporting WAN migration activities and ITIL-based infrastructure change management within a global technology environment.
+
+Scope of Responsibilities
+Support for WAN migration and global network change operations.
+Coordination of technical changes in line with ITIL governance practices.
+Preparation and presentation of infrastructure changes to CAB boards.
+Support for high-availability network environments requiring operational continuity.
+Key Achievements
+Executed and coordinated global network change operations.
+Presented infrastructure changes to Change Advisory Boards.
+Ensured service continuity and operational stability during WAN migration activities.
+Supported infrastructure governance through structured change management processes.
+Contributed to reliable execution of network changes across international environments.
+Strategic Impact
+
+Supported global network transformation activities while maintaining strong change governance, operational continuity, and infrastructure reliability.
+
+H. Subsea 7 — Network & Telecommunication Engineer
+
+04/2010 – 12/2013
+
+Network and Telecommunication Engineer responsible for designing, deploying, and supporting enterprise network, security, wireless, unified communication, and connectivity infrastructures across global and offshore environments.
+
+This role involved large-scale infrastructure delivery across offices, datacenters, and vessels located across Europe, Africa, and the Middle East.
+
+Scope of Responsibilities
+Design and support of enterprise network, security, wireless, and unified communication infrastructures.
+Deployment and maintenance of LAN, WAN, MPLS, VSAT, internet, VPN, firewall, and Cisco UC solutions.
+Support for office, datacenter, and vessel connectivity across multiple regions.
+Delivery of on-site migration, training, troubleshooting, and infrastructure support.
+Management of large-scale Cisco-based network environments.
+Key Achievements
+Designed and deployed LAN infrastructure across:
+30 offices
+6 datacenters
+10 vessels
+Europe, Africa, and Middle East regions
+Managed large-scale Cisco environments with more than 1,200 network devices.
+Implemented and supported:
+MPLS connectivity
+VSAT satellite connectivity
+DIA internet services
+Cisco Unified Communications
+VPN and firewall infrastructures
+Delivered on-site technical training and migration support across multiple international locations.
+Supported operational connectivity for demanding environments, including offshore and remote sites.
+Contributed to global infrastructure standardization and service reliability.
+Strategic Impact
+
+Delivered resilient global connectivity across complex, distributed, and offshore environments, enabling secure communications, operational continuity, and scalable network services across multiple regions.
+
+G. Freeson IT — Network & System Engineer
+
+09/2008 – 08/2009
+
+Network and System Engineer providing infrastructure deployment, technical support, troubleshooting, and systems administration services.
+
+Key Achievements
+Deployed and configured servers, Cisco switches, user workstations, and network components.
+Maintained and optimized network and system infrastructures.
+Provided technical support and troubleshooting for users and infrastructure services.
+Supported day-to-day IT operations, system availability, and network reliability.
+Built foundational expertise in enterprise networking, systems administration, and technical operations.
+Strategic Impact
+
+Developed a strong technical foundation in network and system engineering, supporting reliable IT operations and infrastructure service delivery.
+
+==================================================
+9. EXPERIENCE SECTION UX REQUIREMENT
+==================================================
+
+The professional experience section is long, so make it easy to navigate.
+
+Recommended behavior:
+- Show a short preview for each role
+- Allow users to expand/collapse details
+- Keep the page clean
+- Avoid displaying all details in giant text blocks by default
+- Add visual tags for technologies
+- Add strategic impact as a highlighted note
+- Use consistent formatting across all roles
+
+Add filters only if useful:
+- Cloud
+- Security
+- Network
+- Automation
+- Datacenter
+- Government
+- Digital Business
+
+Do not overcomplicate the user experience.
+
+==================================================
+10. FOOTER AND GENERAL CLEANUP
+==================================================
+
+Keep the footer minimal.
+
+Footer should only include:
+- Small icon links
+- LinkedIn
+- GitHub
+- Email
+- Resume/CV if available
+- Optional location/contact icon
+
+Footer requirements:
+- Small icons
+- Horizontal alignment
+- Accessible aria-labels
+- Smooth hover effect
+- Minimal copyright
+- No large text blocks
+
+==================================================
+11. ACCESSIBILITY REQUIREMENTS
+==================================================
+
+Ensure:
+- Proper contrast in all four themes
+- Keyboard navigation for theme selector
+- aria-labels for icon buttons
+- Focus states
+- Reduced motion support
+- Semantic HTML
+- Correct heading hierarchy
+- Mobile-friendly tap targets
+
+==================================================
+12. PERFORMANCE REQUIREMENTS
+==================================================
+
+The networking motion theme must not hurt performance.
+
+Requirements:
+- No heavy animation library unless already used in the project
+- Use CSS/SVG/canvas efficiently
+- Pause or simplify animation when not visible if possible
+- Respect reduced motion
+- Avoid layout shifts
+- Keep Lighthouse performance reasonable
+
+==================================================
+13. FINAL VALIDATION
+==================================================
+
 After implementation:
-- Run the project build or type-check command if available
+- Run lint if available
+- Run type-check if available
+- Run build if available
 - Fix all errors
-- Review the page visually for layout consistency
-- Ensure icons and links work correctly
-- Summarize the final changes made
-- Mention any files modified
+- Check all four themes
+- Check mobile layout
+- Check footer icons
+- Check the circular theme selector
+- Check the networking motion background
+- Ensure no broken links or broken imports
+- Summarize the files changed and the key improvements made
+
+==================================================
+14. STYLE EXPECTATION
+==================================================
+
+The final website should feel like:
+- A premium senior infrastructure architect portfolio
+- A consulting-grade executive profile
+- Modern enterprise technology design
+- Smooth, simple, and easy to use
+- Technically impressive without being flashy
+- Clean enough for recruiters, executives, and technical leaders
