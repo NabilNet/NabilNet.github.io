@@ -8,6 +8,8 @@ import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 import { NetworkBackground } from "./components/NetworkBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { StrategicCapabilities } from "./components/StrategicCapabilities";
+import { Expertise } from "./components/Expertise";
 import { getInitialTheme, isValidTheme, ThemeName } from "./utils/theme";
 
 function App() {
@@ -28,9 +30,9 @@ function App() {
     <div className="app-content">
       <Navbar theme={theme} onSelect={setTheme} />
       <main>
-        <Hero /><About />
+        <Hero /><About /><StrategicCapabilities />
         <ErrorBoundary fallback={<section id="experience" className="section"><h2>Professional Experience</h2><p className="muted mt-4">Experience content is temporarily unavailable.</p></section>}><ExperienceTimeline /></ErrorBoundary>
-        <Training /><Contact />
+        <Expertise /><Training /><Contact />
       </main>
       <Footer />
     </div>
