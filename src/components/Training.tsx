@@ -1,20 +1,18 @@
-import { motion } from "framer-motion";
-import { training } from "../data/portfolio";
+import { GraduationCap, ShieldCheck } from "lucide-react";
+import { education, training } from "../data/portfolio";
 
 export function Training() {
-  return (
-    <section id="training" className="section">
-      <h2>Training & Continuous Learning</h2>
-      <p className="muted mb-6">Continuous learning across cloud, networking, security, automation, and infrastructure modernization.</p>
-      <div className="grid gap-4 md:grid-cols-2">
-        {training.map((item, i) => (
-          <motion.article key={item.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="card">
-            <p className="text-xs uppercase tracking-wide text-sky-500">{item.domain}</p>
-            <h3 className="mt-1">{item.title}</h3>
-            <p className="muted mt-1">{item.date}</p>
-          </motion.article>
-        ))}
-      </div>
-    </section>
-  );
+  return <section id="training" className="section">
+    <h2>Certifications, Training & Education</h2>
+    <div className="mt-8 grid gap-4 lg:grid-cols-2">
+      <article className="card">
+        <h3 className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-sky-500" />Certifications & Training</h3>
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700 dark:text-slate-300">{training.map((item) => <li key={item}>{item}</li>)}</ul>
+      </article>
+      <article className="card">
+        <h3 className="flex items-center gap-2"><GraduationCap className="h-4 w-4 text-sky-500" />Education</h3>
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-700 dark:text-slate-300">{education.map((item) => <li key={item}>{item}</li>)}</ul>
+      </article>
+    </div>
+  </section>;
 }
