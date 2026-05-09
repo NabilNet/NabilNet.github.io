@@ -1,97 +1,480 @@
-Act as a senior frontend engineer, premium UI/UX designer, design-system expert, and production code reviewer.
+Act as a senior React + Vite production engineer, GitHub Pages deployment expert, runtime debugging specialist, and frontend reliability reviewer.
 
-I want you to improve the current NabilNet portfolio website design and theme experience.
+The website is:
 
-Main objective:
-Refine the theme selector, improve theme/color harmony, conduct a UI/UX and design review, fix all visual/errors issues, and re-add the “Expertise Areas / Skills” section using the previous #5 style/structure.
+https://nabilnet.github.io/
 
-Do not rewrite the whole website unnecessarily. Inspect the existing implementation first, then apply targeted improvements.
+The website is currently showing a blank white page again in production.
+
+Important context:
+The latest changes were successfully implemented and committed. The project passes:
+
+✅ npm run lint
+✅ npm run build
+
+Files recently changed:
+- src/App.tsx
+- src/components/ThemeToggle.tsx
+- src/components/Navbar.tsx
+- src/components/Hero.tsx
+- src/components/Expertise.tsx
+- src/components/StrategicCapabilities.tsx
+- src/components/Training.tsx
+- src/components/Contact.tsx
+- src/data/portfolio.ts
+- src/index.css
+
+Recent implementation summary:
+- Page flow was updated to:
+  Hero → About → Strategic Capabilities → Experience → Expertise → Training/Education → Contact/Footer
+- Sections are wired directly into App.tsx
+- Circular theme selector was made compact, around 44–48px
+- 4 themes are supported:
+  light
+  dark
+  network
+  black
+- Theme selector includes subtle motion and prefers-reduced-motion support
+- Navbar includes explicit section links
+- Design tokens were standardized across all themes
+- Expertise Areas section was reintroduced
+- Hardcoded colors were replaced with theme tokens
+- Hero subtitle was reduced in size
+- Strategic Infrastructure Capabilities was updated
+- Training/Contact/Capabilities were updated to honor theme tokens
+
+Despite this, the production website is blank/white.
+
+Your mission:
+Diagnose and fix the real cause of the blank page permanently. Do not stop just because lint/build pass. The actual success condition is that the website renders correctly in production.
 
 ==================================================
-1. MAKE THE CIRCULAR THEME SELECTOR SMALLER
+1. NON-NEGOTIABLE RULES
 ==================================================
 
-The current circular 4-theme selector is too large.
+Do not guess.
+Do not apply cosmetic changes only.
+Do not remove major sections just to hide the problem.
+Do not leave the website blank.
+Do not stop after npm run build passes.
+Do not ignore runtime errors.
+Do not ignore GitHub Pages path issues.
+Do not leave broken theme logic.
+Do not leave broken imports.
+Do not leave broken canvas/theme selector logic.
+Do not finish until the app renders visibly.
 
-Make it smaller, cleaner, and more elegant.
+The final website must:
+- Render correctly locally
+- Build successfully
+- Work on GitHub Pages
+- Show visible content
+- Support all 4 themes
+- Keep the compact theme selector
+- Keep the Expertise Areas section
+- Keep the updated page flow
+- Avoid runtime crashes
+
+==================================================
+2. FIRST: INSPECT THE REAL FAILURE
+==================================================
+
+Investigate the blank page as a runtime/deployment issue.
+
+Check:
+- Browser console errors
+- Network errors for missing JS/CSS chunks
+- Incorrect asset paths
+- Incorrect Vite base path
+- GitHub Pages deployment config
+- React runtime crashes
+- Theme selector runtime crashes
+- Network background runtime crashes
+- Undefined imports or exports
+- Data rendering issues
+- map/filter on undefined
+- invalid localStorage/theme value
+- CSS hiding content
+- z-index overlay issues
+- text rendered white on white
+- #root height/layout problems
+
+Do not assume lint/build passing means the app is safe.
+
+==================================================
+3. VERIFY VITE + GITHUB PAGES CONFIGURATION
+==================================================
+
+The production URL is:
+
+https://nabilnet.github.io/
+
+This is a root GitHub Pages domain.
+
+Check vite.config.ts or vite.config.js.
+
+For this root domain, the expected Vite base is:
+
+base: "/"
+
+If the project is deployed from a user/organization GitHub Pages repository named nabilnet.github.io, the base must remain "/".
+
+Do not use:
+base: "/nabilnet.github.io/"
+base: "/repo-name/"
+base: "./"
+
+unless the actual deployment path proves otherwise.
+
+After build, inspect dist/index.html.
+
+Confirm generated assets look like:
+
+/assets/...
+
+not:
+
+/nabilnet.github.io/assets/...
+/some-repo/assets/...
+./assets/... if it breaks production
+
+Fix the base path if needed.
+
+==================================================
+4. VERIFY GITHUB ACTIONS / DEPLOYMENT
+==================================================
+
+Check the deployment workflow.
+
+The workflow must:
+- checkout the repo
+- install dependencies
+- run npm ci
+- run npm run build
+- deploy the dist folder
+- use Node 20 or later
+- deploy to GitHub Pages correctly
+
+If workflow is missing or wrong, fix it.
+
+Recommended workflow:
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+==================================================
+5. MAKE APP MOUNTING SAFE
+==================================================
+
+Check index.html.
+
+It must contain:
+
+<div id="root"></div>
+
+Check src/main.tsx or src/main.jsx.
+
+Make sure React mounts safely.
+
+Use this structure:
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("Root element #root was not found.");
+}
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+If the app uses routing, check whether the router is causing the blank page.
+
+For a simple portfolio on GitHub Pages, prefer HashRouter if BrowserRouter causes production routing issues.
+
+==================================================
+6. ADD A TEMPORARY VISIBLE FALLBACK FOR DEBUGGING
+==================================================
+
+If the root cause is not immediately obvious, temporarily replace App.tsx with a minimal visible render:
+
+function App() {
+  return (
+    <main style={{ padding: 40, color: "black", background: "white", minHeight: "100vh" }}>
+      NabilNet Portfolio Debug Render OK
+    </main>
+  );
+}
+
+Confirm it renders.
+
+Then progressively restore:
+1. Theme system
+2. Navbar
+3. Hero
+4. About
+5. StrategicCapabilities
+6. Experience
+7. Expertise
+8. Training
+9. Contact/Footer
+10. ThemeToggle
+11. Network background
+
+Find the exact component that causes the blank page.
+
+Once identified, fix the broken component properly.
+
+Do not leave the debug fallback as the final result.
+
+==================================================
+7. HARDEN THE THEME SYSTEM
+==================================================
+
+Theme values must be exactly:
+
+light
+dark
+network
+black
+
+Search the entire codebase for mismatches such as:
+- networking
+- networkMode
+- network-motion
+- motion
+- blackMode
+- darkMode
+
+Fix all mismatches.
+
+Create or verify a single source of truth:
+
+export const THEMES = ["light", "dark", "network", "black"] as const;
+export type Theme = typeof THEMES[number];
+
+export function isValidTheme(value: unknown): value is Theme {
+  return typeof value === "string" && THEMES.includes(value as Theme);
+}
+
+Theme initialization must be defensive:
+
+export function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+
+  try {
+    const saved = window.localStorage.getItem("theme");
+    if (isValidTheme(saved)) return saved;
+
+    const prefersDark =
+      window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
+
+    return prefersDark ? "dark" : "light";
+  } catch {
+    return "light";
+  }
+}
+
+Applying the theme must be safe:
+
+useEffect(() => {
+  document.documentElement.setAttribute("data-theme", theme);
+
+  try {
+    window.localStorage.setItem("theme", theme);
+  } catch {
+    // Storage can fail in some environments. Never crash the app.
+  }
+}, [theme]);
 
 Requirements:
-- Reduce the circle size significantly.
-- It should feel like a compact premium control, not a dominant visual element.
-- Keep the 4-quadrant concept:
-  - Light
-  - Dark
-  - Network
-  - Black
-- Keep the centered “NabilNet” mini-logo, but make it proportionally smaller.
-- Ensure the logo remains readable.
-- Ensure the selector works on desktop and mobile.
-- Avoid layout shifts in the navbar.
-- Keep hover/active states visible but subtle.
-- Keep accessible labels/tooltips.
-- Keep keyboard accessibility.
-
-Suggested sizing:
-- Desktop: around 44px–56px diameter
-- Mobile: around 40px–48px diameter
-- Center logo/text should be very small and clean
-- Do not make the selector oversized.
+- Invalid localStorage theme must not crash the app
+- Missing localStorage must not crash the app
+- document access must be inside browser-safe code
+- Every theme must have complete CSS tokens
+- No undefined theme value may reach UI logic
 
 ==================================================
-2. MAKE THE THEME SELECTOR MORE DYNAMIC BUT STILL SUBTLE
+8. HARDEN THE THEME SELECTOR
 ==================================================
 
-Add subtle dynamic interaction to the selector.
+The compact circular selector may be causing a runtime crash.
 
-Examples:
-- Soft rotation on hover
-- Gentle glow on active theme
-- Slight scale on hover
-- Smooth quadrant highlight
-- Tiny pulse on the selected quadrant
-- Smooth transition when changing theme
+Check src/components/ThemeToggle.tsx carefully.
 
-Important:
-- Keep it professional.
-- Do not make it childish.
-- Do not add heavy animation.
-- Respect prefers-reduced-motion.
-- Animation must not affect performance.
-- Animation must not create visual noise.
+Fix:
+- Undefined theme props
+- Missing onChange handlers
+- Invalid SVG path/click logic
+- Bad keyboard handlers
+- Invalid aria values
+- Broken icon imports
+- CSS class mismatches
+- Event handlers using invalid theme names
+- Tooltips relying on missing data
+- Active state errors
+
+The selector must:
+- Render safely even if theme is missing
+- Fall back to light
+- Use button semantics or accessible SVG controls
+- Support keyboard navigation
+- Respect prefers-reduced-motion
+- Stay compact
+- Never crash the app
+
+If the selector is complex and unstable, simplify it into a stable 4-button circular layout using CSS, while keeping the 4-quadrant visual concept.
 
 ==================================================
-3. FIX WRITING/TEXT COLORS AND THEME HARMONY
+9. HARDEN THE NETWORK BACKGROUND
 ==================================================
 
-Review and correct all text colors across all themes.
+If there is a network/canvas background, it must never crash the app.
 
-The problem:
-Some text colors and theme colors do not match well or may have weak contrast.
+Check:
+- canvasRef.current exists
+- getContext("2d") exists
+- requestAnimationFrame cleanup exists
+- resize listener cleanup exists
+- devicePixelRatio is safe
+- prefers-reduced-motion is handled safely
+- animation only runs for theme === "network"
+- no code runs before canvas exists
+- no SSR/browser mismatch
 
-Your task:
-Conduct a full theme/color review and fix the design tokens.
+Use safe logic:
 
-Check all four themes:
-- Light
-- Dark
-- Network
-- Black
+const canvas = canvasRef.current;
+if (!canvas) return;
 
-For each theme, ensure:
-- Main text is readable
-- Secondary text is readable
-- Muted text is still visible
-- Links are visible
-- Buttons have good contrast
-- Cards are clearly separated from the background
-- Borders are subtle but visible
-- Badges/tags are readable
-- Footer icons are visible
-- Experience cards are readable
-- Expertise/skills tags are readable
-- Network motion background does not reduce readability
+const ctx = canvas.getContext("2d");
+if (!ctx) return;
 
-Use a consistent token system based on:
+Always cancel animation frame on cleanup:
+
+return () => {
+  cancelAnimationFrame(animationFrameId);
+  window.removeEventListener("resize", resizeCanvas);
+};
+
+Canvas CSS must not cover the content:
+
+.network-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.app-shell,
+.app-content,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+If canvas fails, the site must still render.
+
+==================================================
+10. FIX CSS THAT MAY HIDE CONTENT
+==================================================
+
+Check src/index.css.
+
+Make sure the app cannot become visually blank because of CSS.
+
+Required base CSS:
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+Check for:
+- opacity: 0 on body/main/app
+- display: none accidentally applied
+- visibility: hidden
+- transform moving content off-screen
+- white text on white background
+- z-index overlay above content
+- fixed background covering the whole page
+- theme token missing fallback values
+- html[data-theme] selector mismatch
+
+Every token must exist for every theme:
 
 --color-bg
 --color-surface
@@ -108,232 +491,155 @@ Use a consistent token system based on:
 --color-button-bg
 --color-button-text
 
-Make sure every theme defines all variables.
+Add safe fallbacks where useful:
 
-Do not use random hardcoded colors unless absolutely necessary.
-Prefer CSS variables/theme tokens.
-
-==================================================
-4. CONDUCT A UI/UX REVIEW AND FIX ERRORS
-==================================================
-
-Conduct a complete UI/UX review of the website and correct problems.
-
-Review:
-- Navigation clarity
-- Theme selector size and placement
-- Section spacing
-- Visual hierarchy
-- Font sizes
-- Paragraph readability
-- Card spacing
-- Button consistency
-- Mobile responsiveness
-- Touch targets
-- Footer simplicity
-- Experience section readability
-- Background animation readability
-- Overall page flow
-
-Correct:
-- Misaligned elements
-- Overloaded blocks
-- Poor spacing
-- Weak contrast
-- Bad hover states
-- Inconsistent border radius
-- Inconsistent card shadows
-- Broken mobile layouts
-- Text that is too large/small
-- Sections that feel too dense
-- Visual clutter
-- Any obvious CSS/layout errors
-
-The final UI should feel:
-- Smooth
-- Simple to use
-- Premium
-- Professional
-- Modern
-- Executive-focused
-- Technically credible
-- Easy to read
+color: var(--color-text, #0f172a);
+background: var(--color-bg, #ffffff);
 
 ==================================================
-5. CONDUCT A DESIGN REVIEW AND CORRECT ISSUES
+11. HARDEN DATA-DRIVEN SECTIONS
 ==================================================
 
-Act as a design reviewer and improve the visual identity.
+Check src/data/portfolio.ts and all components consuming it.
 
-Design goals:
-- Premium infrastructure architect portfolio
-- Apple-like simplicity
-- Consulting-grade structure
-- Clean enterprise technology aesthetic
-- Elegant color system
-- Smooth but restrained motion
-- Strong readability
-- Mature visual language
+Possible blank-page causes:
+- undefined exports
+- wrong import names
+- map over undefined
+- filter over undefined
+- duplicate IDs
+- missing required fields
+- experience.tags undefined
+- capability.icon undefined
+- training array undefined
+- expertise array undefined
 
-Correct:
-- Inconsistent colors
-- Inconsistent spacing
-- Unbalanced sections
-- Overly heavy gradients
-- Cheap-looking effects
-- Poor card hierarchy
-- Weak typography
-- Too much visual noise
-- Footer clutter
-- Theme selector dominance
+Fix by:
+- Exporting stable arrays
+- Providing defaults
+- Avoiding map/filter on possibly undefined values
+- Using optional chaining only where appropriate
+- Adding fallback empty arrays
 
-Use:
-- Better spacing
-- Better contrast
-- Cleaner typography scale
-- Cleaner card design
-- More coherent accent colors
-- More consistent section rhythm
-- More subtle shadows
-- More polished hover states
+Example:
+
+const safeExperiences = Array.isArray(experiences) ? experiences : [];
+
+safeExperiences.map(...)
+
+All data-driven components must render safely even if a field is missing.
 
 ==================================================
-6. RE-ADD “EXPERTISE AREAS / SKILLS” SECTION
+12. ADD ERROR BOUNDARY TO PREVENT FULL WHITE PAGE
 ==================================================
 
-Re-add the Expertise Areas / Skills section that was previously removed.
+Add a small ErrorBoundary component.
 
-It should use the same structure/style as the previous #5 section, but make it more premium and consistent with the new design.
+Use it around non-critical sections:
 
-Section title suggestion:
-“Expertise Areas”
+- ThemeToggle
+- StrategicCapabilities
+- Experience
+- Expertise
+- Training
+- Contact
+- Network background
 
-Subtitle suggestion:
-“Core technical domains across enterprise infrastructure, cybersecurity, cloud, automation, and modern operations.”
+The full website must not go blank if one section crashes.
 
-Include these expertise categories:
+Example:
 
-1. Networking
-Skills/tags:
-Cisco, Juniper, Arista, Cisco Nexus, Catalyst, ACI, SD-WAN, EVPN-VXLAN, BGP, OSPF, MPLS, Datacenter Networking, Global Network Architecture
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback?: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
-2. Security
-Skills/tags:
-Palo Alto, Fortinet, Check Point, Cisco ISE, F5, Zscaler, Cloudflare, VPN, NAC, Zero Trust, Network Segmentation, Secure Remote Access
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
 
-3. Cloud
-Skills/tags:
-Microsoft Azure, AWS, Google Cloud Platform, Hybrid Cloud, Multi-Cloud, Cloud Connectivity, Kubernetes, Cloud Interconnect, Cloud Security
+  componentDidCatch(error, info) {
+    console.error("Section crashed:", error, info);
+  }
 
-4. Automation & NetDevOps
-Skills/tags:
-Ansible, Ansible Automation Platform, NetBox, Python, Docker, Git, REST APIs, CI/CD, Infrastructure Automation, Automated Remediation
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback ?? null;
+    }
 
-5. Monitoring & Analytics
-Skills/tags:
-SolarWinds, Splunk, Telemetry, Infrastructure Monitoring, Operational Dashboards, Performance Monitoring, Infrastructure Observability
+    return this.props.children;
+  }
+}
 
-6. AI & Innovation
-Skills/tags:
-AI Infrastructure, AI Agents, Intelligent Automation, AI-Driven Operations, Infrastructure Optimization, Automation-Driven Service Management
+Use TypeScript-safe typing if the project uses TypeScript.
 
-Design requirements:
-- Use clean cards or a responsive grid
-- Each expertise area should have a clear title
-- Use readable skill tags/badges
-- Avoid making the section too dense
-- Use consistent spacing
-- Use theme-aware colors
-- Cards must adapt correctly to all themes
-- The section must be readable on mobile
-
-Important:
-Do not re-add a generic messy skills section.
-It must feel like a premium “Expertise Areas” section.
+Do not use ErrorBoundary to hide all problems. Use it to prevent the whole site from turning blank while still fixing the actual root cause.
 
 ==================================================
-7. POSITION OF THE EXPERTISE SECTION
+13. VERIFY APP.TSX WIRING
 ==================================================
 
-Place the Expertise Areas section in a logical place.
+Check src/App.tsx.
 
-Recommended page order:
-1. Hero
-2. About
-3. Strategic Infrastructure Capabilities
-4. Professional Experience
-5. Expertise Areas
-6. Featured Projects / Certifications / Education if present
-7. Footer
+The App should render direct sections safely.
 
-If the existing structure is different, choose the best placement that improves flow.
+Expected logical structure:
 
-==================================================
-8. CHECK RESPONSIVENESS
-==================================================
+function App() {
+  return (
+    <div className="app-shell">
+      <NetworkBackground />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <StrategicCapabilities />
+        <Experience />
+        <Expertise />
+        <Training />
+        <Contact />
+      </main>
+    </div>
+  );
+}
 
-Test and fix the layout for:
-- Desktop
-- Tablet
-- Mobile
-
-Especially check:
-- Circular selector size on mobile
-- Navigation layout
-- Experience cards
-- Expertise cards
-- Footer icons
-- Network motion background
-- Long text wrapping
-- Tags wrapping
-- Card spacing
-
-No horizontal scrolling should occur.
+Make sure:
+- All imported components exist
+- All exports match imports
+- No component is imported with wrong casing
+- No circular imports cause undefined components
+- App always returns visible content
+- main is not hidden
+- z-index keeps content above background
 
 ==================================================
-9. ACCESSIBILITY REQUIREMENTS
+14. VERIFY NAVBAR LINKS
 ==================================================
 
-Ensure:
-- Good contrast across all themes
-- aria-labels on theme selector buttons
-- Footer icons have aria-labels
-- Keyboard focus states are visible
-- prefers-reduced-motion is respected
-- Buttons have sufficient touch target size
-- Semantic headings are logical
-- Links are readable and identifiable
+Navbar section links must match actual section IDs.
+
+If navbar links use:
+#about
+#capabilities
+#experience
+#expertise
+#training
+#contact
+
+Then sections must have corresponding IDs.
+
+Example:
+
+<section id="capabilities">
+
+Broken anchor links should not blank the page, but mismatches should be fixed.
 
 ==================================================
-10. TECHNICAL QUALITY REQUIREMENTS
-==================================================
-
-Do not leave:
-- TypeScript errors
-- ESLint errors
-- Runtime errors
-- Broken imports
-- Missing variables
-- Unused variables
-- Duplicate theme values
-- Inconsistent theme names
-- Broken responsive styles
-- Broken localStorage logic
-
-Keep theme names consistent:
-- light
-- dark
-- network
-- black
-
-Do not mix:
-- networking
-- networkMode
-- motion
-- network-motion
-
-==================================================
-11. FINAL VALIDATION
+15. VERIFY PRODUCTION BUILD OUTPUT
 ==================================================
 
 Run:
@@ -341,52 +647,69 @@ Run:
 npm run lint
 npm run build
 
-If available:
+Then inspect:
+- dist/index.html
+- dist/assets
+
+Confirm:
+- dist exists
+- JS and CSS assets exist
+- index.html references valid assets
+- no wrong base path
+- no missing CSS
+
+If possible run:
 
 npm run preview
 
-Fix all issues until the commands pass.
-
-Final result must:
-- Render correctly
-- Have a smaller and more elegant theme selector
-- Have subtle dynamic interactions
-- Have readable text colors across all themes
-- Have a coherent design system
-- Include the re-added Expertise Areas section
-- Work on mobile
-- Have no runtime errors
-- Feel more polished, smooth, and professional
-
-Please reduce the visual size of the hero subtitle text:
-
-“Designing resilient and secure enterprise platforms for global network and infrastructure modernization.”
-
-Requirements:
-- Make the text smaller and more elegant.
-- Keep it readable and professional.
-- Reduce font-size, line-height, and max-width if needed.
-- On desktop, use a moderate subtitle size instead of a large headline style.
-- On mobile, make it compact and well-spaced.
-- Keep the text color theme-aware and readable across light, dark, network, and black modes.
-- Do not reduce the main hero title size unless necessary.
-
-Suggested styling:
-- Desktop: font-size around 1rem to 1.125rem
-- Mobile: font-size around 0.9rem to 1rem
-- Line-height: around 1.5
-- Max-width: around 680px
-- Opacity or muted color can be slightly reduced, but contrast must remain accessible.
+Open the local preview and verify:
+- Page is visible
+- No runtime errors
+- Theme selector works
+- Network theme works
+- All sections render
 
 ==================================================
-12. FINAL RESPONSE EXPECTED
+16. FINAL ACCEPTANCE CRITERIA
 ==================================================
 
-When finished, provide:
-- Summary of UI/UX improvements
-- Summary of design fixes
-- Theme/color fixes applied
-- Expertise Areas section added
-- Files changed
-- Commands run
-- Confirmation that lint/build passed
+The work is complete only when:
+
+- The website no longer shows a blank white page
+- The homepage visibly renders
+- App.tsx renders all intended sections
+- Theme selector works
+- light theme works
+- dark theme works
+- network theme works
+- black theme works
+- Network background does not crash the app
+- Expertise section renders
+- Strategic Capabilities renders
+- Experience renders
+- Training/Education renders
+- Contact/Footer renders
+- Navbar links work
+- Text colors are readable
+- No runtime console errors
+- npm run lint passes
+- npm run build passes
+- GitHub Pages config is correct for https://nabilnet.github.io/
+
+==================================================
+17. FINAL REPORT REQUIRED
+==================================================
+
+When finished, provide a final report with:
+
+1. Exact root cause of the blank page
+2. Files changed
+3. Fixes applied
+4. Theme system fixes
+5. GitHub Pages deployment fixes
+6. Runtime safety improvements
+7. Commands run
+8. Build/lint status
+9. Any remaining deployment note
+
+Do not mark the task complete unless the website is fully functional.
