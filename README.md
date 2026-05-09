@@ -224,7 +224,13 @@ Do not remove the technical expertise section if it is structured as service/cap
 
 Replace the current About Me content with the following polished version:
 
-'Below is a **premium Deloitte / BCG-style version** of the **Professional Experience** section, written for a senior portfolio, executive CV, or personal website.
+'With extensive experience across international organizations, government agencies, digital businesses, and global infrastructure environments, I specialize in designing and delivering secure, scalable, and resilient technology platforms.
+
+My career has focused on modernizing enterprise infrastructure through cloud adoption, network transformation, cybersecurity integration, automation, datacenter modernization, and operational excellence.
+
+I have led and contributed to strategic initiatives involving multi-cloud Disaster Recovery, Zero Trust infrastructure, secure remote access, Cisco ISE modernization, VPN platforms serving thousands of users, datacenter redesign, SD-WAN, cloud interconnectivity, and global network standardization.
+
+My approach combines deep technical expertise with consulting-grade execution: understanding business requirements, designing robust architectures, coordinating stakeholders, managing complexity, and delivering infrastructure solutions that are secure, scalable, and future-ready.'
 
 ---
 
