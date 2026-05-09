@@ -1,18 +1,45 @@
-Act as a senior React + Vite production engineer, GitHub Pages deployment expert, runtime debugging specialist, and frontend reliability reviewer.
+Act as a senior React + Vite production engineer, GitHub Pages deployment expert, GitHub Actions specialist, frontend runtime debugging expert, UI reliability reviewer, and production incident fixer.
 
-The website is:
+My website is deployed here:
 
 https://nabilnet.github.io/
 
-The website is currently showing a blank white page again in production.
+Current problem:
+The website shows a blank/white page in production.
 
-Important context:
-The latest changes were successfully implemented and committed. The project passes:
+Additional deployment problem:
+GitHub Actions deployment failed at:
 
-✅ npm run lint
-✅ npm run build
+Run actions/deploy-pages@v4
 
-Files recently changed:
+Error:
+Failed to get ID Token.
+Client network socket disconnected before secure TLS connection was established.
+Ensure GITHUB_TOKEN has permission "id-token: write".
+
+Important:
+npm run lint and npm run build may pass, but the deployed website is still blank. Therefore, you must debug runtime, deployment, asset path, routing, theme, and GitHub Actions issues. Do not stop at a successful build.
+
+Recent project context:
+The website recently received the following changes:
+- 4-theme system: light, dark, network, black
+- Theme persistence via localStorage
+- Theme applied through html[data-theme="..."]
+- Compact circular 4-quadrant theme selector
+- Centered “NabilNet” mini-logo inside selector
+- Networking Motion Mode using canvas animation
+- Navbar updated with links to page sections
+- About section updated
+- Strategic Capabilities section added
+- Professional Experience section updated
+- Expertise Areas section reintroduced
+- Training/Education section updated
+- Contact/Footer updated
+- Design tokens standardized across themes
+- Hero subtitle reduced
+- Hardcoded colors replaced with theme tokens
+
+Recently changed files:
 - src/App.tsx
 - src/components/ThemeToggle.tsx
 - src/components/Navbar.tsx
@@ -24,140 +51,138 @@ Files recently changed:
 - src/data/portfolio.ts
 - src/index.css
 
-Recent implementation summary:
-- Page flow was updated to:
-  Hero → About → Strategic Capabilities → Experience → Expertise → Training/Education → Contact/Footer
-- Sections are wired directly into App.tsx
-- Circular theme selector was made compact, around 44–48px
-- 4 themes are supported:
-  light
-  dark
-  network
-  black
-- Theme selector includes subtle motion and prefers-reduced-motion support
-- Navbar includes explicit section links
-- Design tokens were standardized across all themes
-- Expertise Areas section was reintroduced
-- Hardcoded colors were replaced with theme tokens
-- Hero subtitle was reduced in size
-- Strategic Infrastructure Capabilities was updated
-- Training/Contact/Capabilities were updated to honor theme tokens
-
-Despite this, the production website is blank/white.
-
 Your mission:
-Diagnose and fix the real cause of the blank page permanently. Do not stop just because lint/build pass. The actual success condition is that the website renders correctly in production.
-
-==================================================
-1. NON-NEGOTIABLE RULES
-==================================================
-
-Do not guess.
-Do not apply cosmetic changes only.
-Do not remove major sections just to hide the problem.
-Do not leave the website blank.
-Do not stop after npm run build passes.
-Do not ignore runtime errors.
-Do not ignore GitHub Pages path issues.
-Do not leave broken theme logic.
-Do not leave broken imports.
-Do not leave broken canvas/theme selector logic.
-Do not finish until the app renders visibly.
+Fix everything necessary so the website works perfectly in production on GitHub Pages.
 
 The final website must:
-- Render correctly locally
-- Build successfully
-- Work on GitHub Pages
-- Show visible content
-- Support all 4 themes
+- Render correctly at https://nabilnet.github.io/
+- Not show a blank white page
+- Have no runtime console errors
+- Deploy successfully through GitHub Actions
+- Support all 4 themes correctly
 - Keep the compact theme selector
+- Keep the network motion background safely
 - Keep the Expertise Areas section
-- Keep the updated page flow
-- Avoid runtime crashes
+- Keep the updated page structure
+- Pass lint and build
+- Be production-ready
 
 ==================================================
-2. FIRST: INSPECT THE REAL FAILURE
+0. NON-NEGOTIABLE RULES
 ==================================================
 
-Investigate the blank page as a runtime/deployment issue.
+Do not guess blindly.
+Do not stop after npm run build passes.
+Do not say it works unless the page renders visibly.
+Do not remove major sections just to hide errors.
+Do not ignore runtime errors.
+Do not ignore GitHub Pages base path issues.
+Do not ignore GitHub Actions permissions.
+Do not ignore deployment artifact issues.
+Do not leave theme names inconsistent.
+Do not leave broken canvas animation code.
+Do not leave broken imports.
+Do not leave broken section data.
+Do not leave a blank page.
+
+If necessary, temporarily simplify the app to identify the crashing component, but restore the full website after the root cause is fixed.
+
+==================================================
+1. INSPECT THE PROJECT FIRST
+==================================================
+
+Inspect the full project before editing.
 
 Check:
-- Browser console errors
-- Network errors for missing JS/CSS chunks
-- Incorrect asset paths
-- Incorrect Vite base path
-- GitHub Pages deployment config
-- React runtime crashes
-- Theme selector runtime crashes
-- Network background runtime crashes
-- Undefined imports or exports
-- Data rendering issues
+- package.json
+- vite.config.ts or vite.config.js
+- index.html
+- src/main.tsx or src/main.jsx
+- src/App.tsx
+- src/index.css
+- src/data/portfolio.ts
+- src/components/ThemeToggle.tsx
+- src/components/Navbar.tsx
+- src/components/Hero.tsx
+- src/components/StrategicCapabilities.tsx
+- src/components/Expertise.tsx
+- src/components/Training.tsx
+- src/components/Contact.tsx
+- Any Experience component
+- Any NetworkBackground or canvas component
+- Any ErrorBoundary component
+- Tailwind config if used
+- GitHub Actions workflow under .github/workflows/
+
+Understand the current architecture before modifying code.
+
+==================================================
+2. IDENTIFY WHY THE PAGE IS BLANK
+==================================================
+
+The blank page may be caused by:
+
+A. Deployment / GitHub Pages issue
+- Wrong Vite base
+- Wrong asset paths
+- GitHub Pages deploying wrong folder
+- GitHub Pages source not set to GitHub Actions
+- dist folder not uploaded
+- old deployment still active
+- workflow failed before deploying
+
+B. Runtime React issue
+- App crashes during render
+- Missing import/export
+- Undefined component
 - map/filter on undefined
-- invalid localStorage/theme value
-- CSS hiding content
-- z-index overlay issues
-- text rendered white on white
-- #root height/layout problems
+- invalid theme value
+- localStorage crash
+- canvas crash
+- SVG/theme selector crash
+- footer icon import crash
 
-Do not assume lint/build passing means the app is safe.
+C. Routing issue
+- BrowserRouter incompatible with GitHub Pages setup
+- basename missing
+- root route not rendering
+- route mismatch
 
-==================================================
-3. VERIFY VITE + GITHUB PAGES CONFIGURATION
-==================================================
+D. CSS issue
+- content exists but is invisible
+- white text on white background
+- opacity: 0
+- display: none
+- z-index overlay
+- canvas above content
+- missing root/body height
+- missing theme tokens
 
-The production URL is:
+E. GitHub Actions issue
+- deploy-pages cannot get ID token
+- missing id-token: write
+- missing pages: write
+- repository Pages source is not GitHub Actions
+- transient GitHub runner TLS/OIDC issue
 
-https://nabilnet.github.io/
-
-This is a root GitHub Pages domain.
-
-Check vite.config.ts or vite.config.js.
-
-For this root domain, the expected Vite base is:
-
-base: "/"
-
-If the project is deployed from a user/organization GitHub Pages repository named nabilnet.github.io, the base must remain "/".
-
-Do not use:
-base: "/nabilnet.github.io/"
-base: "/repo-name/"
-base: "./"
-
-unless the actual deployment path proves otherwise.
-
-After build, inspect dist/index.html.
-
-Confirm generated assets look like:
-
-/assets/...
-
-not:
-
-/nabilnet.github.io/assets/...
-/some-repo/assets/...
-./assets/... if it breaks production
-
-Fix the base path if needed.
+You must investigate and fix the real causes.
 
 ==================================================
-4. VERIFY GITHUB ACTIONS / DEPLOYMENT
+3. FIX GITHUB ACTIONS DEPLOYMENT ERROR
 ==================================================
 
-Check the deployment workflow.
+The workflow failed with:
 
-The workflow must:
-- checkout the repo
-- install dependencies
-- run npm ci
-- run npm run build
-- deploy the dist folder
-- use Node 20 or later
-- deploy to GitHub Pages correctly
+Failed to get ID Token.
+Ensure GITHUB_TOKEN has permission "id-token: write".
 
-If workflow is missing or wrong, fix it.
+Fix the GitHub Actions workflow.
 
-Recommended workflow:
+Find the Pages deployment workflow in:
+
+.github/workflows/
+
+Replace or correct it using this stable workflow:
 
 name: Deploy to GitHub Pages
 
@@ -173,18 +198,19 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: false
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -193,44 +219,144 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build project
         run: npm run build
 
-      - name: Setup Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload production artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
 
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
+Important:
+- Keep top-level permissions.
+- Also keep deploy job permissions for safety.
+- The deploy job must use actions/deploy-pages@v4.
+- The build job must upload ./dist using actions/upload-pages-artifact@v3.
+- GitHub Pages repository settings must use Source: GitHub Actions.
+- Do not use “Deploy from branch” with this workflow.
+
+If the workflow already has these permissions and fails with:
+Client network socket disconnected before secure TLS connection was established
+
+then treat that part as a possible transient GitHub runner/OIDC network issue. Re-run the workflow after validating YAML. But still fix any missing permissions or workflow structure.
+
 ==================================================
-5. MAKE APP MOUNTING SAFE
+4. VERIFY GITHUB REPOSITORY SETTINGS
+==================================================
+
+Add a deployment note in the final report:
+
+Repository settings must be:
+
+Settings → Pages → Build and deployment → Source: GitHub Actions
+
+Also check:
+
+Settings → Actions → General
+
+Ensure:
+- Actions are enabled
+- Workflow permissions are not overly restricted
+- GitHub Actions is allowed to create deployments if required
+
+Do not modify frontend code for the OIDC error unless the build itself fails. The OIDC error is a deployment pipeline problem.
+
+==================================================
+5. FIX VITE BASE CONFIGURATION
+==================================================
+
+The production URL is:
+
+https://nabilnet.github.io/
+
+This is a root GitHub Pages user site.
+
+Check vite.config.ts or vite.config.js.
+
+For this deployment target, use:
+
+base: "/"
+
+Example:
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/",
+});
+
+Do not use:
+base: "/nabilnet.github.io/"
+base: "/repo-name/"
+base: "./"
+
+unless the project is actually deployed under a subpath.
+
+After running npm run build, inspect dist/index.html.
+
+Expected:
+- JS and CSS assets should resolve from /assets/...
+- dist/assets should exist
+- No broken asset path should be generated
+
+==================================================
+6. VERIFY PACKAGE.JSON
+==================================================
+
+Check package.json.
+
+Ensure scripts are correct:
+
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "lint": "..."
+}
+
+If lint exists, keep it.
+If preview does not exist, add:
+
+"preview": "vite preview"
+
+Do not change unrelated metadata unless necessary.
+
+==================================================
+7. VERIFY INDEX.HTML AND REACT MOUNTING
 ==================================================
 
 Check index.html.
 
-It must contain:
+It must include:
 
 <div id="root"></div>
 
 Check src/main.tsx or src/main.jsx.
 
-Make sure React mounts safely.
-
-Use this structure:
+Use a safe structure:
 
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -249,27 +375,62 @@ ReactDOM.createRoot(rootElement).render(
   </React.StrictMode>
 );
 
-If the app uses routing, check whether the router is causing the blank page.
-
-For a simple portfolio on GitHub Pages, prefer HashRouter if BrowserRouter causes production routing issues.
+If the project currently mounts incorrectly, fix it.
 
 ==================================================
-6. ADD A TEMPORARY VISIBLE FALLBACK FOR DEBUGGING
+8. FIX ROUTING FOR GITHUB PAGES
 ==================================================
 
-If the root cause is not immediately obvious, temporarily replace App.tsx with a minimal visible render:
+If the project uses react-router-dom:
+
+For a simple portfolio website, prefer HashRouter for GitHub Pages reliability.
+
+Use:
+
+import { HashRouter } from "react-router-dom";
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </React.StrictMode>
+);
+
+If the website is a single-page portfolio and does not need React Router, remove unnecessary routing complexity and render App directly.
+
+If BrowserRouter is kept, ensure:
+- basename is correct
+- root path renders the homepage
+- there is no route mismatch
+
+The root URL https://nabilnet.github.io/ must render the homepage.
+
+==================================================
+9. ADD TEMPORARY DEBUG STRATEGY IF ROOT CAUSE IS UNCLEAR
+==================================================
+
+If the root cause is not obvious, temporarily replace App.tsx with a visible debug render:
 
 function App() {
   return (
-    <main style={{ padding: 40, color: "black", background: "white", minHeight: "100vh" }}>
+    <main
+      style={{
+        minHeight: "100vh",
+        padding: "40px",
+        background: "white",
+        color: "black",
+        fontFamily: "system-ui, sans-serif"
+      }}
+    >
       NabilNet Portfolio Debug Render OK
     </main>
   );
 }
 
-Confirm it renders.
+Confirm the app renders.
 
-Then progressively restore:
+Then re-enable components one by one:
 1. Theme system
 2. Navbar
 3. Hero
@@ -282,14 +443,15 @@ Then progressively restore:
 10. ThemeToggle
 11. Network background
 
-Find the exact component that causes the blank page.
+Identify the exact crashing component.
 
-Once identified, fix the broken component properly.
+Fix the component properly.
 
-Do not leave the debug fallback as the final result.
+Important:
+Do not leave this debug fallback as the final app.
 
 ==================================================
-7. HARDEN THE THEME SYSTEM
+10. HARDEN THE THEME SYSTEM
 ==================================================
 
 Theme values must be exactly:
@@ -299,7 +461,7 @@ dark
 network
 black
 
-Search the entire codebase for mismatches such as:
+Search the entire codebase for inconsistent values:
 - networking
 - networkMode
 - network-motion
@@ -309,16 +471,17 @@ Search the entire codebase for mismatches such as:
 
 Fix all mismatches.
 
-Create or verify a single source of truth:
+Use one source of truth:
 
 export const THEMES = ["light", "dark", "network", "black"] as const;
+
 export type Theme = typeof THEMES[number];
 
 export function isValidTheme(value: unknown): value is Theme {
   return typeof value === "string" && THEMES.includes(value as Theme);
 }
 
-Theme initialization must be defensive:
+Use safe theme initialization:
 
 export function getInitialTheme(): Theme {
   if (typeof window === "undefined") return "light";
@@ -336,7 +499,7 @@ export function getInitialTheme(): Theme {
   }
 }
 
-Applying the theme must be safe:
+Apply theme safely:
 
 useEffect(() => {
   document.documentElement.setAttribute("data-theme", theme);
@@ -344,66 +507,67 @@ useEffect(() => {
   try {
     window.localStorage.setItem("theme", theme);
   } catch {
-    // Storage can fail in some environments. Never crash the app.
+    // Never crash if storage is unavailable
   }
 }, [theme]);
 
 Requirements:
-- Invalid localStorage theme must not crash the app
-- Missing localStorage must not crash the app
-- document access must be inside browser-safe code
-- Every theme must have complete CSS tokens
-- No undefined theme value may reach UI logic
+- Invalid localStorage value must not crash app
+- Missing localStorage must not crash app
+- Theme defaults safely to light or system fallback
+- html[data-theme] must always be set
+- All components must use the same theme names
 
 ==================================================
-8. HARDEN THE THEME SELECTOR
+11. FIX THE CIRCULAR THEME SELECTOR
 ==================================================
 
-The compact circular selector may be causing a runtime crash.
-
-Check src/components/ThemeToggle.tsx carefully.
-
-Fix:
-- Undefined theme props
-- Missing onChange handlers
-- Invalid SVG path/click logic
-- Bad keyboard handlers
-- Invalid aria values
-- Broken icon imports
-- CSS class mismatches
-- Event handlers using invalid theme names
-- Tooltips relying on missing data
-- Active state errors
+Check src/components/ThemeToggle.tsx.
 
 The selector must:
-- Render safely even if theme is missing
-- Fall back to light
-- Use button semantics or accessible SVG controls
-- Support keyboard navigation
+- Stay compact, around 44–48px visual size
+- Keep 4 quadrants
+- Keep centered NabilNet mini-logo
+- Change theme on click
+- Work on mobile
+- Work with keyboard
+- Have aria-labels
+- Have visible focus states
 - Respect prefers-reduced-motion
-- Stay compact
-- Never crash the app
+- Not crash if current theme is invalid
+- Not use undefined theme values
+- Not rely on missing icons or broken imports
 
-If the selector is complex and unstable, simplify it into a stable 4-button circular layout using CSS, while keeping the 4-quadrant visual concept.
+If the current SVG/quadrant implementation is unstable, simplify it into a robust compact 4-button circular CSS layout.
+
+Important:
+The selector must never crash the whole page.
 
 ==================================================
-9. HARDEN THE NETWORK BACKGROUND
+12. FIX NETWORK MOTION BACKGROUND
 ==================================================
 
-If there is a network/canvas background, it must never crash the app.
+The network canvas background must be safe.
 
-Check:
-- canvasRef.current exists
-- getContext("2d") exists
-- requestAnimationFrame cleanup exists
-- resize listener cleanup exists
-- devicePixelRatio is safe
-- prefers-reduced-motion is handled safely
-- animation only runs for theme === "network"
-- no code runs before canvas exists
-- no SSR/browser mismatch
+Check any component responsible for:
+- canvas animation
+- network background
+- moving nodes
+- linking lines
 
-Use safe logic:
+Requirements:
+- Only run animation when theme === "network"
+- Do not run if reduced motion is enabled
+- Check canvasRef.current before using it
+- Check getContext("2d") before drawing
+- Cancel requestAnimationFrame on cleanup
+- Remove resize listeners on cleanup
+- Handle devicePixelRatio safely
+- Never throw during render
+- Never block app rendering
+- Never cover content with a white overlay
+
+Safe pattern:
 
 const canvas = canvasRef.current;
 if (!canvas) return;
@@ -411,14 +575,7 @@ if (!canvas) return;
 const ctx = canvas.getContext("2d");
 if (!ctx) return;
 
-Always cancel animation frame on cleanup:
-
-return () => {
-  cancelAnimationFrame(animationFrameId);
-  window.removeEventListener("resize", resizeCanvas);
-};
-
-Canvas CSS must not cover the content:
+CSS must keep canvas behind content:
 
 .network-background {
   position: fixed;
@@ -434,17 +591,15 @@ main {
   z-index: 1;
 }
 
-If canvas fails, the site must still render.
+If animation fails, page must still render.
 
 ==================================================
-10. FIX CSS THAT MAY HIDE CONTENT
+13. FIX GLOBAL CSS AND THEME TOKENS
 ==================================================
 
 Check src/index.css.
 
-Make sure the app cannot become visually blank because of CSS.
-
-Required base CSS:
+Add or verify base CSS:
 
 html,
 body,
@@ -455,114 +610,141 @@ body,
 
 body {
   min-height: 100vh;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--color-bg, #ffffff);
+  color: var(--color-text, #0f172a);
 }
 
 #root {
   min-height: 100vh;
 }
 
-Check for:
-- opacity: 0 on body/main/app
-- display: none accidentally applied
+Ensure no CSS causes blank page:
+- opacity: 0
+- display: none
 - visibility: hidden
-- transform moving content off-screen
-- white text on white background
-- z-index overlay above content
-- fixed background covering the whole page
-- theme token missing fallback values
-- html[data-theme] selector mismatch
+- content moved off-screen
+- white overlay
+- z-index issue
+- text same color as background
 
-Every token must exist for every theme:
+Each theme must define all tokens:
 
---color-bg
---color-surface
---color-surface-elevated
---color-text
---color-text-muted
---color-border
---color-accent
---color-accent-hover
---color-card-shadow
---color-tag-bg
---color-tag-text
---color-link
---color-button-bg
---color-button-text
+html[data-theme="light"] {
+  --color-bg: ...;
+  --color-surface: ...;
+  --color-surface-elevated: ...;
+  --color-text: ...;
+  --color-text-muted: ...;
+  --color-border: ...;
+  --color-accent: ...;
+  --color-accent-hover: ...;
+  --color-card-shadow: ...;
+  --color-tag-bg: ...;
+  --color-tag-text: ...;
+  --color-link: ...;
+  --color-button-bg: ...;
+  --color-button-text: ...;
+}
 
-Add safe fallbacks where useful:
+html[data-theme="dark"] {
+  all same tokens...
+}
+
+html[data-theme="network"] {
+  all same tokens...
+}
+
+html[data-theme="black"] {
+  all same tokens...
+}
+
+If tokens are missing, add them.
+
+Use fallbacks where useful:
 
 color: var(--color-text, #0f172a);
 background: var(--color-bg, #ffffff);
 
 ==================================================
-11. HARDEN DATA-DRIVEN SECTIONS
+14. HARDEN DATA-DRIVEN SECTIONS
 ==================================================
 
-Check src/data/portfolio.ts and all components consuming it.
+Check src/data/portfolio.ts.
 
-Possible blank-page causes:
-- undefined exports
+Ensure all exported arrays exist and match imports.
+
+Potential arrays:
+- capabilities
+- experiences
+- expertiseAreas
+- training
+- education
+- contactLinks
+- projects
+
+Check every component that imports these arrays.
+
+Fix:
 - wrong import names
+- wrong export names
+- undefined arrays
 - map over undefined
 - filter over undefined
-- duplicate IDs
-- missing required fields
-- experience.tags undefined
-- capability.icon undefined
-- training array undefined
-- expertise array undefined
+- missing tags
+- missing IDs
+- duplicate keys
+- missing fields
 
-Fix by:
-- Exporting stable arrays
-- Providing defaults
-- Avoiding map/filter on possibly undefined values
-- Using optional chaining only where appropriate
-- Adding fallback empty arrays
-
-Example:
+Use safe fallbacks:
 
 const safeExperiences = Array.isArray(experiences) ? experiences : [];
 
-safeExperiences.map(...)
-
-All data-driven components must render safely even if a field is missing.
+Do not allow one malformed item to crash the whole page.
 
 ==================================================
-12. ADD ERROR BOUNDARY TO PREVENT FULL WHITE PAGE
+15. ADD ERROR BOUNDARY
 ==================================================
 
-Add a small ErrorBoundary component.
+Add a small ErrorBoundary component if not already present.
 
-Use it around non-critical sections:
+Use it around non-critical sections so the entire page does not become blank.
 
+Protect:
 - ThemeToggle
+- NetworkBackground
 - StrategicCapabilities
 - Experience
 - Expertise
 - Training
 - Contact
-- Network background
 
-The full website must not go blank if one section crashes.
+TypeScript-safe example:
 
-Example:
+import React from "react";
 
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode; fallback?: React.ReactNode },
-  { hasError: boolean }
+type ErrorBoundaryProps = {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+};
+
+type ErrorBoundaryState = {
+  hasError: boolean;
+};
+
+export class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
 > {
-  constructor(props) {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: unknown, info: unknown) {
     console.error("Section crashed:", error, info);
   }
 
@@ -575,26 +757,29 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-Use TypeScript-safe typing if the project uses TypeScript.
-
-Do not use ErrorBoundary to hide all problems. Use it to prevent the whole site from turning blank while still fixing the actual root cause.
+Important:
+Do not use ErrorBoundary to hide all problems. Fix the actual root cause too.
 
 ==================================================
-13. VERIFY APP.TSX WIRING
+16. VERIFY APP.TSX STRUCTURE
 ==================================================
 
 Check src/App.tsx.
 
-The App should render direct sections safely.
-
-Expected logical structure:
+The page should render a visible structure similar to:
 
 function App() {
   return (
     <div className="app-shell">
-      <NetworkBackground />
-      <Navbar />
-      <main>
+      <ErrorBoundary>
+        <NetworkBackground />
+      </ErrorBoundary>
+
+      <ErrorBoundary fallback={<div />}>
+        <Navbar />
+      </ErrorBoundary>
+
+      <main className="app-content">
         <Hero />
         <About />
         <StrategicCapabilities />
@@ -607,22 +792,21 @@ function App() {
   );
 }
 
-Make sure:
+Requirements:
 - All imported components exist
-- All exports match imports
-- No component is imported with wrong casing
-- No circular imports cause undefined components
+- Imports match exports
 - App always returns visible content
-- main is not hidden
-- z-index keeps content above background
+- Content is above background
+- Section order is preserved:
+  Hero → About → Strategic Capabilities → Experience → Expertise → Training/Education → Contact/Footer
 
 ==================================================
-14. VERIFY NAVBAR LINKS
+17. VERIFY NAVBAR SECTION IDS
 ==================================================
 
-Navbar section links must match actual section IDs.
+Navbar links should match real section IDs.
 
-If navbar links use:
+If Navbar links to:
 #about
 #capabilities
 #experience
@@ -630,86 +814,147 @@ If navbar links use:
 #training
 #contact
 
-Then sections must have corresponding IDs.
-
-Example:
-
+Then matching sections must include:
+<section id="about">
 <section id="capabilities">
+<section id="experience">
+<section id="expertise">
+<section id="training">
+<section id="contact">
 
-Broken anchor links should not blank the page, but mismatches should be fixed.
+Fix any mismatch.
 
 ==================================================
-15. VERIFY PRODUCTION BUILD OUTPUT
+18. VERIFY FOOTER ICONS
+==================================================
+
+The footer/contact section should use small icon links.
+
+Requirements:
+- LinkedIn
+- GitHub
+- Email
+- Resume if available
+- aria-labels
+- no broken icon imports
+- no undefined link values
+
+If icon library imports are causing crash, replace with inline SVG icons.
+
+==================================================
+19. RUN LOCAL VALIDATION
 ==================================================
 
 Run:
 
+npm install
+
+Then:
+
 npm run lint
+
+Then:
+
 npm run build
 
-Then inspect:
-- dist/index.html
-- dist/assets
-
-Confirm:
-- dist exists
-- JS and CSS assets exist
-- index.html references valid assets
-- no wrong base path
-- no missing CSS
-
-If possible run:
+Then, if preview exists:
 
 npm run preview
 
-Open the local preview and verify:
-- Page is visible
-- No runtime errors
-- Theme selector works
-- Network theme works
-- All sections render
+Fix every issue.
+
+After build:
+- inspect dist/index.html
+- inspect dist/assets
+- confirm JS/CSS files exist
+- confirm paths are correct for https://nabilnet.github.io/
 
 ==================================================
-16. FINAL ACCEPTANCE CRITERIA
+20. VERIFY PRODUCTION DEPLOYMENT PATH
 ==================================================
 
-The work is complete only when:
+Because this is the root user site:
 
-- The website no longer shows a blank white page
-- The homepage visibly renders
-- App.tsx renders all intended sections
-- Theme selector works
-- light theme works
-- dark theme works
-- network theme works
-- black theme works
-- Network background does not crash the app
-- Expertise section renders
-- Strategic Capabilities renders
-- Experience renders
-- Training/Education renders
-- Contact/Footer renders
-- Navbar links work
-- Text colors are readable
-- No runtime console errors
+https://nabilnet.github.io/
+
+Vite base should be:
+
+base: "/"
+
+GitHub Pages should deploy:
+
+./dist
+
+GitHub Pages source should be:
+
+GitHub Actions
+
+If the repository is not the root user page repository and is actually deployed under a path, explain this clearly and adjust base accordingly. But for the target URL above, root base is expected.
+
+==================================================
+21. HANDLE THE OIDC/TLS ERROR CORRECTLY
+==================================================
+
+The error:
+
+Client network socket disconnected before secure TLS connection was established
+
+can be transient.
+
+But first ensure:
+- permissions include id-token: write
+- permissions include pages: write
+- deploy job has id-token: write
+- GitHub Pages source is GitHub Actions
+- artifact is uploaded correctly
+
+After correcting workflow:
+- re-run the failed workflow
+- if the same TLS/OIDC error happens again with correct YAML, re-run once more before changing frontend code
+- document that it may be a temporary GitHub runner/OIDC network issue
+
+==================================================
+22. FINAL ACCEPTANCE CRITERIA
+==================================================
+
+Task is complete only when:
+
+- GitHub Actions workflow is corrected
+- deploy-pages@v4 has id-token: write
+- pages: write is present
+- dist artifact is uploaded
+- Vite base is correct
 - npm run lint passes
 - npm run build passes
-- GitHub Pages config is correct for https://nabilnet.github.io/
+- app renders locally
+- deployed site renders at https://nabilnet.github.io/
+- no blank white page
+- no runtime console errors
+- all sections render
+- all four themes work
+- compact theme selector works
+- network background does not crash
+- Expertise section appears
+- navbar links work
+- footer icons work
+- responsive layout works
 
 ==================================================
-17. FINAL REPORT REQUIRED
+23. FINAL REPORT REQUIRED
 ==================================================
 
 When finished, provide a final report with:
 
-1. Exact root cause of the blank page
-2. Files changed
-3. Fixes applied
-4. Theme system fixes
-5. GitHub Pages deployment fixes
-6. Runtime safety improvements
-7. Commands run
-8. Build/lint status
-9. Any remaining deployment note
+1. Root cause of the blank page
+2. Root cause of the GitHub Actions deployment error
+3. Files changed
+4. Frontend fixes applied
+5. Theme system fixes applied
+6. GitHub Pages/Vite config fixes applied
+7. GitHub Actions workflow fixes applied
+8. Commands run
+9. Lint/build status
+10. Deployment notes
+11. Any remaining manual GitHub repository setting to verify
 
-Do not mark the task complete unless the website is fully functional.
+Do not mark the task complete unless the website is fully functional and production-ready.
