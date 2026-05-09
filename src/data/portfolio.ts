@@ -35,6 +35,18 @@ export const training = ["Azure Architecture, Infrastructure & Security", "NetDe
 
 export const education = ["Claude Bernard University Lyon 1 — Master’s Degree, Computer Systems & Networks", "University of Skikda — Engineering Degree, Computer Science"];
 
-export const strategicCapabilities = [] as { title: string; description: string; icon: string; linkLabel?: string }[];
-export const expertiseCategories = [] as { title: string; tags: string[] }[];
+export const strategicCapabilities = [
+  { title: "Global Network Architecture", description: "Designing resilient enterprise backbones across datacenter, campus, WAN, and cloud interconnect domains.", icon: "Globe", linkLabel: "Architecture & Standards" },
+  { title: "Cybersecurity Integration", description: "Embedding Zero Trust controls, segmentation, identity, and secure remote access into infrastructure programs.", icon: "ShieldCheck", linkLabel: "Secure by Design" },
+  { title: "Cloud & Hybrid Platforms", description: "Leading multi-cloud and hybrid connectivity patterns that balance governance, performance, and reliability.", icon: "Cloud", linkLabel: "Hybrid Cloud Delivery" },
+  { title: "Automation & Operations", description: "Driving NetDevOps, observability, and remediation workflows for scalable and repeatable infrastructure operations.", icon: "Workflow", linkLabel: "Operational Excellence" }
+] as { title: string; description: string; icon: string; linkLabel?: string }[];
+export const expertiseCategories = [
+  { title: "Networking", tags: ["Cisco", "Juniper", "Arista", "Cisco Nexus", "Catalyst", "ACI", "SD-WAN", "EVPN-VXLAN", "BGP", "OSPF", "MPLS", "Datacenter Networking", "Global Network Architecture"] },
+  { title: "Security", tags: ["Palo Alto", "Fortinet", "Check Point", "Cisco ISE", "F5", "Zscaler", "Cloudflare", "VPN", "NAC", "Zero Trust", "Network Segmentation", "Secure Remote Access"] },
+  { title: "Cloud", tags: ["Microsoft Azure", "AWS", "Google Cloud Platform", "Hybrid Cloud", "Multi-Cloud", "Cloud Connectivity", "Kubernetes", "Cloud Interconnect", "Cloud Security"] },
+  { title: "Automation & NetDevOps", tags: ["Ansible", "Ansible Automation Platform", "NetBox", "Python", "Docker", "Git", "REST APIs", "CI/CD", "Infrastructure Automation", "Automated Remediation"] },
+  { title: "Monitoring & Analytics", tags: ["SolarWinds", "Splunk", "Telemetry", "Infrastructure Monitoring", "Operational Dashboards", "Performance Monitoring", "Infrastructure Observability"] },
+  { title: "AI & Innovation", tags: ["AI Infrastructure", "AI Agents", "Intelligent Automation", "AI-Driven Operations", "Infrastructure Optimization", "Automation-Driven Service Management"] }
+] as { title: string; tags: string[] }[];
 export const projects = [] as { title: string; strategicScope: string; technologies: string[]; contributions: string[]; businessValue: string; icon: string }[];
