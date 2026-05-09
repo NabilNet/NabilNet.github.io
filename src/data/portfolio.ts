@@ -1,107 +1,42 @@
-export interface ExpertiseCategory {
-  title: string;
-  tags: string[];
-}
+export type ThemeName = "light" | "dark" | "network" | "black";
 
 export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
-  summary: string;
-  highlights: string[];
+  location?: string;
+  overview: string;
+  scope?: string[];
+  achievements: string[];
+  strategicImpact: string;
+  tags: string[];
 }
 
-export interface ProjectItem {
-  title: string;
-  strategicScope: string;
-  technologies: string[];
-  contributions: string[];
-  businessValue: string;
-  icon: string;
-}
-
-export interface CapabilityItem {
-  title: string;
-  description: string;
-  icon: string;
-  linkLabel?: string;
-}
-
-export interface ContributionItem {
-  title: string;
-  description: string;
-  bullets: string[];
-  icon: string;
-}
-
-export const identityPillars = ["Global Infrastructure", "Zero Trust", "Multi-Cloud", "NetDevOps", "AI-Driven Operations"];
-
-export const professionalSummary = "Experienced infrastructure engineering professional specialized in designing, modernizing, automating, and securing complex enterprise environments across networking, cloud, cybersecurity, automation, telecom, and global infrastructure domains.";
-
-export const contributionCards: ContributionItem[] = [
-  {
-    title: "Infrastructure Automation & Operational Excellence",
-    description: "Building automation-first operating models that improve reliability, reduce manual effort, and accelerate issue resolution.",
-    bullets: ["Designed automation workflows for recurring infrastructure operations.", "Supported automated remediation patterns with cybersecurity and infrastructure teams.", "Enabled NetDevOps delivery using version control, documentation, and repeatable pipelines.", "Improved operational consistency through Python and orchestration-first practices."],
-    icon: "Workflow"
-  },
-  {
-    title: "Zero Trust & Cybersecurity Transformation",
-    description: "Aligning network and cloud architecture with Zero Trust security objectives and identity-aware controls.",
-    bullets: ["Contributed to secure access architecture and segmentation strategy initiatives.", "Supported NAC and identity-based policy enforcement across enterprise environments.", "Integrated security controls across cloud, hybrid, and network domains."],
-    icon: "ShieldCheck"
-  },
-  {
-    title: "Microsoft Teams Telephony Migration",
-    description: "Modernizing collaboration infrastructure through cloud-based enterprise telephony transformation.",
-    bullets: ["Supported technical migration activities toward Microsoft Teams telephony.", "Coordinated with network, telecom, and infrastructure stakeholders for readiness.", "Contributed to connectivity and continuity planning during transition."],
-    icon: "PhoneCall"
-  },
-  {
-    title: "Global Infrastructure Delivery",
-    description: "Delivering resilient, secure, and scalable infrastructure services across multi-region enterprise environments.",
-    bullets: ["Supported global network and cloud connectivity initiatives.", "Contributed to multi-site architecture planning and high-availability patterns.", "Delivered enterprise-grade platforms focused on continuity and performance."],
-    icon: "Globe"
-  }
+export const aboutIntro = [
+  "With extensive experience across international organizations, government agencies, digital businesses, and global infrastructure environments, I specialize in designing and delivering secure, scalable, and resilient technology platforms.",
+  "My career has focused on modernizing enterprise infrastructure through cloud adoption, network transformation, cybersecurity integration, automation, datacenter modernization, and operational excellence.",
+  "I have led and contributed to strategic initiatives involving multi-cloud Disaster Recovery, Zero Trust infrastructure, secure remote access, Cisco ISE modernization, VPN platforms serving thousands of users, datacenter redesign, SD-WAN, cloud interconnectivity, and global network standardization.",
+  "My approach combines deep technical expertise with consulting-grade execution: understanding business requirements, designing robust architectures, coordinating stakeholders, managing complexity, and delivering infrastructure solutions that are secure, scalable, and future-ready."
 ];
 
-export const strategicCapabilities: CapabilityItem[] = [
-  { title: "Managed Infrastructure Operations", description: "Operating secure and high-performing enterprise environments with measurable SLAs, proactive remediation, and platform governance.", icon: "ServerCog", linkLabel: "Learn more" },
-  { title: "Network Infrastructure Architecture", description: "Designing scalable campus, datacenter, and global connectivity blueprints aligned with performance and resilience targets.", icon: "Network", linkLabel: "Learn more" },
-  { title: "Cybersecurity & Zero Trust", description: "Embedding identity-aware controls, segmentation, and secure remote access into modern infrastructure architectures.", icon: "Shield", linkLabel: "Learn more" },
-  { title: "Cloud & Multi-Cloud Connectivity", description: "Engineering cloud interconnect, hybrid routing, and secure cross-platform patterns for Azure, AWS, and GCP ecosystems.", icon: "CloudCog", linkLabel: "Learn more" },
-  { title: "Automation & NetDevOps", description: "Building codified infrastructure operations using Ansible, Python, and Git-based workflows to improve delivery velocity.", icon: "Bot", linkLabel: "Learn more" },
-  { title: "Disaster Recovery & Resilience", description: "Designing recovery architectures, failover workflows, and continuity strategies for mission-critical enterprise platforms.", icon: "LifeBuoy", linkLabel: "Learn more" },
-  { title: "Infrastructure Observability", description: "Implementing telemetry, monitoring, and analytics foundations that strengthen visibility and operational decision making.", icon: "ChartNoAxesCombined", linkLabel: "Learn more" },
-  { title: "Technical Leadership & Consulting", description: "Providing architecture leadership, cross-functional alignment, and execution guidance for transformation programs.", icon: "BriefcaseBusiness", linkLabel: "Learn more" }
-];
+export const identityPillars = ["Global Infrastructure", "Zero Trust", "Multi-Cloud", "NetDevOps", "Resilient Architecture"];
 
 export const experience: ExperienceItem[] = [
-  { company: "eDreams ODIGEO", role: "Network & Cloud Engineer", period: "2017–2019", summary: "Managed and supported cloud and network infrastructures across Europe with focus on scalability, resilience, and multi-cloud connectivity.", highlights: ["Designed cloud components across AWS, Azure, and GCP.", "Supported Kubernetes-related infrastructure connectivity needs.", "Improved visibility, reliability, and global service delivery."] },
-  { company: "OECD", role: "Senior Network & Multimedia Engineer", period: "2016–2017", summary: "Supported enterprise network and multimedia services in an international organization.", highlights: ["Contributed to service reliability and communication infrastructure continuity."] },
-  { company: "eDreams ODIGEO", role: "Data Center Engineer", period: "Earlier Role", summary: "Contributed to datacenter infrastructure operations across enterprise environments.", highlights: ["Supported network, compute, and connectivity reliability initiatives."] },
-  { company: "Sonangol Angola", role: "Network & Data Center Engineer", period: "Earlier Role", summary: "Supported business-critical connectivity and infrastructure availability.", highlights: ["Delivered operational support for datacenter and network platforms."] },
-  { company: "Gemalto", role: "Network Engineer", period: "Earlier Role", summary: "Worked on enterprise network operations and secure connectivity.", highlights: ["Improved network service reliability and infrastructure operations."] },
-  { company: "Subsea 7", role: "Global Network & Telecom Engineer", period: "Earlier Role", summary: "Supported global telecom and network infrastructure services.", highlights: ["Contributed to international connectivity and enterprise communications."] },
-  { company: "Freeson IT", role: "System & Network Engineer", period: "Earlier Role", summary: "Delivered systems and network engineering support for user and infrastructure services.", highlights: ["Supported connectivity, operations, and technical support capabilities."] }
+  { company: "OECD", role: "Senior Network & Cloud Engineer", period: "07/2022 – Present", location: "Paris, France", overview: "Senior Engineer responsible for cloud, networking, cybersecurity, automation, datacenter, and multimedia infrastructure in an international organization.", scope: ["Design and support of enterprise network, datacenter, cloud, security, wireless, and multimedia infrastructure.", "Technical ownership across Cisco, F5, Palo Alto, Fortinet, Cisco ISE, Azure, AWS, DNS, VPN, and automation platforms.", "Leadership of modernization initiatives focused on scalability, resilience, and automation."], achievements: ["Introduced DevOps and NetDevOps practices with structured operational workflows.", "Implemented automation using Ansible, NetBox, Docker, Git, Python, and IaC principles.", "Designed multi-cloud DR across Azure and AWS with automated failover workflows.", "Led critical migrations including Cisco ISE clusters and VPN gateways serving 6,000+ users."], strategicImpact: "Strengthened global infrastructure through secure architecture, automation, and resilient cloud integration.", tags: ["Cloud", "Security", "Network", "Automation", "Datacenter"] },
+  { company: "American Battle Monuments Commission", role: "Network & Cloud Engineer", period: "04/2019 – 06/2022", overview: "Supported global network, cloud, security, and communication platforms in a highly regulated U.S. government context.", achievements: ["Contributed to Azure Government Cloud migration and modernization.", "Designed automation workflows to improve reliability and reduce manual operations.", "Defined enterprise network and communication standards for global consistency.", "Supported secure access transformation with Zscaler and cybersecurity teams."], strategicImpact: "Contributed to modernization of global government infrastructure with secure access and automation.", tags: ["Government", "Cloud", "Security", "Automation"] },
+  { company: "eDreams ODIGEO", role: "Network & Cloud Engineer", period: "10/2017 – 03/2019", overview: "Enabled resilient, scalable infrastructure across hybrid and multi-cloud environments for a digital business.", achievements: ["Designed cloud network architectures across AWS, GCP, and Azure.", "Supported Kubernetes infrastructure and Google Cloud Interconnect.", "Improved resilience and scalability through telemetry-driven optimization."], strategicImpact: "Enabled scalable multi-cloud connectivity and global network modernization.", tags: ["Digital Business", "Cloud", "Network", "Datacenter"] },
+  { company: "OECD", role: "Senior Network & Multimedia Engineer", period: "03/2016 – 09/2017", overview: "Supported enterprise network, security, wireless, and multimedia modernization initiatives.", achievements: ["Led ISP migration from SFR to Zayo.", "Managed relocation and migration for ~1,500 users.", "Prepared Cisco ACI POC and secure interconnection architecture for affiliates."], strategicImpact: "Supported major transformation initiatives and next-generation datacenter preparation.", tags: ["Network", "Security", "Datacenter"] },
+  { company: "eDreams ODIGEO", role: "Network & Data Center Engineer", period: "09/2014 – 02/2016", overview: "Supported international datacenter, WAN, security, and wireless infrastructure.", achievements: ["Designed and deployed next-generation datacenter infrastructure in France and Spain.", "Integrated Cisco Nexus, ToR architectures, Cisco ASA, Check Point, and F5 platforms.", "Collaborated with telecom operators to deliver scalable connectivity."], strategicImpact: "Modernized datacenter and connectivity foundations for resilient operations.", tags: ["Datacenter", "Network", "Security", "Digital Business"] },
+  { company: "Sonangol", role: "Network & Data Center Engineer", period: "03/2014 – 08/2014", overview: "Supported campus network modernization, secure connectivity, and unified communications.", achievements: ["Designed campus network infrastructure across four buildings.", "Integrated Cisco Call Manager, video conferencing, and IP telephony.", "Designed secure components with ASA firewalls, IPSEC VPN, and RSA authentication."], strategicImpact: "Delivered secure and scalable campus connectivity for enterprise operations.", tags: ["Network", "Security", "Datacenter"] },
+  { company: "Gemalto", role: "Network & Data Center Engineer", period: "01/2014 – 03/2014", overview: "Supported WAN migration and ITIL-based change management in global environments.", achievements: ["Executed global network change operations.", "Presented infrastructure changes to CAB boards.", "Maintained service continuity during WAN migration activities."], strategicImpact: "Supported reliable transformation through governance and operational continuity.", tags: ["Network", "Governance"] },
+  { company: "Subsea 7", role: "Network & Telecommunication Engineer", period: "04/2010 – 12/2013", overview: "Designed and supported enterprise connectivity across offices, datacenters, and vessels.", achievements: ["Deployed LAN infrastructure across 30 offices, 6 datacenters, and 10 vessels.", "Managed Cisco environments with 1,200+ network devices.", "Implemented MPLS, VSAT, DIA internet, UC, VPN, and firewall infrastructures."], strategicImpact: "Delivered resilient global connectivity across complex distributed and offshore environments.", tags: ["Network", "Security", "Global Connectivity"] },
+  { company: "Freeson IT", role: "Network & System Engineer", period: "09/2008 – 08/2009", overview: "Provided infrastructure deployment, technical support, and systems administration.", achievements: ["Deployed and configured servers, switches, and user workstations.", "Maintained and optimized network and system infrastructure.", "Supported day-to-day IT operations and service reliability."], strategicImpact: "Built foundational enterprise engineering capability for long-term infrastructure leadership.", tags: ["Network", "Systems"] }
 ];
 
-export const projects: ProjectItem[] = [
-  { title: "Multi-Cloud Disaster Recovery Platform", strategicScope: "Cross-cloud recovery architecture across Azure and AWS for business continuity.", technologies: ["Azure", "AWS", "Ansible", "Python"], contributions: ["Designed multi-cloud DR architecture and failover model.", "Supported automated service restoration workflows.", "Standardized recovery procedures and resilience controls."], businessValue: "Strengthened continuity readiness and improved response to disruption scenarios.", icon: "ShieldCheck" },
-  { title: "Enterprise Network Automation Platform", strategicScope: "NetDevOps platform to modernize operational delivery and reduce manual effort.", technologies: ["Ansible Automation Platform", "NetBox", "Docker", "Git", "Python", "REST APIs"], contributions: ["Built automation workflows for operations and configuration management.", "Integrated source-of-truth and Git-based change principles.", "Enabled repeatable and auditable deployment patterns."], businessValue: "Increased operational efficiency while lowering configuration drift and toil.", icon: "Workflow" },
-  { title: "Secure Zero Trust Infrastructure", strategicScope: "Enterprise Zero Trust implementation focused on access, segmentation, and secure connectivity.", technologies: ["Cisco ISE", "Palo Alto", "Fortinet", "Zscaler", "Cloudflare", "NAC", "VPN"], contributions: ["Supported secure access architecture and NAC enforcement.", "Contributed to segmentation and policy control implementation.", "Aligned network and cloud controls with cybersecurity objectives."], businessValue: "Improved security posture by reducing implicit trust and hardening critical assets.", icon: "LockKeyhole" },
-  { title: "Datacenter Modernization", strategicScope: "Modern datacenter architecture focused on scale, resiliency, and high availability.", technologies: ["Spine-Leaf", "EVPN-VXLAN", "Cisco Nexus", "Multi-site Resiliency"], contributions: ["Designed spine-leaf datacenter patterns.", "Supported EVPN-VXLAN modernization initiatives.", "Improved multi-site resiliency and operational consistency."], businessValue: "Enabled a scalable, future-ready datacenter foundation for enterprise workloads.", icon: "Building2" }
-];
-
-export const expertiseCategories: ExpertiseCategory[] = [
-  { title: "Networking", tags: ["Cisco", "Juniper", "Arista", "Cisco Nexus", "SD-WAN", "EVPN-VXLAN", "BGP", "OSPF", "MPLS"] },
-  { title: "Security", tags: ["Palo Alto", "Fortinet", "Check Point", "Cisco ISE", "F5", "Zscaler", "Zero Trust", "NAC"] },
-  { title: "Cloud", tags: ["Azure", "AWS", "Google Cloud", "Hybrid Cloud", "Multi-Cloud", "Kubernetes", "Cloud Connectivity"] },
-  { title: "Automation & NetDevOps", tags: ["Ansible", "Python", "NetBox", "Docker", "Git", "REST APIs", "CI/CD"] },
-  { title: "Monitoring & Analytics", tags: ["SolarWinds", "Splunk", "Telemetry", "Operational Dashboards", "Infrastructure Observability"] },
-  { title: "AI & Innovation", tags: ["AI Infrastructure", "AI Agents", "Intelligent Automation", "AI-Driven Operations"] }
-];
-
-export const training = ["Azure Architecture, Infrastructure & Security", "NetDevOps with Ansible Automation Platform", "Network Automation with Python", "Cisco ISE — SISE", "Google Cloud Platform Architecture", "DevOps with Docker", "F5 BIG-IP LTM", "Cisco ASA Firewall Solutions", "Cisco Unified Communications"];
+export const training = ["Azure Architecture, Infrastructure & Security", "NetDevOps with Ansible Automation Platform", "Network Automation with Python", "Cisco ISE — SISE", "Google Cloud Platform Architecture"];
 
 export const education = ["Claude Bernard University Lyon 1 — Master’s Degree, Computer Systems & Networks", "University of Skikda — Engineering Degree, Computer Science"];
+
+export const strategicCapabilities = [] as { title: string; description: string; icon: string; linkLabel?: string }[];
+export const expertiseCategories = [] as { title: string; tags: string[] }[];
+export const projects = [] as { title: string; strategicScope: string; technologies: string[]; contributions: string[]; businessValue: string; icon: string }[];
