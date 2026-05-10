@@ -5,7 +5,8 @@ const filters = ["All", "Cloud", "Security", "Network", "Automation", "Datacente
 
 export function ExperienceTimeline() {
   const [active, setActive] = useState("All");
-  const filtered = useMemo(() => active === "All" ? experience : experience.filter((item) => item.tags.includes(active)), [active]);
+  const safeExperience = Array.isArray(experience) ? experience : [];
+  const filtered = useMemo(() => active === "All" ? safeExperience : safeExperience.filter((item) => item.tags.includes(active)), [active, safeExperience]);
 
   return <section id="experience" className="section">
     <h2>Professional Experience</h2>
