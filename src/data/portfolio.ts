@@ -31,7 +31,7 @@ export const experience: ExperienceItem[] = [
   { company: "Freeson IT", role: "Network & System Engineer", period: "09/2008 – 08/2009", overview: "Provided infrastructure deployment, technical support, and systems administration.", achievements: ["Deployed and configured servers, switches, and user workstations.", "Maintained and optimized network and system infrastructure.", "Supported day-to-day IT operations and service reliability."], strategicImpact: "Built foundational enterprise engineering capability for long-term infrastructure leadership.", tags: ["Network", "Systems"] }
 ];
 
-export const training = ["Azure Architecture, Infrastructure & Security", "NetDevOps with Ansible Automation Platform", "Network Automation with Python", "Cisco ISE — SISE", "Google Cloud Platform Architecture"];
+export const training = ["Architecture, Infrastructure & Security in Azure", "NetDevOps with Ansible Automation Platform, Docker, and NetBox", "Network Automation with Python Bootcamp", "Implementing and Configuring Cisco Identity Services Engine (SISE)", "Architecting with Google Cloud Platform", "Certified Meraki Network Operator (CMNO)", "DevOps with Docker", "SecNumAcadémie ANSSI", "Networking in the Google Cloud", "Arista Configuration Essentials (ACE)", "F5 BIG-IP Local Traffic Manager (LTM)", "Deploying Cisco ASA Firewall Solutions (FIREWALL)", "Implementation Cisco Unified Communication Manager 01 (CIPT1) v8.0"];
 
 export const education = ["Claude Bernard University Lyon 1 — Master’s Degree, Computer Systems & Networks", "University of Skikda — Engineering Degree, Computer Science"];
 
