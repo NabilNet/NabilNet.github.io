@@ -1,20 +1,34 @@
-export const THEMES = ["light", "dark", "network", "black"] as const;
-export type ThemeName = (typeof THEMES)[number];
+export const THEME_MODES = ["system", "light", "dark"] as const;
+export type ThemeMode = (typeof THEME_MODES)[number];
+export type ResolvedTheme = "light" | "dark";
 
-export function isValidTheme(value: unknown): value is ThemeName {
-  return typeof value === "string" && THEMES.includes(value as ThemeName);
+export function isValidThemeMode(value: unknown): value is ThemeMode {
+  return typeof value === "string" && THEME_MODES.includes(value as ThemeMode);
 }
 
-export function getInitialTheme(): ThemeName {
+export function getSystemTheme(): ResolvedTheme {
   if (typeof window === "undefined") return "light";
 
   try {
-    const savedTheme = window.localStorage.getItem("theme");
-    if (isValidTheme(savedTheme)) return savedTheme;
-
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
-    return prefersDark ? "dark" : "light";
+    return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
   } catch {
     return "light";
   }
+}
+
+export function getInitialThemeMode(): ThemeMode {
+  if (typeof window === "undefined") return "system";
+
+  try {
+    const savedTheme = window.localStorage.getItem("theme-mode");
+    if (isValidThemeMode(savedTheme)) return savedTheme;
+  } catch {
+    // no-op
+  }
+
+  return "system";
+}
+
+export function resolveTheme(mode: ThemeMode): ResolvedTheme {
+  return mode === "system" ? getSystemTheme() : mode;
 }

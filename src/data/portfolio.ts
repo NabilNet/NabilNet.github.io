@@ -2,76 +2,68 @@ export interface ExperienceItem {
   company: string;
   role: string;
   period: string;
-  location?: string;
   overview: string;
   achievements: string[];
-  strategicImpact: string;
+  technologies: string[];
   tags: string[];
 }
 
 export interface SkillDomain {
   title: string;
-  icon: string;
-  bullets: string[];
+  skills: string[];
 }
 
 export interface ProjectItem {
   title: string;
-  problem: string;
-  technologies: string[];
-  outcome: string;
-  href?: string;
-  type: "github" | "demo";
+  description: string;
+  skills: string[];
 }
 
-export const heroPillars = ["Network Architecture", "Cloud Infrastructure", "Automation", "Security by Design", "Operational Reliability"];
+export const heroPillars = ["Network Architecture", "Cloud Infrastructure", "Network Automation", "Security by Design", "Operational Reliability", "NetDevOps", "Red Team", "Purple Team"];
 
-export const aboutSummary = "I design and operate secure, scalable infrastructure that connects networking, cloud platforms, and automation into reliable services. My focus is translating business requirements into resilient architectures, reducing operational risk, and improving delivery speed through practical engineering standards.";
+export const aboutSummary = "I am a Senior Network, Cloud, Security and Automation Engineer with more than 15 years of experience designing, deploying and modernizing enterprise infrastructure across international environments.";
 
-export const engineeringMindset = [
-  "Architecture decisions grounded in reliability, maintainability, and security.",
-  "Automation-first approach for repeatability, faster recovery, and cleaner operations.",
-  "Cross-domain collaboration across networking, cloud, platform, and security teams.",
-  "Continuous learning mindset with hands-on labs and iterative technical improvement."
+export const aboutHighlights = ["Enterprise networking, data center architecture, cloud connectivity, network security, infrastructure automation and operational resilience.", "Hands-on delivery with Cisco ACI, SD-WAN, SD-Access, Cisco ISE, F5 BIG-IP, Fortinet, Palo Alto, Check Point, Zscaler, Azure, AWS, GCP, Ansible Automation Platform, NetBox, Docker and Python.", "My work combines hands-on engineering, architecture thinking, stakeholder coordination, and the ability to translate complex technical challenges into reliable solutions.", "Current focus areas: NetDevOps, infrastructure automation, hybrid cloud architecture, cloud security, zero-trust access, data center modernization and resilient network design."];
+
+export const positioningStatement = "I position myself as a senior infrastructure transformation engineer who connects network, cloud, security and automation to build resilient digital foundations for global organizations.";
+
+export const whatIDo = [
+  { title: "Network Architecture", description: "I design and modernize enterprise networks, data center fabrics, WAN/LAN environments and cloud-connected infrastructures with a strong focus on performance, segmentation, availability and scalability." },
+  { title: "Cloud & Hybrid Infrastructure", description: "I support cloud and hybrid infrastructure initiatives across Azure, AWS and GCP, including cloud connectivity, resilience, migration support and secure network integration." },
+  { title: "Security by Design", description: "I integrate security principles into infrastructure design through network access control, firewall architecture, VPN security, secure remote access, segmentation and zero-trust-oriented approaches." },
+  { title: "Automation & NetDevOps", description: "I use automation technologies such as Ansible, Python, NetBox, Docker and Git to improve operational efficiency, reduce manual tasks and support repeatable infrastructure workflows." },
+  { title: "Operational Reliability", description: "I help organizations improve infrastructure reliability through monitoring, change management, disaster recovery planning, service continuity and structured operational practices." }
 ];
 
 export const skillDomains: SkillDomain[] = [
-  { title: "Networking", icon: "Network", bullets: ["Designing campus, datacenter, WAN, and hybrid interconnect topologies.", "Strong routing and segmentation foundations (BGP, OSPF, ACL policy models).", "Multi-vendor delivery across Cisco, Juniper, and Arista environments."] },
-  { title: "Cloud", icon: "Cloud", bullets: ["Hybrid and multi-cloud connectivity across Azure, AWS, and GCP.", "Cloud network security controls and resilient access patterns.", "Disaster recovery and availability-focused architecture planning."] },
-  { title: "Automation", icon: "Workflow", bullets: ["Automating provisioning and operations with Ansible and Python.", "Source-controlled workflows with Git-backed change discipline.", "Reducing manual drift through templates and repeatable runbooks."] },
-  { title: "DevOps / CI-CD", icon: "GitBranch", bullets: ["Infrastructure lifecycle alignment with CI/CD practices.", "Composable tooling with Docker and API-driven integrations.", "Faster, safer delivery through validation and staged rollout habits."] },
-  { title: "Security Fundamentals", icon: "ShieldCheck", bullets: ["Zero Trust principles in network and identity architecture.", "Secure remote access and segmentation-aware policy design.", "Practical hardening across firewall, NAC, and edge services."] },
-  { title: "Monitoring & Troubleshooting", icon: "Activity", bullets: ["Telemetry-driven diagnostics for network and service stability.", "Structured incident response and root-cause-oriented analysis.", "Operational dashboards that support proactive decision-making."] }
+  { title: "Network & Data Center", skills: ["Enterprise Networking", "Network Architecture", "Routing & Switching", "Cisco ACI", "Cisco Nexus", "Cisco Catalyst", "VxLAN", "EVPN", "BGP", "SD-WAN", "SD-Access", "Data Center Interconnect", "LAN", "WAN", "MAN", "Wi-Fi"] },
+  { title: "Security", skills: ["Cisco ISE", "802.1X", "Network Access Control", "F5 BIG-IP", "Palo Alto", "Fortinet", "Check Point", "Zscaler", "Cisco ASA", "VPN", "Remote Access", "Firewall Architecture", "Zero Trust Network Access"] },
+  { title: "Cloud & Automation", skills: ["Azure", "AWS", "GCP", "Azure Gov Cloud", "Ansible Automation Platform", "Python", "NetBox", "Docker", "Git", "Kubernetes", "Helm", "Argo CD", "NetDevOps", "Cloud Networking"] },
+  { title: "Operations & Leadership", skills: ["Infrastructure Transformation", "Disaster Recovery", "Business Continuity", "ITIL", "Change Management", "CAB", "Vendor Management", "Stakeholder Coordination", "Technical Leadership", "Operational Reliability"] }
 ];
 
 export const projects: ProjectItem[] = [
-  { title: "Multi-Cloud DR Connectivity Blueprint", problem: "Recovery workflows were fragmented across cloud platforms and on-prem infrastructure.", technologies: ["Azure", "AWS", "VPN", "Routing Policy", "Automation"], outcome: "Delivered a resilient connectivity model with clearer failover procedures and reduced recovery uncertainty.", type: "github" },
-  { title: "Enterprise VPN Service Modernization", problem: "Legacy remote access gateways created scaling and operational bottlenecks.", technologies: ["VPN", "Cisco", "Firewall", "Identity Controls"], outcome: "Improved remote access reliability for large user populations with stronger security guardrails.", type: "github" },
-  { title: "NetDevOps Foundations Program", problem: "Network operations depended on manual changes and inconsistent execution.", technologies: ["Ansible", "NetBox", "Python", "Git"], outcome: "Introduced repeatable automation workflows that reduced human error and improved change confidence.", type: "github" }
+  { title: "Data Center Interconnect Modernization", description: "Modernized legacy data center interconnection by designing and deploying a scalable Layer 2/Layer 3 architecture using VxLAN, EVPN and BGP. The solution improved segmentation, redundancy, service mobility and operational visibility.", skills: ["VxLAN", "EVPN", "BGP", "Cisco ACI", "Cisco Nexus", "Data Center Interconnect", "Migration Planning"] },
+  { title: "Cross-Cloud Disaster Recovery Architecture", description: "Proposed a Disaster Recovery architecture across Azure and AWS to strengthen resilience and reduce downtime for critical services. Designed automation workflows using Ansible and Python to support failover and service restoration.", skills: ["Azure", "AWS", "Disaster Recovery", "Ansible", "Python", "Cloud Networking", "Resilience Engineering"] },
+  { title: "Network Access Control with Cisco ISE", description: "Designed and supervised secure enterprise access using Cisco ISE and 802.1X authentication. Supported Cisco ISE upgrades and migrations to strengthen access governance across multiple environments.", skills: ["Cisco ISE", "802.1X", "NAC", "Wi-Fi Security", "Authentication", "Access Control"] },
+  { title: "Next-Generation Network Transformation", description: "Designed and supported modern network solutions combining SD-WAN, SD-Access, NGFW, Zscaler, cloud infrastructure and automation to improve scalability, security and operational efficiency.", skills: ["SD-WAN", "SD-Access", "NGFW", "Zscaler", "AWS", "Azure", "Network Architecture", "Cloud Security"] },
+  { title: "Global Network Infrastructure Deployment", description: "Delivered secure and reliable network infrastructure across offices, data centers and vessels, including LAN, WAN, MPLS, VSAT, unified communications and remote access solutions.", skills: ["Global Networking", "Cisco Infrastructure", "MPLS", "VSAT", "DIA", "VPN", "Unified Communications"] }
 ];
 
-export const certifications = [
-  "Architecture, Infrastructure & Security in Azure",
-  "NetDevOps with Ansible Automation Platform, Docker, and NetBox",
-  "Network Automation with Python",
-  "Implementing and Configuring Cisco ISE",
-  "Architecting with Google Cloud Platform",
-  "SecNumAcadémie ANSSI"
-];
+export const certifications = ["Architecture, Infrastructure & Security in Azure — 2025", "NetDevOps with Ansible Automation Platform, Docker and NetBox — 2025", "Network Automation with Python Bootcamp — 2024", "Implementing and Configuring Cisco Identity Services Engine — 2023", "Architecting with Google Cloud Platform — 2018", "Certified Meraki Network Operator — 2018", "DevOps with Docker — 2018", "SecNumAcadémie — ANSSI — 2018", "Networking in Google Cloud — 2018", "Arista Configuration Essentials — 2018", "F5 BIG-IP Local Traffic Manager — 2015", "Deploying Cisco ASA Firewall Solutions — 2013", "Implementing Cisco Unified Communications Manager — 2012"];
 
-export const certificationTodos = [
-  "TODO (Editable): Add certification IDs and issue dates.",
-  "TODO (Editable): Add links to official credential verification pages."
-];
-
-export const education = [
-  "Claude Bernard University Lyon 1 — Master's Degree, Computer Systems & Networks",
-  "University of Skikda — Engineering Degree, Computer Science"
-];
+export const education = [{ degree: "Master’s Degree in Computer Systems and Networks", institution: "Claude Bernard University Lyon 1, France", period: "2009 – 2010" }, { degree: "Engineering Degree in Computer Science", institution: "University of Skikda, Algeria", period: "2003 – 2008" }];
 
 export const experience: ExperienceItem[] = [
-  { company: "OECD", role: "Senior Network & Cloud Engineer", period: "2022 – Present", location: "Paris, France", overview: "Leading secure, scalable infrastructure initiatives across networking, cloud, and automation.", achievements: ["Led enterprise modernization initiatives spanning cloud connectivity and security architecture.", "Implemented practical NetDevOps workflows to improve consistency and delivery speed.", "Supported critical migration programs for identity and remote access platforms."], strategicImpact: "Improved resilience and operational maturity across core infrastructure services.", tags: ["Cloud", "Network", "Security", "Automation"] },
-  { company: "American Battle Monuments Commission", role: "Network & Cloud Engineer", period: "2019 – 2022", overview: "Contributed to global infrastructure modernization in a regulated environment.", achievements: ["Supported cloud migration and standardized network service delivery.", "Built automation workflows to reduce repetitive operational work.", "Collaborated with security teams on secure access transformation."], strategicImpact: "Enabled more reliable and secure infrastructure operations at global scale.", tags: ["Government", "Cloud", "Security", "Automation"] }
+{ role:"Senior Network & Cloud Engineer", company:"OECD-OCDE — Digital, Knowledge and Information Services Team", period:"July 2022 – Present", overview:"Senior engineer supporting cloud, networking, security and infrastructure services for an international organization operating across multiple entities and complex enterprise environments.", achievements:["Design, implement and support secure network, cloud and security solutions across enterprise environments.","Lead initiatives involving Cisco ACI, Cisco Nexus, Cisco Catalyst Center, Cisco ISE, F5 BIG-IP, Palo Alto, Fortinet, Azure, AWS, Ansible, Docker and NetDevOps practices.","Introduced automation and DevOps-oriented technologies including Ansible Automation Platform, NetBox, Docker and Git to improve operational efficiency.","Led modernization of data center interconnection using VxLAN and EVPN and designed scalable BGP EVPN fabric.","Proposed DR architecture across Azure and AWS and automation workflows for failover and restoration."], technologies:["Cisco ACI","Cisco Nexus","Cisco Catalyst 9000","Cisco ISE","Cisco Catalyst Center","F5 BIG-IP","Palo Alto","Fortinet","Ansible","NetBox","Docker","Git","Python","Azure","AWS","DNS","Wi-Fi","802.1X","VxLAN","EVPN","BGP","NetDevOps","SolarWinds"], tags:["Cloud","Security","Network","Automation"]},
+{ role:"Network & Cloud Engineer", company:"American Battle Monuments Commission — Global IT Operations", period:"April 2019 – June 2022", overview:"Network and Cloud Engineer supporting global network, cloud and security modernization initiatives for an independent U.S. government agency.", achievements:["Designed and supported next-generation network solutions across SD-WAN, SD-Access, NGFW, Zscaler, AWS, Azure and DevOps.","Contributed to migration to Azure Gov Cloud and Microsoft Teams telephony modernization.","Defined network standards and worked with cybersecurity teams on proactive threat management.","Designed automation solutions to address recurring production issues and improve reliability."], technologies:["SD-WAN","SD-Access","NGFW","Zscaler ZPA/ZIA","AWS","Azure","Azure Gov Cloud","DevOps","Cloud Networking","Network Security","Automation"], tags:["Cloud","Security","Network","Automation"]},
+{ role:"Network & Cloud Engineer", company:"eDreams ODIGEO — Global IT Operations", period:"October 2017 – March 2019", overview:"Network and Cloud Engineer supporting a major online travel platform across cloud, network and operational environments.", achievements:["Designed and supported SDN, SD-WAN and multi-cloud network solutions.","Supported WAN, LAN, wireless, internet connectivity, network security and monitoring.","Contributed to GCP optimization including Kubernetes and Cloud Interconnect.","Improved performance, scalability and resilience with cross-functional teams."], technologies:["GCP","AWS","Azure","Kubernetes","Cloud Interconnect","SDN","SD-WAN","WAN","LAN","Wi-Fi","Network Security","Monitoring","DevOps"], tags:["Cloud","Network"]},
+{ role:"Senior Network & Multimedia Engineer", company:"OECD-OCDE — Digital, Knowledge and Information Services Team", period:"March 2016 – September 2017", overview:"Network, Security and Multimedia Engineer supporting network modernization, connectivity, security and data center initiatives.", achievements:["Designed and supported network, security and multimedia infrastructure.","Worked on Cisco ACI, Cisco NGFW, F5 BIG-IP LTM, Cisco ISE, WLC and UCOPIA.","Led ISP transition from SFR to Zayo and supported relocation of 1,500 users.","Prepared Cisco ACI Proof of Concept for data center modernization."], technologies:["Cisco ACI","Cisco NGFW","F5 BIG-IP LTM","Cisco ISE","Cisco WLC","UCOPIA","Firewall Architecture","ISP Migration","Data Center Modernization"], tags:["Network","Security"]},
+{ role:"Network & Data Center Engineer", company:"eDreams ODIGEO — Global IT Operations France Team", period:"September 2014 – February 2016", overview:"Network and Data Center Engineer supporting data center, MAN, WAN, security and wireless infrastructure across international sites.", achievements:["Designed and implemented next-generation data center infrastructure across France and Spain.","Integrated Cisco Nexus, ToR switching, Cisco ASA, Check Point and F5 BIG-IP LTM/GTM.","Coordinated with international teams, telecom operators and vendors for operations."], technologies:["Cisco Nexus","ToR Switching","Cisco ASA","Check Point","F5 BIG-IP LTM/GTM","Data Center","MAN","WAN","Network Security"], tags:["Datacenter","Network"]},
+{ role:"Network & Data Center Engineer", company:"Sonangol Angola — Global IT Team", period:"March 2014 – August 2014", overview:"Network and Data Center Engineer supporting campus network, unified communications and secure connectivity infrastructure.", achievements:["Designed and implemented next-generation infrastructure across four buildings.","Delivered LAN, fiber, unified communications and security infrastructure.","Deployed Cisco ASA firewalls, IPSEC VPN, remote access and RSA authentication."], technologies:["Cisco Catalyst","LAN","Fiber","Cisco ASA","IPSEC VPN","RSA Authentication","CUCM","CME","Video Conferencing"], tags:["Network","Security"]},
+{ role:"Network & Data Center Engineer", company:"Gemalto — Service IT Connectivity Team", period:"January 2014 – March 2014", overview:"Network Engineer supporting WAN migration and global connectivity operations for a digital security organization.", achievements:["Supported WAN migration and global network operations.","Managed ITIL processes including planning, change requests and coordination.","Presented technical changes to CAB and supported service continuity."], technologies:["WAN","ITIL","Change Management","CAB","Global Operations","Network Support"], tags:["Network","Operations"]},
+{ role:"Network & Telecommunication Engineer", company:"Subsea 7 — Global Network Team", period:"April 2010 – December 2013", overview:"Network and Telecommunications Engineer supporting global connectivity, security, unified communications and wireless infrastructure.", achievements:["Led LAN design and implementation across 30 offices, 6 data centers and 10 vessels.","Integrated CUCM, CME, video conferencing and IP telephony.","Deployed Cisco ASA, IPSEC VPN, remote VPN and RSA authentication.","Supported MPLS, VSAT and DIA connectivity with telecom operators."], technologies:["Cisco Routing & Switching","Cisco ASA","IPSEC VPN","RSA","MPLS","VSAT","DIA","CUCM","CME","Wireless Controllers","AAA Radius"], tags:["Network","Security"]},
+{ role:"Network & System Engineer", company:"Freeson IT", period:"September 2008 – August 2009", overview:"Network and System Engineer supporting IT operations for a multimedia company.", achievements:["Deployed and configured workstations, servers and Cisco switches.","Maintained network and system performance.","Provided technical support, troubleshooting and system upgrades."], technologies:["Cisco Switches","Workstations","Servers","System Administration","Network Administration","Troubleshooting"], tags:["Network","Operations"]}
 ];
 
-export const strategicCapabilities = [] as { title: string; description: string; icon: string; linkLabel?: string }[];
+export const strategicCapabilities: { title: string; description: string; icon: string; linkLabel?: string }[] = [];
