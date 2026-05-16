@@ -69,8 +69,8 @@ export function NetworkBackground({ active }: { active: boolean }) {
         }
 
         rafId = window.requestAnimationFrame(draw);
-      } catch (error) {
-        console.error("Network background draw failed", error);
+      } catch {
+        // Silent fail-safe to preserve rendering stability in edge environments.
       }
     };
 
