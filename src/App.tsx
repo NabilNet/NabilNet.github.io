@@ -10,30 +10,33 @@ import { NetworkBackground } from "./components/NetworkBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Expertise } from "./components/Expertise";
 import { Projects } from "./components/Projects";
-import { getInitialTheme, isValidTheme, ThemeName } from "./utils/theme";
+import { getInitialThemeMode, getSystemTheme, isValidThemeMode, resolveTheme, ThemeMode } from "./utils/theme";
 
 function App() {
-  const [theme, setTheme] = useState<ThemeName>(() => getInitialTheme());
+  const [themeMode, setThemeMode] = useState<ThemeMode>(() => getInitialThemeMode());
+  const [systemTheme, setSystemTheme] = useState(getSystemTheme());
+  const resolvedTheme = resolveTheme(themeMode);
 
   useEffect(() => {
-    const safeTheme = isValidTheme(theme) ? theme : "light";
-    document.documentElement.setAttribute("data-theme", safeTheme);
-    try {
-      window.localStorage.setItem("theme", safeTheme);
-    } catch {
-      // no-op: storage may be unavailable in private mode / blocked contexts
+    const media = window.matchMedia?.("(prefers-color-scheme: dark)");
+    const listener = () => setSystemTheme(getSystemTheme());
+    media?.addEventListener?.("change", listener);
+    return () => media?.removeEventListener?.("change", listener);
+  }, []);
+
+  useEffect(() => {
+    const safeThemeMode = isValidThemeMode(themeMode) ? themeMode : "system";
+    document.documentElement.setAttribute("data-theme", resolvedTheme);
+    try { window.localStorage.setItem("theme-mode", safeThemeMode); } catch {
+      // no-op when storage is unavailable
     }
-  }, [theme]);
+  }, [themeMode, resolvedTheme]);
 
   return <div className="app-shell min-h-screen bg-token-bg text-token-text transition-colors duration-500">
-    <ErrorBoundary fallback={null}><NetworkBackground active={theme === "network"} /></ErrorBoundary>
+    <ErrorBoundary fallback={null}><NetworkBackground active={resolvedTheme === "dark" && systemTheme === "dark"} /></ErrorBoundary>
     <div className="app-content">
-      <Navbar theme={theme} onSelect={setTheme} />
-      <main>
-        <Hero /><About /><Expertise /><ErrorBoundary fallback={<section id="projects" className="section"><h2>Project Highlights</h2><p className="muted mt-4">Something went wrong while loading this section.</p></section>}><Projects /></ErrorBoundary>
-        <ErrorBoundary fallback={<section id="experience" className="section"><h2>Professional Journey</h2><p className="muted mt-4">Experience content is temporarily unavailable.</p></section>}><ExperienceTimeline /></ErrorBoundary>
-        <ErrorBoundary fallback={<section id="certifications" className="section"><h2>Certifications & Learning</h2><p className="muted mt-4">Something went wrong while loading this section.</p></section>}><Training /></ErrorBoundary><Contact />
-      </main>
+      <Navbar themeMode={themeMode} onSelect={setThemeMode} />
+      <main><Hero /><About /><Expertise /><Projects /><ExperienceTimeline /><Training /><Contact /></main>
       <Footer />
     </div>
   </div>;
