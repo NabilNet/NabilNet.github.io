@@ -1,233 +1,296 @@
-Act as a world-class OpenAI Prompt Engineer, senior Frontend Architect, premium UI/UX Designer, Motion Designer, and GitHub Pages deployment expert.
+You are OpenAI Codex acting as a senior React + Vite + GitHub Pages debugging engineer.
 
-Your mission is to upgrade my existing portfolio website:
+My portfolio website is currently showing a blank page after recent UI/UX upgrades.
+
+Your mission is to fix the code strictly and make the portfolio work 100% in:
+1. local development
+2. production build
+3. local preview
+4. GitHub Pages production
 
 Live website:
 https://nabilnet.github.io/
 
-Context:
-This is a personal portfolio for a Network, Cloud & Automation Engineer. The website must look modern, professional, credible, fast, responsive, and technically clean. The design should communicate expertise in networking, cloud, automation, DevOps, cybersecurity awareness, and infrastructure engineering.
+Project stack:
+React + Vite + GitHub Pages
 
-Use the design intelligence and principles inspired by:
-https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
-
-Target design direction:
-- Premium technical portfolio
-- Motion-driven portfolio experience
-- Clean dark/light professional aesthetic
-- Bento grid sections
-- Subtle glassmorphism cards
-- Smooth micro-interactions
-- Kinetic typography in the hero section
-- Elegant scroll animations
-- Professional project showcase
-- Strong recruiter/client conversion flow
-- No childish design
-- No excessive animations
-- No heavy 3D unless optimized
-- No random AI-looking purple/pink gradients
-- No distracting cursor effects unless they remain subtle and accessible
-
-Main objective:
-Transform the portfolio into a high-end professional website that feels like a polished personal brand for a Network, Cloud & Automation Engineer.
-
-Design system requirements:
-
-1. Visual identity
-Create a mature, premium, technical design system with:
-- Background: deep navy, graphite, or clean off-white depending on theme
-- Primary accent: electric blue, cyan, or cloud-blue
-- Secondary accent: soft green or violet used very minimally
-- Text: high contrast, accessible, readable
-- Cards: subtle borders, soft shadows, glass effect only where appropriate
-- Layout: spacious, structured, modern, not crowded
-
-2. Typography
-Use a professional font pairing:
-- Headings: modern geometric font, strong but readable
-- Body: clean sans-serif
-- Code/technical labels: mono font for small technical tags only
-
-Typography must feel senior, credible, and polished.
-
-3. Sections to include or improve
-Upgrade the site structure with these sections:
-
-A. Hero Section
-- Strong headline positioning Nabil as a Network, Cloud & Automation Engineer
-- Short professional value proposition
-- Two CTAs:
-  1. View Projects
-  2. Contact Me / Download Resume
-- Add subtle animated background: network grid, cloud nodes, or soft gradient mesh
-- Add motion carefully: fade-in, slide-up, staggered text, no aggressive effects
-
-B. About Section
-- Short, confident professional summary
-- Highlight engineering mindset:
-  - Network architecture
-  - Cloud infrastructure
-  - Automation
-  - Troubleshooting
-  - Reliability
-  - Continuous learning
-
-C. Skills / Expertise Section
-Use bento cards grouped by domain:
-- Networking
-- Cloud
-- Automation
-- DevOps / CI/CD
-- Security fundamentals
-- Monitoring / Troubleshooting
-
-Each card should include:
-- Icon
-- Short title
-- 2–3 concise bullet points
-- Subtle hover motion
-
-D. Projects Section
-Create a premium project showcase:
-- Each project card must show:
-  - Project title
-  - Problem solved
-  - Technologies used
-  - Outcome / value
-  - GitHub or demo link if available
-- Use filters or tags if the current structure supports it
-- Add smooth card reveal on scroll
-
-E. Experience / Journey Section
-Create a timeline or step-based professional journey:
-- Education
-- Certifications
-- Professional experience
-- Labs / technical practice
-- Key achievements
-
-F. Certifications Section
-Show certifications or learning paths in a clean grid:
-- Use badges/cards
-- Avoid fake claims
-- If data is missing, create placeholders clearly marked as editable
-
-G. Contact Section
-Make the contact section conversion-oriented:
-- Clear message: open to opportunities, collaboration, technical projects
-- Add GitHub, LinkedIn, Email
-- Add a simple contact CTA
-- Ensure links are valid and open correctly
-
-H. Footer
-Professional footer with:
-- Name
-- Role
-- Social links
-- Copyright
-- Built with clean frontend technologies
-
-4. Motion UI requirements
-Use motion in a professional way:
-- Page entrance animation
-- Section reveal on scroll
-- Project cards staggered animation
-- Hover lift on cards
-- Button hover micro-interactions
-- Smooth navbar transitions
-- Subtle animated gradient or network background
-- Respect prefers-reduced-motion
-- Avoid animations that block content
-- Avoid performance-heavy effects
-
-5. UX requirements
-The website must be:
-- Fully responsive: 375px, 768px, 1024px, 1440px
-- Accessible: keyboard navigation, visible focus states, semantic HTML
-- Fast-loading
-- SEO-friendly
-- Recruiter-friendly
-- Easy to scan in less than 30 seconds
-- Clear navigation
-- Clear CTAs
-- No broken links
-- No placeholder text in final version unless explicitly marked as TODO
-
-6. Technical requirements
-Before editing, inspect the existing project structure:
-- Identify framework: React, Vite, Next.js, plain HTML/CSS/JS, or other
-- Identify package manager
-- Identify deployment method for GitHub Pages
-- Preserve the current deployment compatibility
-- Do not break routing
-- Do not introduce unnecessary dependencies
-- Use lightweight libraries only if already present or justified
-- If using Framer Motion, ensure it is installed and compatible
-- If using Tailwind, verify configuration before using Tailwind classes
-- If not using Tailwind, implement clean CSS modules or standard CSS
-
-7. GitHub Pages compatibility
-Ensure the final website works correctly on:
-https://nabilnet.github.io/
-
-Check:
-- Correct base path
-- Correct asset paths
-- No broken image imports
-- No routing issue on refresh
-- No 404 due to SPA routing
-- Build output configured correctly
-- GitHub Pages deployment remains functional
-
-8. Content improvement
-Improve all visible text:
-- Correct English grammar
-- Make the tone professional, concise, and confident
-- Avoid buzzwords
-- Avoid exaggerated claims
-- Make the portfolio sound credible and technically mature
-
-9. Code quality
-Deliver clean, maintainable code:
-- Remove unused imports
-- Remove dead code
-- Remove console logs
-- Remove duplicated CSS
-- Use reusable components where appropriate
-- Use consistent naming
-- Keep components readable
-- Add comments only where helpful
-
-10. Final troubleshooting review
-At the end, perform a complete troubleshooting review and fix all issues found.
-
-Run or verify:
-- npm install
-- npm run build
-- npm run preview if available
-- lint if available
-- Check browser console errors
-- Check responsive layout
-- Check all navigation links
-- Check all buttons
-- Check images and assets
-- Check dark/light theme if implemented
-- Check accessibility basics
-- Check GitHub Pages deployment configuration
-
-Final response must include:
-1. Summary of improvements made
-2. Files changed
-3. Design system applied
-4. Motion effects added
-5. Technical risks fixed
-6. Remaining TODOs, if any
-7. Exact commands to run locally
-8. Exact deployment steps for GitHub Pages
+Recent changed files:
+- src/App.tsx
+- src/components/Hero.tsx
+- src/components/About.tsx
+- src/components/Expertise.tsx
+- src/components/Projects.tsx
+- src/components/ExperienceTimeline.tsx
+- src/components/Training.tsx
+- src/components/Contact.tsx
+- src/components/Footer.tsx
+- src/components/Navbar.tsx
+- src/components/NetworkBackground.tsx
+- src/data/portfolio.ts
+- src/index.css
+- vite.config.ts
 
 Important:
-Do not only make the website beautiful. Make it credible, fast, responsive, accessible, and deployable.
-Do not over-animate.
-Do not break the existing live website.
-Do not invent fake experience or certifications.
-Use placeholders only when real data is missing, and clearly mark them as editable.
+Do not redesign the website.
+Do not add new UI features.
+Do not introduce unnecessary dependencies.
+Do not rewrite the full project unless absolutely required.
+Focus only on fixing the blank page and stabilizing the application.
+
+Main suspected issue:
+The Vite base path may be wrong.
+
+The site URL is:
+https://nabilnet.github.io/
+
+This is a GitHub Pages user site.
+
+So vite.config.ts should most likely use:
+
+base: "/"
+
+not:
+
+base: "/NabilNet.github.io/"
+
+Only use base: "/NabilNet.github.io/" if the real production URL is:
+https://nabilnet.github.io/NabilNet.github.io/
+
+Step 1 — Inspect the project
+Inspect:
+- package.json
+- index.html
+- vite.config.ts
+- src/main.tsx
+- src/App.tsx
+- all recently changed components
+- src/data/portfolio.ts
+- src/index.css
+- GitHub Pages workflow if present
+
+Step 2 — Reproduce the issue
+Run:
+
+npm install
+npm run lint
+npm run build
+npm run preview -- --host 0.0.0.0 --port 4173
+
+Also run the development server if useful:
+
+npm run dev
+
+Check for:
+- white/blank page
+- browser console errors
+- failed JS/CSS assets
+- 404 errors
+- incorrect asset paths
+- import/export errors
+- React runtime crashes
+- Framer Motion dependency issues
+- CSS hiding the page
+
+Step 3 — Fix Vite base path
+Open vite.config.ts.
+
+If this is present:
+
+base: "/NabilNet.github.io/"
+
+change it to:
+
+base: "/"
+
+Expected final config:
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/",
+});
+
+Then rebuild and verify assets load correctly.
+
+Step 4 — Verify React entry point
+Inspect index.html and src/main.tsx.
+
+Confirm:
+- index.html contains the correct root element
+- ReactDOM.createRoot targets the correct ID
+- App is imported correctly
+- App renders visible content
+- no condition accidentally returns null
+- no provider crashes the entire app
+
+Step 5 — Fix import/export issues
+Check all components for:
+- default export vs named export mismatch
+- wrong import paths
+- case-sensitive filename mismatch
+- missing files
+- broken aliases
+- missing icon imports
+- missing framer-motion import
+- unused or invalid imports
+
+Fix all import/export issues.
+
+Step 6 — Make portfolio data safe
+Inspect src/data/portfolio.ts and all components mapping over data.
+
+Prevent crashes caused by undefined fields.
+
+Use safe fallbacks:
+
+const skills = portfolio.skills ?? [];
+const projects = portfolio.projects ?? [];
+const certifications = portfolio.certifications ?? [];
+const experience = portfolio.experience ?? [];
+
+Use optional chaining for optional fields:
+
+project.links?.demo
+project.links?.github
+certification.verifyUrl
+item.description ?? ""
+
+No component should crash if a field is missing.
+
+Step 7 — Check Framer Motion
+If framer-motion is used, verify it exists in package.json.
+
+If missing, either:
+1. install it with npm install framer-motion, or
+2. replace motion components with standard HTML elements and CSS transitions.
+
+Prefer the smallest stable fix.
+
+Animations must never be required for the page to render.
+
+Step 8 — Make NetworkBackground fail-safe
+NetworkBackground is a likely crash source.
+
+Inspect src/components/NetworkBackground.tsx.
+
+Fix it so it never breaks the page.
+
+Rules:
+- no window/document access during render
+- all browser APIs must be inside useEffect
+- canvas access must be guarded
+- requestAnimationFrame must be cleaned up
+- ResizeObserver must be guarded
+- devicePixelRatio must be guarded
+- if canvas fails, return null or disable animation safely
+- remove production console noise
+- never allow NetworkBackground to blank the whole app
+
+If needed, temporarily remove NetworkBackground from App.tsx to confirm whether it causes the blank page.
+
+Step 9 — Check CSS visibility
+Inspect src/index.css.
+
+Fix any rule that may hide the app:
+- body display:none
+- #root display:none
+- opacity:0 without animation completion
+- visibility:hidden
+- fixed overlay covering all content
+- z-index layer blocking the page
+- text color same as background
+- missing CSS variables causing invisible text
+
+The page must remain readable even if animations fail.
+
+Step 10 — Add a minimal Error Boundary
+Add:
+
+src/components/ErrorBoundary.tsx
+
+Use it to prevent one broken section from blanking the full portfolio.
+
+The fallback should be clean and professional:
+
+"Something went wrong while loading this section."
+
+Wrap risky sections:
+- NetworkBackground
+- Projects
+- ExperienceTimeline
+- Training
+
+Do not expose technical error details in production UI.
+
+Step 11 — Fix GitHub Actions warning if workflow exists
+Inspect .github/workflows.
+
+The log says Node.js 20 actions are deprecated.
+
+Do not treat this as the main blank-page cause.
+
+If a workflow exists, update it safely:
+- keep official GitHub Pages deployment
+- use node-version: 22
+- keep actions/checkout@v4
+- keep actions/setup-node@v4
+- keep actions/configure-pages@v5
+- use actions/upload-pages-artifact@v3 if applicable
+- use actions/deploy-pages@v4 if applicable
+
+Do not break deployment.
+
+Step 12 — Final validation
+After all fixes, run:
+
+npm install
+npm run lint
+npm run build
+npm run preview -- --host 0.0.0.0 --port 4173
+
+Then verify manually:
+- homepage renders
+- Hero appears
+- Navbar anchors work
+- About appears
+- Skills/Expertise appears
+- Projects appears
+- Experience/Journey appears
+- Certifications/Training appears
+- Contact appears
+- Footer appears
+- mobile layout works
+- no blank page
+- no console errors
+- no failed JS/CSS assets
+- no broken internal anchors
+
+Step 13 — Final report
+At the end, provide:
+
+1. Root cause of the blank page
+2. Files changed
+3. Exact fixes applied
+4. Whether the issue was caused by:
+   - Vite base path
+   - import/export mismatch
+   - Framer Motion
+   - NetworkBackground
+   - CSS invisibility
+   - GitHub Pages deployment
+   - data mismatch
+5. Test results:
+   - npm install
+   - npm run lint
+   - npm run build
+   - npm run preview
+6. Browser console status
+7. GitHub Pages deployment recommendation
+8. Remaining risks, if any
+
+Priority:
+Stability first.
+Design second.
+The website must never show a blank page again.
