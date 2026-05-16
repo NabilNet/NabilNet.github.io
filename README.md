@@ -1,296 +1,334 @@
-You are OpenAI Codex acting as a senior React + Vite + GitHub Pages debugging engineer.
+You are OpenAI Codex acting as a strict senior production debugging engineer.
 
-My portfolio website is currently showing a blank page after recent UI/UX upgrades.
+The website is still blank in production:
 
-Your mission is to fix the code strictly and make the portfolio work 100% in:
-1. local development
-2. production build
-3. local preview
-4. GitHub Pages production
-
-Live website:
 https://nabilnet.github.io/
 
-Project stack:
-React + Vite + GitHub Pages
+Codex previously said the issue was fixed by changing Vite base from "/NabilNet.github.io/" to "/", but the live website is still blank for the user.
 
-Recent changed files:
-- src/App.tsx
-- src/components/Hero.tsx
-- src/components/About.tsx
-- src/components/Expertise.tsx
-- src/components/Projects.tsx
-- src/components/ExperienceTimeline.tsx
-- src/components/Training.tsx
-- src/components/Contact.tsx
-- src/components/Footer.tsx
-- src/components/Navbar.tsx
-- src/components/NetworkBackground.tsx
-- src/data/portfolio.ts
-- src/index.css
-- vite.config.ts
+This means local build success is NOT enough.
+
+Your mission:
+Find the real remaining production issue and fix it completely.
 
 Important:
-Do not redesign the website.
-Do not add new UI features.
-Do not introduce unnecessary dependencies.
-Do not rewrite the full project unless absolutely required.
-Focus only on fixing the blank page and stabilizing the application.
+Be strict.
+Do not redesign.
+Do not add new features.
+Do not claim success only because npm run build passes.
+Do not stop until the live deployed website renders correctly.
+Do not give a generic answer.
+You must inspect the deployed production output and compare it with the local build.
 
-Main suspected issue:
-The Vite base path may be wrong.
+Current known context:
+- Stack: React + Vite
+- Hosting: GitHub Pages user site
+- Live URL: https://nabilnet.github.io/
+- Vite base should be "/"
+- Previous changed files:
+  - vite.config.ts
+  - src/App.tsx
+  - src/components/NetworkBackground.tsx
+  - src/main.tsx
+  - .github/workflows/deploy.yml
 
-The site URL is:
+Previous tests passed:
+- npm install
+- npm run lint
+- npm run build
+- npm run preview
+
+But production is still blank.
+
+STRICT TASK 1 — Verify the live deployed HTML
+Fetch or inspect:
+
 https://nabilnet.github.io/
 
-This is a GitHub Pages user site.
+Check the real production HTML.
 
-So vite.config.ts should most likely use:
+Verify:
+- Does it reference the latest built JS file?
+- Does it reference the latest built CSS file?
+- Are asset paths correct?
+- Are script tags pointing to /assets/...?
+- Are script files returning HTTP 200?
+- Are CSS files returning HTTP 200?
+- Are they returning correct MIME types?
+- Is the deployed HTML old or stale?
+- Is the GitHub Pages artifact actually updated?
 
-base: "/"
+If the live HTML still references old paths like:
 
-not:
+/NabilNet.github.io/assets/...
 
-base: "/NabilNet.github.io/"
+then the latest build was NOT deployed correctly.
 
-Only use base: "/NabilNet.github.io/" if the real production URL is:
-https://nabilnet.github.io/NabilNet.github.io/
-
-Step 1 — Inspect the project
-Inspect:
-- package.json
-- index.html
-- vite.config.ts
-- src/main.tsx
-- src/App.tsx
-- all recently changed components
-- src/data/portfolio.ts
-- src/index.css
-- GitHub Pages workflow if present
-
-Step 2 — Reproduce the issue
+STRICT TASK 2 — Compare local dist with live production
 Run:
 
-npm install
+npm run build
+
+Then inspect:
+
+dist/index.html
+
+Compare dist/index.html with the live HTML at:
+
+https://nabilnet.github.io/
+
+Check whether they match.
+
+If they do not match:
+- The deployment workflow is publishing the wrong artifact
+- GitHub Pages is serving an old build
+- The wrong branch/source is configured
+- The deployment did not complete correctly
+
+Fix the deployment workflow or Pages configuration accordingly.
+
+STRICT TASK 3 — Inspect GitHub Pages workflow
+Open:
+
+.github/workflows/deploy.yml
+
+Verify it does exactly this:
+
+1. checkout repository
+2. setup Node 22
+3. npm ci or npm install
+4. npm run build
+5. upload dist as Pages artifact
+6. deploy Pages artifact
+
+The workflow must publish the correct folder:
+
+dist
+
+Not:
+build
+public
+root directory
+old branch output
+
+Use a safe workflow like this if needed:
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+STRICT TASK 4 — Check package scripts
+Open package.json.
+
+Verify:
+- build script is correct
+- Vite builds to dist
+- no custom output directory mismatch
+- no predeploy/deploy script publishing another folder
+- no gh-pages package pushing stale output
+
+If both GitHub Actions Pages and gh-pages package are being used, identify the conflict.
+
+There must be only one clear deployment strategy.
+
+STRICT TASK 5 — Check GitHub Pages source mode
+Determine whether GitHub Pages is configured to deploy from:
+
+A. GitHub Actions
+
+or
+
+B. branch/folder such as main/docs or gh-pages
+
+If the workflow deploys via Actions but GitHub Pages is configured to branch mode, the live site may still serve an old build.
+
+Fix the repository Pages setup recommendation.
+
+Expected:
+For the workflow above, Pages source should be:
+
+GitHub Actions
+
+STRICT TASK 6 — Inspect live browser console errors
+Use a browser or headless check to inspect the live page.
+
+Check:
+- console errors
+- network errors
+- failed JavaScript
+- failed CSS
+- failed image assets
+- MIME type errors
+- React runtime error
+- uncaught exceptions
+- blank root after script loads
+
+If there is a runtime error, identify the exact component and fix it.
+
+STRICT TASK 7 — Add emergency production visibility guard
+If React crashes before rendering, add a temporary but professional fallback.
+
+In src/main.tsx:
+- verify root element exists
+- wrap render in a try/catch
+- display a minimal fallback message only if React fails to mount
+
+Do not leave ugly debug text if the app works.
+
+Example:
+
+try {
+  ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+} catch (error) {
+  root.innerHTML = `
+    <main style="padding:24px;font-family:system-ui">
+      <h1>Portfolio loading issue</h1>
+      <p>The portfolio could not be loaded. Please try again later.</p>
+    </main>
+  `;
+}
+
+STRICT TASK 8 — Add App-level ErrorBoundary
+Make sure the whole app is wrapped in an ErrorBoundary.
+
+Example:
+
+<ErrorBoundary>
+  <App />
+</ErrorBoundary>
+
+This is required because section-level boundaries are not enough if App, Navbar, theme logic, or global providers crash.
+
+STRICT TASK 9 — Temporarily isolate suspicious components
+If the live runtime still crashes, test by disabling components one by one:
+
+1. NetworkBackground
+2. Framer Motion animated wrappers
+3. Theme provider or theme switching logic
+4. Projects
+5. Training
+6. ExperienceTimeline
+7. Navbar
+
+Find the exact component causing the blank page.
+
+Do not guess.
+
+STRICT TASK 10 — Check asset case sensitivity
+GitHub Pages is case-sensitive.
+
+Verify:
+- import paths match actual filenames exactly
+- image filenames match exact casing
+- component filenames match exact casing
+- repo name casing is not used in base path
+
+Examples to check:
+- Hero.tsx vs hero.tsx
+- NetworkBackground.tsx vs networkBackground.tsx
+- portfolio.ts vs Portfolio.ts
+
+STRICT TASK 11 — Cache-busting check
+After deployment, verify the live index.html references the new hashed assets.
+
+If the browser still shows old files:
+- hard refresh
+- check GitHub Pages deployment timestamp
+- verify latest Actions run completed
+- verify the commit hash deployed
+- verify no service worker is caching old assets
+
+If a service worker exists, disable it or unregister it unless intentionally used.
+
+STRICT TASK 12 — Final proof required
+Do not finish with “it should work”.
+
+Final response must include proof:
+
+1. Live production HTML checked: yes/no
+2. Live JS asset HTTP status: 200 or error
+3. Live CSS asset HTTP status: 200 or error
+4. Console errors on live site: list exact errors or say none found
+5. dist/index.html matches live index.html: yes/no
+6. GitHub Pages source mode: GitHub Actions or branch
+7. Exact root cause
+8. Files changed
+9. Commands run
+10. Final live URL confirmed rendering
+
+Required final commands:
+
+npm ci
 npm run lint
 npm run build
 npm run preview -- --host 0.0.0.0 --port 4173
 
-Also run the development server if useful:
+Then deploy and verify:
 
-npm run dev
+https://nabilnet.github.io/
 
-Check for:
-- white/blank page
-- browser console errors
-- failed JS/CSS assets
-- 404 errors
-- incorrect asset paths
-- import/export errors
-- React runtime crashes
-- Framer Motion dependency issues
-- CSS hiding the page
+Success criteria:
+- No blank page
+- Hero visible
+- Navbar visible
+- Sections visible
+- JS and CSS assets load with 200 status
+- No console runtime error
+- GitHub Pages serves the latest dist artifact
 
-Step 3 — Fix Vite base path
-Open vite.config.ts.
-
-If this is present:
-
-base: "/NabilNet.github.io/"
-
-change it to:
-
-base: "/"
-
-Expected final config:
-
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  plugins: [react()],
-  base: "/",
-});
-
-Then rebuild and verify assets load correctly.
-
-Step 4 — Verify React entry point
-Inspect index.html and src/main.tsx.
-
-Confirm:
-- index.html contains the correct root element
-- ReactDOM.createRoot targets the correct ID
-- App is imported correctly
-- App renders visible content
-- no condition accidentally returns null
-- no provider crashes the entire app
-
-Step 5 — Fix import/export issues
-Check all components for:
-- default export vs named export mismatch
-- wrong import paths
-- case-sensitive filename mismatch
-- missing files
-- broken aliases
-- missing icon imports
-- missing framer-motion import
-- unused or invalid imports
-
-Fix all import/export issues.
-
-Step 6 — Make portfolio data safe
-Inspect src/data/portfolio.ts and all components mapping over data.
-
-Prevent crashes caused by undefined fields.
-
-Use safe fallbacks:
-
-const skills = portfolio.skills ?? [];
-const projects = portfolio.projects ?? [];
-const certifications = portfolio.certifications ?? [];
-const experience = portfolio.experience ?? [];
-
-Use optional chaining for optional fields:
-
-project.links?.demo
-project.links?.github
-certification.verifyUrl
-item.description ?? ""
-
-No component should crash if a field is missing.
-
-Step 7 — Check Framer Motion
-If framer-motion is used, verify it exists in package.json.
-
-If missing, either:
-1. install it with npm install framer-motion, or
-2. replace motion components with standard HTML elements and CSS transitions.
-
-Prefer the smallest stable fix.
-
-Animations must never be required for the page to render.
-
-Step 8 — Make NetworkBackground fail-safe
-NetworkBackground is a likely crash source.
-
-Inspect src/components/NetworkBackground.tsx.
-
-Fix it so it never breaks the page.
-
-Rules:
-- no window/document access during render
-- all browser APIs must be inside useEffect
-- canvas access must be guarded
-- requestAnimationFrame must be cleaned up
-- ResizeObserver must be guarded
-- devicePixelRatio must be guarded
-- if canvas fails, return null or disable animation safely
-- remove production console noise
-- never allow NetworkBackground to blank the whole app
-
-If needed, temporarily remove NetworkBackground from App.tsx to confirm whether it causes the blank page.
-
-Step 9 — Check CSS visibility
-Inspect src/index.css.
-
-Fix any rule that may hide the app:
-- body display:none
-- #root display:none
-- opacity:0 without animation completion
-- visibility:hidden
-- fixed overlay covering all content
-- z-index layer blocking the page
-- text color same as background
-- missing CSS variables causing invisible text
-
-The page must remain readable even if animations fail.
-
-Step 10 — Add a minimal Error Boundary
-Add:
-
-src/components/ErrorBoundary.tsx
-
-Use it to prevent one broken section from blanking the full portfolio.
-
-The fallback should be clean and professional:
-
-"Something went wrong while loading this section."
-
-Wrap risky sections:
-- NetworkBackground
-- Projects
-- ExperienceTimeline
-- Training
-
-Do not expose technical error details in production UI.
-
-Step 11 — Fix GitHub Actions warning if workflow exists
-Inspect .github/workflows.
-
-The log says Node.js 20 actions are deprecated.
-
-Do not treat this as the main blank-page cause.
-
-If a workflow exists, update it safely:
-- keep official GitHub Pages deployment
-- use node-version: 22
-- keep actions/checkout@v4
-- keep actions/setup-node@v4
-- keep actions/configure-pages@v5
-- use actions/upload-pages-artifact@v3 if applicable
-- use actions/deploy-pages@v4 if applicable
-
-Do not break deployment.
-
-Step 12 — Final validation
-After all fixes, run:
-
-npm install
-npm run lint
-npm run build
-npm run preview -- --host 0.0.0.0 --port 4173
-
-Then verify manually:
-- homepage renders
-- Hero appears
-- Navbar anchors work
-- About appears
-- Skills/Expertise appears
-- Projects appears
-- Experience/Journey appears
-- Certifications/Training appears
-- Contact appears
-- Footer appears
-- mobile layout works
-- no blank page
-- no console errors
-- no failed JS/CSS assets
-- no broken internal anchors
-
-Step 13 — Final report
-At the end, provide:
-
-1. Root cause of the blank page
-2. Files changed
-3. Exact fixes applied
-4. Whether the issue was caused by:
-   - Vite base path
-   - import/export mismatch
-   - Framer Motion
-   - NetworkBackground
-   - CSS invisibility
-   - GitHub Pages deployment
-   - data mismatch
-5. Test results:
-   - npm install
-   - npm run lint
-   - npm run build
-   - npm run preview
-6. Browser console status
-7. GitHub Pages deployment recommendation
-8. Remaining risks, if any
-
-Priority:
-Stability first.
-Design second.
-The website must never show a blank page again.
+Do not stop before proving the production website works.
