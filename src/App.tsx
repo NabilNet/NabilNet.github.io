@@ -30,9 +30,9 @@ function App() {
     <div className="app-content">
       <Navbar theme={theme} onSelect={setTheme} />
       <main>
-        <Hero /><About /><Expertise /><Projects />
+        <Hero /><About /><Expertise /><ErrorBoundary fallback={<section id="projects" className="section"><h2>Project Highlights</h2><p className="muted mt-4">Something went wrong while loading this section.</p></section>}><Projects /></ErrorBoundary>
         <ErrorBoundary fallback={<section id="experience" className="section"><h2>Professional Journey</h2><p className="muted mt-4">Experience content is temporarily unavailable.</p></section>}><ExperienceTimeline /></ErrorBoundary>
-        <Training /><Contact />
+        <ErrorBoundary fallback={<section id="certifications" className="section"><h2>Certifications & Learning</h2><p className="muted mt-4">Something went wrong while loading this section.</p></section>}><Training /></ErrorBoundary><Contact />
       </main>
       <Footer />
     </div>
