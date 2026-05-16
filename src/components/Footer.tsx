@@ -1,17 +1,18 @@
-import { FileText, Github, Linkedin, Mail } from "lucide-react";
-
-const links = [
-  { href: "https://www.linkedin.com/in/nabil-n-25785216/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://github.com/NabilNet", icon: Github, label: "GitHub" },
-  { href: "mailto:nabil.nettour@gmail.com", icon: Mail, label: "Email" },
-  { href: "#", icon: FileText, label: "Resume" }
-];
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
-  return <footer className="border-t border-token py-6">
-    <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
-      <p className="text-xs muted">© {new Date().getFullYear()} NabilNet</p>
-      <div className="flex items-center gap-2">{links.map((link) => <a key={link.label} href={link.href} aria-label={link.label} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined} className="rounded-full border border-token p-2 muted transition hover:-translate-y-0.5 hover:text-token-accent"><link.icon className="h-4 w-4" /></a>)}</div>
+  return <footer className="border-t border-token py-8">
+    <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 md:flex-row md:items-center">
+      <div>
+        <p className="font-semibold">Nabil Nettour</p>
+        <p className="text-sm muted">Network, Cloud & Automation Engineer</p>
+      </div>
+      <div className="flex items-center gap-2">
+        <a href="https://github.com/NabilNet" aria-label="GitHub" target="_blank" rel="noreferrer" className="btn !p-2"><Github className="h-4 w-4" /></a>
+        <a href="https://www.linkedin.com/in/nabil-n-25785216/" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="btn !p-2"><Linkedin className="h-4 w-4" /></a>
+        <a href="mailto:nabil.nettour@gmail.com" aria-label="Email" className="btn !p-2"><Mail className="h-4 w-4" /></a>
+      </div>
+      <p className="text-xs muted">© {new Date().getFullYear()} Built with React, TypeScript, and Vite.</p>
     </div>
   </footer>;
 }

@@ -16,7 +16,7 @@ export function ExperienceTimeline() {
   }, [active]);
 
   return <section id="experience" className="section">
-    <h2>Professional Experience</h2>
+    <h2>Experience & Journey</h2>
     <div className="mt-4 flex flex-wrap gap-2">{filters.map((f) => <button key={f} className={`btn px-3 py-1 text-xs ${active === f ? "border-token-accent text-token-accent" : ""}`} onClick={() => setActive(f)}>{f}</button>)}</div>
     <div className="mt-8 space-y-4">{filtered.map((item) => <details key={`${item.company}-${item.role}`} className="card group" open={item.company === "OECD"}>
       <summary className="cursor-pointer list-none">

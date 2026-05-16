@@ -1,21 +1,17 @@
-import * as icons from "lucide-react";
 import { motion } from "framer-motion";
-import type { ComponentType } from "react";
+import { Github, ExternalLink } from "lucide-react";
 import { projects } from "../data/portfolio";
 
 export function Projects() {
   return <section id="projects" className="section">
-    <h2>Featured Projects</h2>
-    <div className="mt-8 grid gap-4 md:grid-cols-2">{projects.map((project, i) => {
-      const Icon = (icons as unknown as Record<string, ComponentType<{ className?: string }>>)[project.icon] ?? icons.FolderKanban;
-      return <motion.article key={project.title} whileHover={{ y: -4 }} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="card">
-        <div className="mb-2 flex items-center gap-2 text-sky-500"><Icon className="h-4 w-4" /><span className="text-xs font-semibold uppercase tracking-wider">Strategic Initiative</span></div>
-        <h3>{project.title}</h3>
-        <p className="muted mt-2"><strong>Scope:</strong> {project.strategicScope}</p>
-        <p className="mt-2 text-sm"><strong>Technologies:</strong> {project.technologies.join(" • ")}</p>
-        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700 dark:text-slate-300">{project.contributions.map((contribution) => <li key={contribution}>{contribution}</li>)}</ul>
-        <p className="mt-4 text-sm text-emerald-700 dark:text-emerald-400"><strong>Business Value:</strong> {project.businessValue}</p>
-      </motion.article>;
-    })}</div>
+    <h2>Project Highlights</h2>
+    <p className="muted mt-3">Selected infrastructure initiatives and the value they delivered.</p>
+    <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">{projects.map((project, i) => <motion.article key={project.title} className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: i * 0.08 }} whileHover={{ y: -4 }}>
+      <h3 className="text-lg font-semibold">{project.title}</h3>
+      <p className="muted mt-3 text-sm"><strong>Problem:</strong> {project.problem}</p>
+      <p className="mt-2 text-sm"><strong>Technologies:</strong> {project.technologies.join(" · ")}</p>
+      <p className="mt-2 text-sm"><strong>Outcome:</strong> {project.outcome}</p>
+      <div className="mt-4">{project.href ? <a className="inline-flex items-center gap-2 text-sm font-medium text-token-accent" href={project.href} target="_blank" rel="noreferrer">{project.type === "github" ? <Github className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}Open Link</a> : <span className="rounded-full border border-token px-2 py-1 text-xs muted">TODO (Editable): add project link</span>}</div>
+    </motion.article>)}</div>
   </section>;
 }

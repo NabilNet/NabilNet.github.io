@@ -109,3 +109,7 @@ h2 { @apply text-3xl font-semibold md:text-4xl; letter-spacing: -0.01em; }
     scroll-behavior: auto !important;
   }
 }
+
+.btn-primary { background: var(--color-accent); color: #f8fbff; border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-border)); }
+.btn-primary:hover { background: var(--color-accent-hover); color: #ffffff; }
+.hero-mesh { position:absolute; inset:-30% -10% auto auto; width:420px; height:420px; background: radial-gradient(circle at center, color-mix(in oklab, var(--color-accent) 40%, transparent), transparent 62%); filter: blur(14px); opacity:0.55; pointer-events:none; }

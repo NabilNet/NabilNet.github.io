@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
-import { identityPillars } from "../data/portfolio";
+import { heroPillars } from "../data/portfolio";
 
 export function Hero() {
-  return <section id="home" className="section pt-20">
-    <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="card relative overflow-hidden">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-token-accent">Senior Network, Security, Cloud & Automation Engineer</p>
-      <h1 className="mt-3 max-w-5xl text-xl font-semibold leading-tight md:text-3xl">Designing resilient, secure, and scalable Network, Security, Cloud, Automation, Campus, and Data Center infrastructures to support large-scale digital transformation, operational excellence, and modern enterprise services.</h1>
-      <p className="muted mt-4 max-w-[680px] text-[0.95rem] leading-[1.5] md:text-[1.08rem]">Expert-level architecture, security, and automation execution across enterprise networking, campus infrastructure, and mission-critical data center environments.</p>
-      <div className="mt-5 flex flex-wrap gap-2">{identityPillars.map((pillar) => <span key={pillar} className="rounded-full border border-token px-3 py-1 text-xs font-medium">{pillar}</span>)}</div>
+  return <section id="home" className="section pt-24">
+    <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="card relative overflow-hidden">
+      <div className="hero-mesh" aria-hidden="true" />
+      <p className="relative text-xs font-semibold uppercase tracking-[0.2em] text-token-accent">Network, Cloud & Automation Engineer</p>
+      <h1 className="relative mt-3 max-w-4xl text-3xl font-semibold leading-tight md:text-5xl">Engineering reliable infrastructure for modern cloud-connected enterprises.</h1>
+      <p className="relative muted mt-4 max-w-2xl text-base">I help organizations build secure, scalable network and cloud foundations with automation-led operations and measurable reliability improvements.</p>
+      <div className="relative mt-7 flex flex-wrap gap-3">
+        <a href="#projects" className="btn btn-primary">View Projects</a>
+        <a href="#contact" className="btn">Contact Me</a>
+      </div>
+      <div className="relative mt-6 flex flex-wrap gap-2">{heroPillars.map((pillar) => <span key={pillar} className="rounded-full border border-token px-3 py-1 text-xs font-medium">{pillar}</span>)}</div>
     </motion.div>
   </section>;
 }
