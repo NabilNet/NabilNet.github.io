@@ -6,7 +6,8 @@ export function NetworkBackground({ active }: { active: boolean }) {
   useEffect(() => {
     if (!active) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const canMatchMedia = typeof window.matchMedia === "function";
+    const reduceMotion = canMatchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
     const canvas = ref.current;

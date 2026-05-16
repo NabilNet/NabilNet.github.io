@@ -8,7 +8,6 @@ if (!rootElement) {
   throw new Error("Root element #root not found");
 }
 
-console.info("NabilNet portfolio loaded successfully");
 
 ReactDOM.createRoot(rootElement as HTMLElement).render(
   <React.StrictMode>
