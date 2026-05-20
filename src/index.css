@@ -17,6 +17,8 @@
   --color-link: #0b76b7;
   --color-button-bg: #ffffff;
   --color-button-text: #0f172a;
+  --color-red-accent: #e25f6f;
+  --color-purple-accent: #8b6af7;
 }
 
 html[data-theme="dark"] {
@@ -34,6 +36,8 @@ html[data-theme="dark"] {
   --color-link: #79d1ff;
   --color-button-bg: #111d34;
   --color-button-text: #e6edf7;
+  --color-red-accent: #f28493;
+  --color-purple-accent: #a78bfa;
 }
 
 html[data-theme="network"] {
@@ -51,6 +55,8 @@ html[data-theme="network"] {
   --color-link: #74ebff;
   --color-button-bg: rgba(10, 34, 58, 0.9);
   --color-button-text: #e9f7ff;
+  --color-red-accent: #ff798b;
+  --color-purple-accent: #9d87ff;
 }
 
 html[data-theme="black"] {
@@ -68,6 +74,8 @@ html[data-theme="black"] {
   --color-link: #ededed;
   --color-button-bg: #101010;
   --color-button-text: #f4f4f4;
+  --color-red-accent: #ff7e8f;
+  --color-purple-accent: #b49cff;
 }
 
 html, body, #root { min-height: 100%; margin: 0; }
@@ -113,3 +121,7 @@ h2 { @apply text-3xl font-semibold md:text-4xl; letter-spacing: -0.01em; }
 .btn-primary { background: var(--color-accent); color: #f8fbff; border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-border)); }
 .btn-primary:hover { background: var(--color-accent-hover); color: #ffffff; }
 .hero-mesh { position:absolute; inset:-30% -10% auto auto; width:420px; height:420px; background: radial-gradient(circle at center, color-mix(in oklab, var(--color-accent) 40%, transparent), transparent 62%); filter: blur(14px); opacity:0.55; pointer-events:none; }
+
+.hero-accent { position:absolute; border-radius:9999px; pointer-events:none; filter: blur(24px); opacity:0.35; }
+.hero-accent-red { inset:auto auto -55px -30px; width:220px; height:220px; background: radial-gradient(circle at center, color-mix(in oklab, var(--color-red-accent) 62%, transparent), transparent 68%); }
+.hero-accent-purple { inset:22% -40px auto auto; width:180px; height:180px; background: radial-gradient(circle at center, color-mix(in oklab, var(--color-purple-accent) 56%, transparent), transparent 70%); }
