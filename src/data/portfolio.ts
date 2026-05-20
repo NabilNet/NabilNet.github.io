@@ -19,13 +19,13 @@ export interface ProjectItem {
   skills: string[];
 }
 
-export const heroPillars = ["Network Architecture", "Cloud Infrastructure", "Network Automation", "Security by Design", "Operational Reliability", "NetDevOps", "Red Team", "Purple Team"];
+export const heroPillars = ["Network Architecture", "Cloud Connectivity", "Network Automation", "Security by Design", "Operational Reliability", "NetDevOps"];
 
-export const aboutSummary = "I am a Senior Network, Cloud, Security and Automation Engineer with more than 15 years of experience designing, deploying and modernizing enterprise infrastructure across international environments.";
+export const aboutSummary = "I am a Senior Network, Cloud, Security and Automation Engineer with more than 15 years of experience designing, deploying and modernizing enterprise networks across international environments.";
 
 export const aboutHighlights = ["Enterprise networking, data center architecture, cloud connectivity, network security, infrastructure automation and operational resilience.", "Hands-on delivery with Cisco ACI, SD-WAN, SD-Access, Cisco ISE, F5 BIG-IP, Fortinet, Palo Alto, Check Point, Zscaler, Azure, AWS, GCP, Ansible Automation Platform, NetBox, Docker and Python.", "My work combines hands-on engineering, architecture thinking, stakeholder coordination, and the ability to translate complex technical challenges into reliable solutions.", "Current focus areas: NetDevOps, infrastructure automation, hybrid cloud architecture, cloud security, zero-trust access, data center modernization and resilient network design."];
 
-export const positioningStatement = "I position myself as a senior infrastructure transformation engineer who connects network, cloud, security and automation to build resilient digital foundations for global organizations.";
+export const positioningStatement = "I position myself as a senior network transformation engineer who connects cloud, security and automation to build resilient digital foundations for global organizations.";
 
 export const whatIDo = [
   { title: "Network Architecture", description: "I design and modernize enterprise networks, data center fabrics, WAN/LAN environments and cloud-connected infrastructures with a strong focus on performance, segmentation, availability and scalability." },
