@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
+import { ThemeMode } from "../utils/theme";
 
-export function NetworkBackground({ active }: { active: boolean }) {
+export function NetworkBackground({ theme }: { theme: ThemeMode }) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const active = theme === "universe";
 
   useEffect(() => {
     if (!active) return;
@@ -85,5 +87,5 @@ export function NetworkBackground({ active }: { active: boolean }) {
     };
   }, [active]);
 
-  return <canvas ref={ref} className={`network-background transition-opacity duration-500 ${active ? "opacity-70" : "opacity-0"}`} aria-hidden="true" />;
+  return <canvas ref={ref} className={`network-background transition-opacity duration-700 ${active ? "opacity-65" : "opacity-0"}`} aria-hidden="true" />;
 }
