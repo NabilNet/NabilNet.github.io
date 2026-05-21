@@ -10,23 +10,23 @@ import { NetworkBackground } from "./components/NetworkBackground";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Expertise } from "./components/Expertise";
 import { Projects } from "./components/Projects";
-import { getInitialThemeMode, isValidThemeMode, ThemeMode } from "./utils/theme";
+import { getInitialThemeMode, normalizeThemeMode, ThemeMode } from "./utils/theme";
 
 function App() {
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => getInitialThemeMode());
+  const safeThemeMode = normalizeThemeMode(themeMode);
 
   useEffect(() => {
-    const safeThemeMode = isValidThemeMode(themeMode) ? themeMode : "light";
     document.documentElement.setAttribute("data-theme", safeThemeMode);
     try { window.localStorage.setItem("theme-mode", safeThemeMode); } catch {
       // no-op when storage is unavailable
     }
-  }, [themeMode]);
+  }, [safeThemeMode]);
 
   return <div className="app-shell min-h-screen bg-token-bg text-token-text transition-colors duration-500">
-    <ErrorBoundary fallback={null}><NetworkBackground theme={themeMode} /></ErrorBoundary>
+    <ErrorBoundary fallback={null}><NetworkBackground theme={safeThemeMode} /></ErrorBoundary>
     <div className="app-content">
-      <Navbar themeMode={themeMode} onSelect={setThemeMode} />
+      <Navbar themeMode={safeThemeMode} onSelect={(theme) => setThemeMode(normalizeThemeMode(theme))} />
       <main><Hero /><About /><Expertise /><Projects /><ExperienceTimeline /><Training /><Contact /></main>
       <Footer />
     </div>
